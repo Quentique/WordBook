@@ -9,6 +9,7 @@ class Fenetre : public QMainWindow
     Q_OBJECT
 public:
     Fenetre();
+    void lister();
 public slots:
     void test(QTreeWidgetItem* slot, int te);
 private:
