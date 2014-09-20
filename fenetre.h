@@ -6,8 +6,11 @@
 
 class Fenetre : public QMainWindow
 {
+    Q_OBJECT
 public:
     Fenetre();
+public slots:
+    void test(QTreeWidgetItem* slot, int te);
 private:
    QTreeWidget *arbre;
     QWidget *zoneprincipale;
