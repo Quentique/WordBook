@@ -1,4 +1,5 @@
 #include "fenetre.h"
+#include "web.h"
 #include <iostream>
 
 
@@ -6,9 +7,10 @@ Fenetre::Fenetre()
 {
 
    zoneprincipale = new QWidget;
-   afficher = new QPushButton("test");
-   ajout = new QPushButton("testd");
-   modifier = new QPushButton("tedst");
+   ajout = new QPushButton("Ajouter");
+   modifier = new QPushButton("Modifier");
+   afficher = new QPushButton("Afficher");
+   supprimer = new QPushButton("Supprimer");
    QVBoxLayout *layoutv = new QVBoxLayout;
    QHBoxLayout *layouth = new QHBoxLayout;
    arbre = new QTreeWidget;
@@ -16,6 +18,7 @@ Fenetre::Fenetre()
    layoutv->addWidget(ajout);
    layoutv->addWidget(modifier);
    layoutv->addWidget(afficher);
+   layoutv->addWidget(supprimer);
 
    layouth->addWidget(arbre);
    layouth->addLayout(layoutv);
@@ -31,11 +34,29 @@ Fenetre::Fenetre()
    arbre->addTopLevelItem(test);
 
    lister();
-   QObject::connect(arbre, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(test(QTreeWidgetItem*,int)));
+   QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affich(QTreeWidgetItem*,int)));
+   QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
+   QObject::connect(supprimer, SIGNAL(clicked()), this, SLOT(supprime()));
 }
-void Fenetre::test(QTreeWidgetItem* slot, int te)
+void Fenetre::affich(QTreeWidgetItem* slot, int te)
 {
+  Web testg(slot->text(te));
+}
+void Fenetre::affiche()
+{
+    Web testf(arbre->selectedItems().at(0)->text(0));
+    qDebug() << arbre->selectedItems().at(0)->text(0);
+}
+void Fenetre::supprime()
+{
+    int reponse = QMessageBox::question(this, "Confirmation", "Êtes-vous sûr de vouloir supprimer cette fiche : " + arbre->selectedItems().at(0)->text(0), QMessageBox ::Yes | QMessageBox::No);
 
+       if (reponse == QMessageBox::Yes)
+       {
+           QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0).toLower() + ".html");
+           arbre->clear();
+           lister();
+       }
 }
 void Fenetre::lister()
 {

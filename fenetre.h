@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtWidgets>
 
+
 class Fenetre : public QMainWindow
 {
     Q_OBJECT
@@ -11,11 +12,13 @@ public:
     Fenetre();
     void lister();
 public slots:
-    void test(QTreeWidgetItem* slot, int te);
+    void affich(QTreeWidgetItem* slot, int te);
+    void affiche();
+    void supprime();
 private:
    QTreeWidget *arbre;
     QWidget *zoneprincipale;
-    QPushButton *ajout, *modifier, *afficher;
+    QPushButton *ajout, *modifier, *afficher, *supprimer;
 
 };
 

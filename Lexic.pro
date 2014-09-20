@@ -1,8 +1,10 @@
-QT += widgets
+QT += widgets webkitwidgets
 
 SOURCES += \
     main.cpp \
-    fenetre.cpp
+    fenetre.cpp \
+    web.cpp
 
 HEADERS += \
-    fenetre.h
+    fenetre.h \
+    web.h
