@@ -15,6 +15,7 @@ public slots:
     void affich(QTreeWidgetItem* slot, int te);
     void affiche();
     void supprime();
+    void ajouter();
 private:
    QTreeWidget *arbre;
     QWidget *zoneprincipale;

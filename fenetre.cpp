@@ -1,7 +1,6 @@
 #include "fenetre.h"
 #include "web.h"
-#include <iostream>
-
+#include "ajout.h"
 
 Fenetre::Fenetre()
 {
@@ -37,6 +36,7 @@ Fenetre::Fenetre()
    QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affich(QTreeWidgetItem*,int)));
    QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
    QObject::connect(supprimer, SIGNAL(clicked()), this, SLOT(supprime()));
+   QObject::connect(ajout, SIGNAL(clicked()), this, SLOT(ajouter()));
 }
 void Fenetre::affich(QTreeWidgetItem* slot, int te)
 {
@@ -58,6 +58,11 @@ void Fenetre::supprime()
            lister();
        }
 }
+void Fenetre::ajouter()
+{
+    Ajout ajout;
+}
+
 void Fenetre::lister()
 {
     QString path = QCoreApplication::applicationDirPath();
