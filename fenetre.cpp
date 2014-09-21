@@ -6,13 +6,28 @@ Fenetre::Fenetre()
 {
 
    zoneprincipale = new QWidget;
-   ajout = new QPushButton("Ajouter");
-   modifier = new QPushButton("Modifier");
-   afficher = new QPushButton("Afficher");
+   ajout = new QPushButton;
+   modifier = new QPushButton;
+   afficher = new QPushButton;
    supprimer = new QPushButton("Supprimer");
    QVBoxLayout *layoutv = new QVBoxLayout;
    QHBoxLayout *layouth = new QHBoxLayout;
    arbre = new QTreeWidget;
+
+   ajout->setIcon(QIcon(":/images/ajouter.png"));
+   ajout->setIconSize(QPixmap(":/images/modifier.png").size());
+   ajout->setMinimumSize(50, 50);
+   ajout->setMaximumSize(50, 50);
+
+   modifier->setIcon(QIcon(":/images/modifier.png"));
+   modifier->setIconSize(QSize(42, 42));
+   modifier->setMinimumSize(50, 50);
+   modifier->setMaximumSize(50, 50);
+
+   afficher->setIcon(QIcon(":/images/afficher.png"));
+   afficher->setIconSize(QPixmap(":images/modifier.png").size());
+   afficher->setMinimumSize(50, 50);
+   afficher->setMaximumSize(50, 50);
 
    layoutv->addWidget(ajout);
    layoutv->addWidget(modifier);

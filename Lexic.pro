@@ -10,3 +10,6 @@ HEADERS += \
     fenetre.h \
     web.h \
     ajout.h
+
+RESOURCES += \
+    ressources.qrc
