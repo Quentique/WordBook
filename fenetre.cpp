@@ -50,7 +50,6 @@ void Fenetre::affiche()
 void Fenetre::supprime()
 {
     int reponse = QMessageBox::question(this, "Confirmation", "Êtes-vous sûr de vouloir supprimer cette fiche : " + arbre->selectedItems().at(0)->text(0), QMessageBox ::Yes | QMessageBox::No);
-
        if (reponse == QMessageBox::Yes)
        {
            QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0).toLower() + ".html");
@@ -60,9 +59,17 @@ void Fenetre::supprime()
 }
 void Fenetre::ajouter()
 {
-    Ajout ajout;
-}
+    fenajout = new Ajout;
+    fenajout->show();
+    QObject::connect(fenajout, SIGNAL(fini()), this, SLOT(rafraichir()));
 
+}
+void Fenetre::rafraichir()
+{
+   arbre->clear();
+   lister();
+   delete fenajout;
+}
 void Fenetre::lister()
 {
     QString path = QCoreApplication::applicationDirPath();

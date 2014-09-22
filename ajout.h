@@ -6,12 +6,16 @@
 
 class Ajout : public QWidget
 {
+    Q_OBJECT
 public:
     Ajout();
+public slots:
+    void enregistre();
+signals:
+    void fini();
 private:
-    QWidget *fenajout;
     QTableWidget *tableau;
-    QLineEdit *titre, *soustitre;
+    QLineEdit *titre, *soustitre, *langue;
     QPushButton *record;
 };
 
