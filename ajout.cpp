@@ -91,18 +91,29 @@ void Ajout::enregistre()
         qDebug() << "Dans For";
         QTableWidgetItem *item = tableau->item(i,0);
         QTableWidgetItem *item2 = tableau->item(i, 1);
-        if (!item && !item2)
+        if (item && item2)
         {
-            qDebug() << "Rien";
-        }
-        else
-        {
-
             texte << "<tr> \n <td>" << tableau->item(i, 0)->text() << "</td> \n <td>" << tableau->item(i, 1)->text() << "</td> \n </tr>";
             qDebug() << tableau->item(i, 0)->text();
             qDebug() << tableau->item(i, 1)->text();
             qDebug() << "Dans if";
-       }
+        }
+        else if (!item && item2)
+        {
+            texte << "<tr> \n <td></td> \n <td>" << tableau->item(i, 1)->text() << "</td> \n </tr>";
+            qDebug() << tableau->item(i, 1)->text();
+            qDebug() << "Dans if";
+        }
+        else if (item && !item2)
+        {
+            texte << "<tr> \n <td>" << tableau->item(i, 0)->text() << "</td> \n <td> </td> \n </tr>";
+            qDebug() << tableau->item(i, 0)->text();
+            qDebug() << "Dans if";
+        }
+        else
+        {
+            qDebug() << "Rien";
+        }
     }
     fichier.close();
     emit fini();
