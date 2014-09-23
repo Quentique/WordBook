@@ -13,7 +13,7 @@ public slots:
     void enregistre();
 signals:
     void fini();
-private:
+protected:
     QTableWidget *tableau;
     QLineEdit *titre, *soustitre, *langue;
     QPushButton *record;

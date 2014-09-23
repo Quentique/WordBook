@@ -12,12 +12,14 @@ class Fenetre : public QMainWindow
 public:
     Fenetre();
     void lister();
+
 public slots:
     void affich(QTreeWidgetItem* slot, int te);
     void affiche();
     void supprime();
     void ajouter();
     void rafraichir();
+    void changer();
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;

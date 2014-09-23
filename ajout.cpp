@@ -75,15 +75,18 @@ void Ajout::enregistre()
     else
     {
     QTextStream texte(&fichier);
-    texte << "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" http-equiv=\"Content-Type\" content=\"text/html\"/>\n<link rel=\"stylesheet\" content=\"text/css\" href=\"..\\style.css\"/>\n</head>\n";
+    texte << "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" http-equiv=\"Content-Type\" content=\"text/html\"/>\n<link re=\"stylesheet\" content=\"text/css\" href=\"..\\style.css\"/>\n</head>\n";
     texte << "<body>\n<h1>" << titre->text() << "</h1>\n";
     if (soustitre->text() != "")
     {
-        texte << "<h2>" << soustitre->text() << "</h2>\n";
+        texte << "<h2 id=\"1\">" << soustitre->text() << "</h2>\n";
     }
-
+    else
+    {
+        texte << "<h2 id=\"0\"></h2>\n";
+    }
     texte << "<div>Langue : " << langue->text() << "</div>\n";
-    texte << "<table>\n<thead>\n<tr>\n<th>Termes</th>\n<th>Traductions</th>\n</tr>\n<tbody>\n";
+    texte << "<table>\n<thead>\n<tr>\n<th>Termes</th>\n<th>Traductions</th>\n</tr>\n</thead>\n<tbody>\n";
     int i;
     qDebug() << "Avant for";
     for (i = 0 ; i != 99 ; i++)
