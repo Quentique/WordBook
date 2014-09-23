@@ -75,15 +75,15 @@ void Ajout::enregistre()
     else
     {
     QTextStream texte(&fichier);
-    texte << "<!DOCTYPE html> \n <html> \n <head> \n <meta charset=\"utf-8\" http-equiv=\"Content-Type\" content=\"text/html\"/> \n <link rel\=\"stylesheet\" content=\"text/css\" href=\"..\style.css\"/> \n </head>";
-    texte << "<body> \n <h1>" << titre->text() << "</h1> \n";
+    texte << "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" http-equiv=\"Content-Type\" content=\"text/html\"/>\n<link rel=\"stylesheet\" content=\"text/css\" href=\"..\\style.css\"/>\n</head>\n";
+    texte << "<body>\n<h1>" << titre->text() << "</h1>\n";
     if (soustitre->text() != "")
     {
-        texte << "<h2>" << soustitre->text() << "</h2> \n";
+        texte << "<h2>" << soustitre->text() << "</h2>\n";
     }
 
-    texte << "<div>Langue : " << langue->text() << "</div> \n";
-    texte << "<table> \n <thead> \n <tr> \n <th>Termes</th> \n <th>Traductions</th> \n </tr> \n <tbody>";
+    texte << "<div>Langue : " << langue->text() << "</div>\n";
+    texte << "<table>\n<thead>\n<tr>\n<th>Termes</th>\n<th>Traductions</th>\n</tr>\n<tbody>\n";
     int i;
     qDebug() << "Avant for";
     for (i = 0 ; i != 99 ; i++)
@@ -93,20 +93,20 @@ void Ajout::enregistre()
         QTableWidgetItem *item2 = tableau->item(i, 1);
         if (item && item2)
         {
-            texte << "<tr> \n <td>" << tableau->item(i, 0)->text() << "</td> \n <td>" << tableau->item(i, 1)->text() << "</td> \n </tr>";
+            texte << "<tr>\n<td>" << tableau->item(i, 0)->text() << "</td>\n<td>" << tableau->item(i, 1)->text() << "</td>\n</tr>";
             qDebug() << tableau->item(i, 0)->text();
             qDebug() << tableau->item(i, 1)->text();
             qDebug() << "Dans if";
         }
         else if (!item && item2)
         {
-            texte << "<tr> \n <td></td> \n <td>" << tableau->item(i, 1)->text() << "</td> \n </tr>";
+            texte << "<tr>\n<td></td>\n<td>" << tableau->item(i, 1)->text() << "</td>\n</tr>";
             qDebug() << tableau->item(i, 1)->text();
             qDebug() << "Dans if";
         }
         else if (item && !item2)
         {
-            texte << "<tr> \n <td>" << tableau->item(i, 0)->text() << "</td> \n <td> </td> \n </tr>";
+            texte << "<tr>\n<td>" << tableau->item(i, 0)->text() << "</td>\n<td> </td>\n</tr>\n";
             qDebug() << tableau->item(i, 0)->text();
             qDebug() << "Dans if";
         }
@@ -115,6 +115,7 @@ void Ajout::enregistre()
             qDebug() << "Rien";
         }
     }
+    texte << "</tbody>\n</table>\n</body>\n</html>";
     fichier.close();
     emit fini();
     }
