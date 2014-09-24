@@ -1,6 +1,7 @@
 #include "fenetre.h"
 #include "web.h"
 #include "ajout.h"
+#include "modifier.h"
 
 Fenetre::Fenetre()
 {
@@ -33,12 +34,13 @@ Fenetre::Fenetre()
    arbre->addTopLevelItem(test);
 
    lister();
-   QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affich(QTreeWidgetItem*,int)));
+   QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
    QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
    QObject::connect(supprimer, SIGNAL(clicked()), this, SLOT(supprime()));
    QObject::connect(ajout, SIGNAL(clicked()), this, SLOT(ajouter()));
+   QObject::connect(modifier, SIGNAL(clicked()), this, SLOT(changer()));
 }
-void Fenetre::affich(QTreeWidgetItem* slot, int te)
+void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
   Web testg(slot->text(te));
 }
@@ -70,6 +72,22 @@ void Fenetre::rafraichir()
    lister();
    delete fenajout;
 }
+void Fenetre::rafraichir2()
+{
+    arbre->clear();
+    lister();
+    delete modif;
+}
+
+void Fenetre::changer()
+{
+
+    modif = new Modifier;
+    modif->show();
+    modif->affdonne(arbre->selectedItems().at(0)->text(0));
+    QObject::connect(modif, SIGNAL(fini()), this, SLOT(rafraichir2()));
+}
+
 void Fenetre::lister()
 {
     QString path = QCoreApplication::applicationDirPath();

@@ -10,10 +10,10 @@ class Ajout : public QWidget
 public:
     Ajout();
 public slots:
-    void enregistre();
+    virtual void enregistre();
 signals:
     void fini();
-private:
+protected:
     QTableWidget *tableau;
     QLineEdit *titre, *soustitre, *langue;
     QPushButton *record;

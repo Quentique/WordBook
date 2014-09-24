@@ -33,7 +33,8 @@ Ajout::Ajout()
     tableau->setColumnWidth(1, 150);
 
     setLayout(layout2);
-    resize(400, 500);
+    //resize(485, 500);
+    setFixedSize(485, 500);
     qDebug() << "test";
     QObject::connect(record, SIGNAL(clicked()), this, SLOT(enregistre()));
 
@@ -53,12 +54,16 @@ void Ajout::enregistre()
 
     if (fichier.exists())
     {
-        QMessageBox::critical(this, "Erreur", "Cette fiche existe déjà !");
-        qDebug() << fichier.fileName();
-        qDebug() << fichier.exists();
+        int reponse = QMessageBox::question(this, "Confirmation", "Cette fiche est déjà existante. Voulez-vous la remplacer ?" , QMessageBox::Yes | QMessageBox::No);
+           if (reponse == QMessageBox::Yes)
+           {
+               QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + titre->text().toLower() + ".html");
+           }
+           else
+           {
+
+           }
     }
-    else
-    {
     if (!tableau->item(0, 0))
     {
 
@@ -75,15 +80,19 @@ void Ajout::enregistre()
     else
     {
     QTextStream texte(&fichier);
+    texte.setCodec("UTF-8");
     texte << "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" http-equiv=\"Content-Type\" content=\"text/html\"/>\n<link rel=\"stylesheet\" content=\"text/css\" href=\"..\\style.css\"/>\n</head>\n";
     texte << "<body>\n<h1>" << titre->text() << "</h1>\n";
     if (soustitre->text() != "")
     {
-        texte << "<h2>" << soustitre->text() << "</h2>\n";
+        texte << "<h2 id=\"1\">" << soustitre->text() << "</h2>\n";
     }
-
+    else
+    {
+        texte << "<h2 id=\"0\"></h2>\n";
+    }
     texte << "<div>Langue : " << langue->text() << "</div>\n";
-    texte << "<table>\n<thead>\n<tr>\n<th>Termes</th>\n<th>Traductions</th>\n</tr>\n<tbody>\n";
+    texte << "<table>\n<thead>\n<tr>\n<th>Termes</th>\n<th>Traductions</th>\n</tr>\n</thead>\n<tbody>\n";
     int i;
     qDebug() << "Avant for";
     for (i = 0 ; i != 99 ; i++)
@@ -118,7 +127,6 @@ void Ajout::enregistre()
     texte << "</tbody>\n</table>\n</body>\n</html>";
     fichier.close();
     emit fini();
-    }
     }
     }
     }
