@@ -15,7 +15,7 @@ public:
     void lister();
 
 public slots:
-    void affich(QTreeWidgetItem* slot, int te);
+    void affiche_page(QTreeWidgetItem* slot, int te);
     void affiche();
     void supprime();
     void ajouter();

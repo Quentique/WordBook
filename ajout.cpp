@@ -79,7 +79,8 @@ void Ajout::enregistre()
     else
     {
     QTextStream texte(&fichier);
-    texte << "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" http-equiv=\"Content-Type\" content=\"text/html\"/>\n<link re=\"stylesheet\" content=\"text/css\" href=\"..\\style.css\"/>\n</head>\n";
+    texte.setCodec("UTF-8");
+    texte << "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" http-equiv=\"Content-Type\" content=\"text/html\"/>\n<link rel=\"stylesheet\" content=\"text/css\" href=\"..\\style.css\"/>\n</head>\n";
     texte << "<body>\n<h1>" << titre->text() << "</h1>\n";
     if (soustitre->text() != "")
     {

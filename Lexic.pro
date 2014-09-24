@@ -12,3 +12,6 @@ HEADERS += \
     web.h \
     ajout.h \
     modifier.h
+
+OTHER_FILES += \
+    style.css
