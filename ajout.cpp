@@ -53,12 +53,16 @@ void Ajout::enregistre()
 
     if (fichier.exists())
     {
-        QMessageBox::critical(this, "Erreur", "Cette fiche existe déjà !");
-        qDebug() << fichier.fileName();
-        qDebug() << fichier.exists();
+        int reponse = QMessageBox::question(this, "Confirmation", "Cette fiche est déjà existante. Voulez-vous la remplacer ?" , QMessageBox::Yes | QMessageBox::No);
+           if (reponse == QMessageBox::Yes)
+           {
+               QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + titre->text().toLower() + ".html");
+           }
+           else
+           {
+
+           }
     }
-    else
-    {
     if (!tableau->item(0, 0))
     {
 
@@ -121,7 +125,6 @@ void Ajout::enregistre()
     texte << "</tbody>\n</table>\n</body>\n</html>";
     fichier.close();
     emit fini();
-    }
     }
     }
     }

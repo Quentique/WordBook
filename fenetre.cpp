@@ -72,11 +72,20 @@ void Fenetre::rafraichir()
    lister();
    delete fenajout;
 }
+void Fenetre::rafraichir2()
+{
+    arbre->clear();
+    lister();
+    delete modif;
+}
+
 void Fenetre::changer()
 {
-    Modifier *modif = new Modifier;
+
+    modif = new Modifier;
     modif->show();
     modif->affdonne(arbre->selectedItems().at(0)->text(0));
+    QObject::connect(modif, SIGNAL(fini()), this, SLOT(rafraichir2()));
 }
 
 void Fenetre::lister()

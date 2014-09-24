@@ -5,7 +5,7 @@
 
 Modifier::Modifier() : Ajout()
 {
-
+  // QObject::connect(record, SIGNAL(clicked()), this, SLOT(enregistref()));
 }
 
 bool Modifier::affdonne(QString nomfich)
@@ -28,6 +28,7 @@ bool Modifier::affdonne(QString nomfich)
 
     QDomElement tableau_donnes = doc_elements.firstChildElement();
     titre->setText(mag(tableau_donnes.text()));
+    nomfic = new QString(tableau_donnes.text());
     tableau_donnes = tableau_donnes.nextSiblingElement();
     if(tableau_donnes.attribute("id") == "1")
     {
@@ -68,4 +69,10 @@ QString Modifier::mag(QString machin)
     QChar lettre = machin.at(0).toUpper();
     machin.replace(0, 1,  lettre);
     return machin;
+}
+void Modifier::enregistre()
+{
+    qDebug() << "enregistre2";
+   QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + nomfic->toLower() + ".html");
+   Ajout::enregistre();
 }

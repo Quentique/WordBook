@@ -10,7 +10,7 @@ class Ajout : public QWidget
 public:
     Ajout();
 public slots:
-    void enregistre();
+    virtual void enregistre();
 signals:
     void fini();
 protected:

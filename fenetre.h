@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtWidgets>
 #include "ajout.h"
+#include "modifier.h"
 
 
 class Fenetre : public QMainWindow
@@ -20,12 +21,13 @@ public slots:
     void ajouter();
     void rafraichir();
     void changer();
+    void rafraichir2();
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;
    QPushButton *ajout, *modifier, *afficher, *supprimer;
    Ajout *fenajout;
-
+   Modifier *modif;
 };
 
 #endif // FENETRE_H
