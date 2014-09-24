@@ -15,3 +15,7 @@ HEADERS += \
 
 OTHER_FILES += \
     style.css
+
+RESOURCES += \
+    ressources.qrc
+>>>>>>> icone
