@@ -1,18 +1,44 @@
 #include "fenetre.h"
 #include "web.h"
 #include "ajout.h"
+#include "modifier.h"
+#include <QtXml>
 
 Fenetre::Fenetre()
 {
 
    zoneprincipale = new QWidget;
-   ajout = new QPushButton("Ajouter");
-   modifier = new QPushButton("Modifier");
-   afficher = new QPushButton("Afficher");
-   supprimer = new QPushButton("Supprimer");
+   ajout = new QPushButton;
+   modifier = new QPushButton;
+   afficher = new QPushButton;
+   supprimer = new QPushButton;
    QVBoxLayout *layoutv = new QVBoxLayout;
    QHBoxLayout *layouth = new QHBoxLayout;
    arbre = new QTreeWidget;
+
+   ajout->setIcon(QIcon(":/images/ajouter.png"));
+   ajout->setIconSize(QPixmap(":/images/modifier.png").size());
+   ajout->setMinimumSize(50, 50);
+   ajout->setMaximumSize(50, 50);
+
+   modifier->setIcon(QIcon(":/images/modifier.png"));
+   modifier->setIconSize(QSize(42, 42));
+   modifier->setMinimumSize(50, 50);
+   modifier->setMaximumSize(50, 50);
+
+   afficher->setIcon(QIcon(":/images/afficher.png"));
+   afficher->setIconSize(QPixmap(":images/modifier.png").size());
+   afficher->setMinimumSize(50, 50);
+   afficher->setMaximumSize(50, 50);
+
+   supprimer->setIcon(QIcon(":/images/supprimer.png"));
+   supprimer->setIconSize(QPixmap(":images/supprimer.png").size());
+   supprimer->setMinimumSize(50, 50);
+   supprimer->setMaximumSize(50, 50);
+
+   modifier->setEnabled(false);
+   afficher->setEnabled(false);
+   supprimer->setEnabled(false);
 
    layoutv->addWidget(ajout);
    layoutv->addWidget(modifier);
@@ -26,19 +52,23 @@ Fenetre::Fenetre()
    setCentralWidget(zoneprincipale);
 
    QStringList liste;
-   liste << "Nom";
+   liste << "Nom" << "Langue";
    arbre->setHeaderLabels(liste);
+   arbre->setColumnWidth(0, 200);
+   arbre->setColumnWidth(1, 150);
    QTreeWidgetItem *test = new QTreeWidgetItem;
    test->setText(0, "Hello");
    arbre->addTopLevelItem(test);
 
    lister();
-   QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affich(QTreeWidgetItem*,int)));
+   QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
    QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
    QObject::connect(supprimer, SIGNAL(clicked()), this, SLOT(supprime()));
    QObject::connect(ajout, SIGNAL(clicked()), this, SLOT(ajouter()));
+   QObject::connect(modifier, SIGNAL(clicked()), this, SLOT(changer()));
+   QObject::connect(arbre, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(degriser()));
 }
-void Fenetre::affich(QTreeWidgetItem* slot, int te)
+void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
   Web testg(slot->text(te));
 }
@@ -69,7 +99,35 @@ void Fenetre::rafraichir()
    arbre->clear();
    lister();
    delete fenajout;
+   modifier->setEnabled(false);
+   afficher->setEnabled(false);
+   supprimer->setEnabled(false);
 }
+void Fenetre::rafraichir2()
+{
+    arbre->clear();
+    lister();
+    delete modif;
+    modifier->setEnabled(false);
+    afficher->setEnabled(false);
+    supprimer->setEnabled(false);
+}
+
+void Fenetre::changer()
+{
+
+    modif = new Modifier;
+    modif->show();
+    modif->affdonne(arbre->selectedItems().at(0)->text(0));
+    QObject::connect(modif, SIGNAL(fini()), this, SLOT(rafraichir2()));
+}
+void Fenetre::degriser()
+{
+    modifier->setEnabled(true);
+    afficher->setEnabled(true);
+    supprimer->setEnabled(true);
+}
+
 void Fenetre::lister()
 {
     QString path = QCoreApplication::applicationDirPath();
@@ -93,7 +151,31 @@ void Fenetre::lister()
          {
           affichage.truncate(affichage.size() - 5);
           item->setText(0, affichage);
+
+          QFile fichierla(path + listes.at(a));
+          if (!fichierla.open(QIODevice::ReadOnly))
+          {
+              QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le fichier !");
+              fichierla.close();
+          }
+          QDomDocument *dom = new QDomDocument("xml");
+          if (!dom->setContent(&fichierla))
+          {
+              fichierla.close();
+              QMessageBox::critical(this, "Erreur", "Impossible d'attribuer le fichier");
+          }
+          QDomElement doc_elements = dom->documentElement();
+          doc_elements = doc_elements.firstChildElement();
+          doc_elements = doc_elements.nextSiblingElement();
+
+          QDomElement tableau_donnes = doc_elements.firstChildElement();
+          tableau_donnes = tableau_donnes.nextSiblingElement();
+          tableau_donnes = tableau_donnes.nextSiblingElement();
+          item->setText(1, tableau_donnes.text().right(tableau_donnes.text().size() - 9));
+          fichierla.close();
+          item->setTextAlignment(1, Qt::AlignRight);
           arbre->addTopLevelItem(item);
+
          }
     }
 }
