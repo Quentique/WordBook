@@ -9,7 +9,7 @@ Fenetre::Fenetre()
    ajout = new QPushButton;
    modifier = new QPushButton;
    afficher = new QPushButton;
-   supprimer = new QPushButton("Supprimer");
+   supprimer = new QPushButton;
    QVBoxLayout *layoutv = new QVBoxLayout;
    QHBoxLayout *layouth = new QHBoxLayout;
    arbre = new QTreeWidget;
@@ -28,6 +28,15 @@ Fenetre::Fenetre()
    afficher->setIconSize(QPixmap(":images/modifier.png").size());
    afficher->setMinimumSize(50, 50);
    afficher->setMaximumSize(50, 50);
+
+   supprimer->setIcon(QIcon(":/images/supprimer.png"));
+   supprimer->setIconSize(QPixmap(":images/supprimer.png").size());
+   supprimer->setMinimumSize(50, 50);
+   supprimer->setMaximumSize(50, 50);
+
+   modifier->setEnabled(false);
+   afficher->setEnabled(false);
+   supprimer->setEnabled(false);
 
    layoutv->addWidget(ajout);
    layoutv->addWidget(modifier);
