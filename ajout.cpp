@@ -33,7 +33,8 @@ Ajout::Ajout()
     tableau->setColumnWidth(1, 150);
 
     setLayout(layout2);
-    resize(400, 500);
+    //resize(485, 500);
+    setFixedSize(485, 500);
     qDebug() << "test";
     QObject::connect(record, SIGNAL(clicked()), this, SLOT(enregistre()));
 
