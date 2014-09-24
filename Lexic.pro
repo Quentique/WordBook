@@ -18,4 +18,3 @@ OTHER_FILES += \
 
 RESOURCES += \
     ressources.qrc
->>>>>>> icone

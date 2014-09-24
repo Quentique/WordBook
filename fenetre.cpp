@@ -47,6 +47,10 @@ Fenetre::Fenetre()
    layouth->addWidget(arbre);
    layouth->addLayout(layoutv);
 
+   QMenu *menufichier = menuBar()->addMenu("&Fichier");
+   QMenu *menuoption = menuBar()->addMenu("&Options");
+   QMenu *menuaide = menuBar()->addMenu("&Aide");
+
    zoneprincipale->setLayout(layouth);
    setCentralWidget(zoneprincipale);
 
@@ -56,13 +60,14 @@ Fenetre::Fenetre()
    QTreeWidgetItem *test = new QTreeWidgetItem;
    test->setText(0, "Hello");
    arbre->addTopLevelItem(test);
-
+   qDebug() << "Langue : " + QLocale::system().name();//.section('_', 0, 0);
    lister();
    QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
    QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
    QObject::connect(supprimer, SIGNAL(clicked()), this, SLOT(supprime()));
    QObject::connect(ajout, SIGNAL(clicked()), this, SLOT(ajouter()));
    QObject::connect(modifier, SIGNAL(clicked()), this, SLOT(changer()));
+   QObject::connect(arbre, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(degriser()));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
@@ -95,12 +100,18 @@ void Fenetre::rafraichir()
    arbre->clear();
    lister();
    delete fenajout;
+   modifier->setEnabled(false);
+   afficher->setEnabled(false);
+   supprimer->setEnabled(false);
 }
 void Fenetre::rafraichir2()
 {
     arbre->clear();
     lister();
     delete modif;
+    modifier->setEnabled(false);
+    afficher->setEnabled(false);
+    supprimer->setEnabled(false);
 }
 
 void Fenetre::changer()
@@ -110,6 +121,12 @@ void Fenetre::changer()
     modif->show();
     modif->affdonne(arbre->selectedItems().at(0)->text(0));
     QObject::connect(modif, SIGNAL(fini()), this, SLOT(rafraichir2()));
+}
+void Fenetre::degriser()
+{
+    modifier->setEnabled(true);
+    afficher->setEnabled(true);
+    supprimer->setEnabled(true);
 }
 
 void Fenetre::lister()

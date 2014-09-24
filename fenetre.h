@@ -22,6 +22,7 @@ public slots:
     void rafraichir();
     void changer();
     void rafraichir2();
+    void degriser();
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;
