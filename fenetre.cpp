@@ -51,6 +51,29 @@ Fenetre::Fenetre()
    QMenu *menuoption = menuBar()->addMenu("&Options");
    QMenu *menuaide = menuBar()->addMenu("&Aide");
 
+   imprimer = new QAction("Im&primer", this);
+   QAction *quitter = new QAction("&Quitter", this);
+   exporter = new QAction("Exporter", this);
+   QAction *parametre = new QAction("&Options", this);
+   QAction *stylegestion = new QAction("Gérer le style", this);
+   QAction *aide = new QAction("&Aide", this);
+   QAction *about = new QAction("A propos...", this);
+   QAction *qt = new QAction("A propos de...", this);
+
+   menufichier->addAction(imprimer);
+   menufichier->addAction(exporter);
+   menufichier->addAction(quitter);
+
+   menuoption->addAction(stylegestion);
+   menuoption->addAction(parametre);
+
+   menuaide->addAction(aide);
+   menuaide->addAction(about);
+   menuaide->addAction(qt);
+
+   imprimer->setDisabled(true);
+   exporter->setDisabled(true);
+
    zoneprincipale->setLayout(layouth);
    setCentralWidget(zoneprincipale);
 
@@ -68,6 +91,7 @@ Fenetre::Fenetre()
    QObject::connect(ajout, SIGNAL(clicked()), this, SLOT(ajouter()));
    QObject::connect(modifier, SIGNAL(clicked()), this, SLOT(changer()));
    QObject::connect(arbre, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(degriser()));
+   QObject::connect(qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
@@ -103,6 +127,8 @@ void Fenetre::rafraichir()
    modifier->setEnabled(false);
    afficher->setEnabled(false);
    supprimer->setEnabled(false);
+   imprimer->setDisabled(true);
+   exporter->setDisabled(true);
 }
 void Fenetre::rafraichir2()
 {
@@ -112,6 +138,8 @@ void Fenetre::rafraichir2()
     modifier->setEnabled(false);
     afficher->setEnabled(false);
     supprimer->setEnabled(false);
+    imprimer->setDisabled(true);
+    exporter->setDisabled(true);
 }
 
 void Fenetre::changer()
@@ -127,6 +155,8 @@ void Fenetre::degriser()
     modifier->setEnabled(true);
     afficher->setEnabled(true);
     supprimer->setEnabled(true);
+    imprimer->setDisabled(false);
+    exporter->setDisabled(false);
 }
 
 void Fenetre::lister()
