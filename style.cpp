@@ -58,6 +58,13 @@ Style::Style()
     style_tableau_taille3 = new QSpinBox;
     style_titre_taille = new QSpinBox;
 
+    style_soustitre_taille1->setMinimum(1);
+    style_soustitre_taille2->setMinimum(1);
+    style_tableau_taille1->setMinimum(1);
+    style_tableau_taille2->setMinimum(1);
+    style_tableau_taille3->setMinimum(1);
+    style_titre_taille->setMinimum(1);
+
     style_soustitre1 = new QGroupBox("Sous Titre");
     style_soustitre2 = new QGroupBox("Langue");
     style_tableau1 = new QGroupBox("En-tête");
@@ -175,6 +182,28 @@ Style::Style()
     style_final->addWidget(style_tableau);
     style_final->addWidget(style_enregistrer);
     setLayout(style_final);
+
+    mapper = new QSignalMapper;
+
+    QObject::connect(style_titre_couleur, SIGNAL(clicked()), mapper, SLOT(map()));
+    mapper->setMapping(style_titre_couleur, style_titre_couleur);
+
+    QObject::connect(style_soustitre_couleur1, SIGNAL(clicked()), mapper, SLOT(map()));
+    mapper->setMapping(style_soustitre_couleur1, style_soustitre_couleur1);
+
+    QObject::connect(style_soustitre_couleur2, SIGNAL(clicked()), mapper, SLOT(map()));
+    mapper->setMapping(style_soustitre_couleur2, style_soustitre_couleur2);
+
+    QObject::connect(style_tableau_couleur1, SIGNAL(clicked()), mapper, SLOT(map()));
+    mapper->setMapping(style_tableau_couleur1, style_tableau_couleur1);
+
+    QObject::connect(style_tableau_couleur2, SIGNAL(clicked()), mapper, SLOT(map()));
+    mapper->setMapping(style_tableau_couleur2, style_tableau_couleur2);
+
+    QObject::connect(style_tableau_couleur3, SIGNAL(clicked()), mapper, SLOT(map()));
+    mapper->setMapping(style_tableau_couleur3, style_tableau_couleur3);
+
+    QObject::connect(mapper, SIGNAL(mapped(QWidget*)), this, SLOT(couleur(QWidget*)));
 }
 void Style::lister_parametre()
 {
@@ -220,4 +249,9 @@ void Style::lister_parametre()
     style_tableau_souligne3->setChecked(settings.value("Translation/underline", "false").toBool());
     style_tableau_taille3->setValue(settings.value("Translation/size", "10").toInt());
     style_tableau_couleur3->setPalette(QPalette(settings.value("Translation/color", QColor("yellow")).value<QColor>()));
+}
+void Style::couleur(QWidget *bouton)
+{
+    QColor couleurchange = QColorDialog::getColor(Qt::white, this);
+    qobject_cast<QPushButton*>(bouton)->setPalette(QPalette(couleurchange));
 }
