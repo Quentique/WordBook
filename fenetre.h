@@ -23,6 +23,7 @@ public slots:
     void changer();
     void rafraichir2();
     void degriser();
+    void css();
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;

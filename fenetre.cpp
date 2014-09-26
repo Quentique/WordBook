@@ -2,6 +2,7 @@
 #include "web.h"
 #include "ajout.h"
 #include "modifier.h"
+#include "style.h"
 
 Fenetre::Fenetre()
 {
@@ -92,6 +93,7 @@ Fenetre::Fenetre()
    QObject::connect(modifier, SIGNAL(clicked()), this, SLOT(changer()));
    QObject::connect(arbre, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(degriser()));
    QObject::connect(qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+   QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
@@ -112,6 +114,13 @@ void Fenetre::supprime()
            lister();
        }
 }
+void Fenetre::css()
+{
+    Style *style = new Style;
+    style->show();
+    style->lister_parametre();
+}
+
 void Fenetre::ajouter()
 {
     fenajout = new Ajout;
