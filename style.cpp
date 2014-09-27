@@ -204,54 +204,190 @@ Style::Style()
     mapper->setMapping(style_tableau_couleur3, style_tableau_couleur3);
 
     QObject::connect(mapper, SIGNAL(mapped(QWidget*)), this, SLOT(couleur(QWidget*)));
+    QObject::connect(style_enregistrer, SIGNAL(clicked()), this, SLOT(sauvegarder()));
 }
 void Style::lister_parametre()
 {
-    QSettings settings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
-    style_titre_font->setCurrentFont(settings.value("Title/font", QFont("Arial")).value<QFont>());
-    style_titre_gras->setChecked(settings.value("Title/bold", "false").toBool());
-    style_titre_italique->setChecked(settings.value("Title/italic", "false").toBool());
-    style_titre_souligne->setChecked(settings.value("Title/underline", "false").toBool());
-    style_titre_taille->setValue(settings.value("Title/size", "20").toInt());
-    style_titre_couleur->setPalette(QPalette(settings.value("Title/color", QColor("red")).value<QColor>()));
+    settings = new QSettings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
+    style_titre_font->setCurrentFont(settings->value("Title/font", QFont("Arial")).value<QFont>());
+    style_titre_gras->setChecked(settings->value("Title/bold", "false").toBool());
+    style_titre_italique->setChecked(settings->value("Title/italic", "false").toBool());
+    style_titre_souligne->setChecked(settings->value("Title/underline", "false").toBool());
+    style_titre_taille->setValue(settings->value("Title/size", "20").toInt());
+    style_titre_couleur->setPalette(QPalette(settings->value("Title/color", QColor("red")).value<QColor>()));
 
-    style_soustitre_font1->setCurrentFont(settings.value("SubTitle/font", QFont("Arial")).value<QFont>());
-    style_soustitre_gras1->setChecked(settings.value("SubTitle/bold", "false").toBool());
-    style_soustitre_italique1->setChecked(settings.value("SubTitle/italic", "false").toBool());
-    style_soustitre_souligne1->setChecked(settings.value("SubTitle/underline", "false").toBool());
-    style_soustitre_taille1->setValue(settings.value("SubTitle/size", "15").toInt());
-    style_soustitre_couleur1->setPalette(QPalette(settings.value("SubTitle/color", QColor("black")).value<QColor>()));
+    style_soustitre_font1->setCurrentFont(settings->value("SubTitle/font", QFont("Arial")).value<QFont>());
+    style_soustitre_gras1->setChecked(settings->value("SubTitle/bold", "false").toBool());
+    style_soustitre_italique1->setChecked(settings->value("SubTitle/italic", "false").toBool());
+    style_soustitre_souligne1->setChecked(settings->value("SubTitle/underline", "false").toBool());
+    style_soustitre_taille1->setValue(settings->value("SubTitle/size", "15").toInt());
+    style_soustitre_couleur1->setPalette(QPalette(settings->value("SubTitle/color", QColor("black")).value<QColor>()));
 
-    style_soustitre_font2->setCurrentFont(settings.value("Language/font", QFont("Arial")).value<QFont>());
-    style_soustitre_gras2->setChecked(settings.value("Language/bold", "false").toBool());
-    style_soustitre_italique2->setChecked(settings.value("Language/italic", "false").toBool());
-    style_soustitre_souligne2->setChecked(settings.value("Language/underline", "false").toBool());
-    style_soustitre_taille2->setValue(settings.value("Language/size", "12").toInt());
-    style_soustitre_couleur2->setPalette(QPalette(settings.value("Language/color", QColor("green")).value<QColor>()));
+    style_soustitre_font2->setCurrentFont(settings->value("Language/font", QFont("Arial")).value<QFont>());
+    style_soustitre_gras2->setChecked(settings->value("Language/bold", "false").toBool());
+    style_soustitre_italique2->setChecked(settings->value("Language/italic", "false").toBool());
+    style_soustitre_souligne2->setChecked(settings->value("Language/underline", "false").toBool());
+    style_soustitre_taille2->setValue(settings->value("Language/size", "12").toInt());
+    style_soustitre_couleur2->setPalette(QPalette(settings->value("Language/color", QColor("green")).value<QColor>()));
 
-    style_tableau_font1->setCurrentFont(settings.value("Header/font", QFont("Arial")).value<QFont>());
-    style_tableau_gras1->setChecked(settings.value("Header/bold", "false").toBool());
-    style_tableau_italique1->setChecked(settings.value("Header/italic", "false").toBool());
-    style_tableau_souligne1->setChecked(settings.value("Header/underline", "false").toBool());
-    style_tableau_taille1->setValue(settings.value("Header/size", "12").toInt());
-    style_tableau_couleur1->setPalette(QPalette(settings.value("Header/color", QColor("blue")).value<QColor>()));
+    style_tableau_font1->setCurrentFont(settings->value("Header/font", QFont("Arial")).value<QFont>());
+    style_tableau_gras1->setChecked(settings->value("Header/bold", "false").toBool());
+    style_tableau_italique1->setChecked(settings->value("Header/italic", "false").toBool());
+    style_tableau_souligne1->setChecked(settings->value("Header/underline", "false").toBool());
+    style_tableau_taille1->setValue(settings->value("Header/size", "12").toInt());
+    style_tableau_couleur1->setPalette(QPalette(settings->value("Header/color", QColor("blue")).value<QColor>()));
 
-    style_tableau_font2->setCurrentFont(settings.value("Terme/font", QFont("Arial")).value<QFont>());
-    style_tableau_gras2->setChecked(settings.value("Terme/bold", "false").toBool());
-    style_tableau_italique2->setChecked(settings.value("Terme/italic", "false").toBool());
-    style_tableau_souligne2->setChecked(settings.value("Terme/underline", "false").toBool());
-    style_tableau_taille2->setValue(settings.value("Terme/size", "10").toInt());
-    style_tableau_couleur2->setPalette(QPalette(settings.value("Terme/color", QColor("orange")).value<QColor>()));
+    style_tableau_font2->setCurrentFont(settings->value("Terme/font", QFont("Arial")).value<QFont>());
+    style_tableau_gras2->setChecked(settings->value("Terme/bold", "false").toBool());
+    style_tableau_italique2->setChecked(settings->value("Terme/italic", "false").toBool());
+    style_tableau_souligne2->setChecked(settings->value("Terme/underline", "false").toBool());
+    style_tableau_taille2->setValue(settings->value("Terme/size", "10").toInt());
+    style_tableau_couleur2->setPalette(QPalette(settings->value("Terme/color", QColor("orange")).value<QColor>()));
 
-    style_tableau_font3->setCurrentFont(settings.value("Translation/font", QFont("Arial")).value<QFont>());
-    style_tableau_gras3->setChecked(settings.value("Translation/bold", "false").toBool());
-    style_tableau_italique3->setChecked(settings.value("Translation/italic", "false").toBool());
-    style_tableau_souligne3->setChecked(settings.value("Translation/underline", "false").toBool());
-    style_tableau_taille3->setValue(settings.value("Translation/size", "10").toInt());
-    style_tableau_couleur3->setPalette(QPalette(settings.value("Translation/color", QColor("yellow")).value<QColor>()));
+    style_tableau_font3->setCurrentFont(settings->value("Translation/font", QFont("Arial")).value<QFont>());
+    style_tableau_gras3->setChecked(settings->value("Translation/bold", "false").toBool());
+    style_tableau_italique3->setChecked(settings->value("Translation/italic", "false").toBool());
+    style_tableau_souligne3->setChecked(settings->value("Translation/underline", "false").toBool());
+    style_tableau_taille3->setValue(settings->value("Translation/size", "10").toInt());
+    style_tableau_couleur3->setPalette(QPalette(settings->value("Translation/color", QColor("yellow")).value<QColor>()));
 }
 void Style::couleur(QWidget *bouton)
 {
     QColor couleurchange = QColorDialog::getColor(Qt::white, this);
     qobject_cast<QPushButton*>(bouton)->setPalette(QPalette(couleurchange));
+}
+QString Style::retour_couleur(QPushButton *bouton)
+{
+    QString string_couleur;
+    string_couleur += "color: rgba(";
+    string_couleur += QString::number(bouton->palette().background().color().red());
+    string_couleur += ", ";
+    string_couleur += QString::number(bouton->palette().background().color().green());
+    string_couleur += ", ";
+    string_couleur += QString::number(bouton->palette().background().color().blue());
+    string_couleur += ", ";
+    string_couleur += QString::number(bouton->palette().background().color().alpha());
+    string_couleur += ");\n";
+   qDebug() << string_couleur;
+    return string_couleur;
+}
+QString Style::transfo_bool(QCheckBox *box)
+{
+    if(box->isChecked()) { return "true"; } else { return "false";}
+}
+QString Style::souligne(QCheckBox *boxline)
+{
+    if(boxline->isChecked()) { return "text-decoration: underline;\n";} else {return "";}
+}
+
+void Style::sauvegarder()
+{
+    QFile::remove(QCoreApplication::applicationDirPath() + "/style.css");
+    settings->setValue("Title/font", style_titre_font->currentFont());
+    settings->setValue("Title/size", style_titre_taille->value());
+    settings->setValue("Title/bold", style_titre_gras->isChecked());
+    settings->setValue("Title/italic", style_titre_italique->isChecked());
+    settings->setValue("Title/underline", style_titre_souligne->isChecked());
+    settings->setValue("Title/color", style_titre_couleur->palette().background().color());
+
+    settings->setValue("SubTitle/font", style_soustitre_font1->currentFont());
+    settings->setValue("SubTitle/size", style_soustitre_taille1->value());
+    settings->setValue("SubTitle/bold", style_soustitre_gras1->isChecked());
+    settings->setValue("SubTitle/italic", style_soustitre_italique1->isChecked());
+    settings->setValue("SubTitle/underline", style_soustitre_souligne1->isChecked());
+    settings->setValue("SubTitle/color", style_soustitre_couleur1->palette().background().color());
+
+    settings->setValue("Language/font", style_soustitre_font2->currentFont());
+    settings->setValue("Language/size", style_soustitre_taille2->value());
+    settings->setValue("Language/bold", style_soustitre_gras2->isChecked());
+    settings->setValue("Language/italic", style_soustitre_italique2->isChecked());
+    settings->setValue("Language/underline", style_soustitre_souligne2->isChecked());
+    settings->setValue("Language/color", style_soustitre_couleur2->palette().background().color());
+
+    settings->setValue("Header/font", style_tableau_font1->currentFont());
+    settings->setValue("Header/size", style_tableau_taille1->value());
+    settings->setValue("Header/bold", style_tableau_gras1->isChecked());
+    settings->setValue("Header/italic", style_tableau_italique1->isChecked());
+    settings->setValue("Header/underline", style_tableau_souligne1->isChecked());
+    settings->setValue("Header/color", style_tableau_couleur1->palette().background().color());
+
+    settings->setValue("Terme/font", style_tableau_font2->currentFont());
+    settings->setValue("Terme/size", style_tableau_taille2->value());
+    settings->setValue("Terme/bold", style_tableau_gras2->isChecked());
+    settings->setValue("Terme/italic", style_tableau_italique2->isChecked());
+    settings->setValue("Terme/underline", style_tableau_souligne2->isChecked());
+    settings->setValue("Terme/color", style_tableau_couleur2->palette().background().color());
+
+    settings->setValue("Translation/font", style_tableau_font3->currentFont());
+    settings->setValue("Translation/size", style_tableau_taille3->value());
+    settings->setValue("Translation/bold", style_tableau_gras3->isChecked());
+    settings->setValue("Translation/italic", style_tableau_italique3->isChecked());
+    settings->setValue("Translation/underline", style_tableau_souligne3->isChecked());
+    settings->setValue("Translation/color", style_tableau_couleur3->palette().background().color());
+
+    QFile fichierstyle(QCoreApplication::applicationDirPath() + "/style.css");
+
+    if (fichierstyle.exists())
+    {
+        fichierstyle.remove();
+    }
+
+    if(!fichierstyle.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+       QMessageBox::critical(this, "Erreur Critique", "Erreur lors de l'ouverture du fichier\n Code de l'erreur : " + fichierstyle.errorString());
+
+    }
+
+    QTextStream stream(&fichierstyle);
+    stream.setCodec("UTF-8");
+    stream << "h1\n{\nfont-size: " << style_titre_taille->value() << ";\n";
+    stream << "font-family: " << style_titre_font->currentFont().toString().section(",",0,0) << ";\n";
+    stream << "font-weight: " << transfo_bool(style_titre_gras) << ";\n";
+    stream << "font-italic: " << transfo_bool(style_titre_italique) << ";\n";
+    stream << souligne(style_titre_souligne);
+    stream << retour_couleur(style_titre_couleur);
+    stream << "text-align: center;\n";
+    stream << "}\n";
+    stream << "h2\n{\nfont-size: " << style_soustitre_taille1->value() << ";\n";
+    stream << "font-family: " << style_soustitre_font1->currentFont().toString().section(",",0,0) << ";\n";
+    stream << "font-weight: " << transfo_bool(style_soustitre_gras1) << ";\n";
+    stream << "font-italic: " << transfo_bool(style_soustitre_italique1) << ";\n";
+    stream << souligne(style_soustitre_souligne1);
+    stream << retour_couleur(style_soustitre_couleur1);
+    stream << "text-align: center;\n";
+    stream << "}\n";
+    stream << "div\n{\nfont-size: " << style_soustitre_taille2->value() << ";\n";
+    stream << "font-family: " << style_soustitre_font2->currentFont().toString().section(",",0,0) << ";\n";
+    stream << "font-weight: " << transfo_bool(style_soustitre_gras2) << ";\n";
+    stream << "font-italic: " << transfo_bool(style_soustitre_italique2) << ";\n";
+    stream << souligne(style_soustitre_souligne2);
+    stream << retour_couleur(style_soustitre_couleur2);
+    stream << "text-align: center;\nmargin-bottom: 1em;\n";
+    stream << "}\n";
+    stream << "th\n{\nfont-size: " << style_tableau_taille1->value() << ";\n";
+    stream << "font-family: " << style_tableau_font1->currentFont().toString().section(",",0,0) << ";\n";
+    stream << "font-weight: " << transfo_bool(style_tableau_gras1) << ";\n";
+    stream << "font-italic: " << transfo_bool(style_tableau_italique1) << ";\n";
+    stream << souligne(style_tableau_souligne1);
+    stream << retour_couleur(style_tableau_couleur1);
+    stream << "}\n";
+    stream << "tbody tr td:first-child\n{\nfont-size: " << style_tableau_taille2->value() << ";\n";
+    stream << "font-family: " << style_tableau_font2->currentFont().toString().section(",",0,0) << ";\n";
+    stream << "font-weight: " << transfo_bool(style_tableau_gras2) << ";\n";
+    stream << "font-italic: " << transfo_bool(style_tableau_italique2) << ";\n";
+    stream << souligne(style_tableau_souligne2);
+    stream << retour_couleur(style_tableau_couleur2);
+    stream << "text-align: right;\n";
+    stream << "}\n";
+    stream << "tbody tr td:last-child\n{\nfont-size: " << style_tableau_taille3->value() << ";\n";
+    stream << "font-family: " << style_tableau_font3->currentFont().toString().section(",",0,0) << ";\n";
+    stream << "font-weight: " << transfo_bool(style_tableau_gras3) << ";\n";
+    stream << "font-italic: " << transfo_bool(style_tableau_italique3) << ";\n";
+    stream << souligne(style_tableau_souligne3);
+    stream << retour_couleur(style_tableau_couleur3);
+    stream << "}\n";
+    stream << "td, th\n{\nborder: solid 1px blue;\n}\n";
+    stream << "table\n{\nmargin-left: auto;\nmargin-right: auto;\nborder-collapse: collapse;\n}";
+    fichierstyle.close();
+    QMessageBox::information(this, "Information", "La modification prendra effet après le redémarrage de l'application");
 }

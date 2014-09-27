@@ -15,8 +15,7 @@ HEADERS += \
     modifier.h \
     style.h
 
-OTHER_FILES += \
-    style.css
+OTHER_FILES +=
 
 RESOURCES += \
     ressources.qrc

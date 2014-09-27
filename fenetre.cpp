@@ -97,7 +97,7 @@ Fenetre::Fenetre()
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
-  Web testg(slot->text(te));
+  Web *testg = new Web(slot->text(te));
 }
 void Fenetre::affiche()
 {
