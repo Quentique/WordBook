@@ -15,7 +15,7 @@ Style::Style()
     style_tableau_couleur2 = new QPushButton;
     style_tableau_couleur3 = new QPushButton;
     style_titre_couleur = new QPushButton;
-    style_enregistrer = new QPushButton("Enregistrer");
+    style_enregistrer = new QPushButton(tr("Enregistrer"));
 
     style_soustitre_couleur1->setFlat(true);
     style_soustitre_couleur2->setFlat(true);
@@ -30,26 +30,26 @@ Style::Style()
     style_tableau_couleur3->setAutoFillBackground(true);
     style_titre_couleur->setAutoFillBackground(true);
 
-    style_soustitre_gras1 = new QCheckBox("Gras");
-    style_soustitre_gras2 = new QCheckBox("Gras");
-    style_tableau_gras1 = new QCheckBox("Gras");
-    style_tableau_gras2 = new QCheckBox("Gras");
-    style_tableau_gras3 = new QCheckBox("Gras");
-    style_titre_gras = new QCheckBox("Gras");
+    style_soustitre_gras1 = new QCheckBox(tr("Gras"));
+    style_soustitre_gras2 = new QCheckBox(tr("Gras"));
+    style_tableau_gras1 = new QCheckBox(tr("Gras"));
+    style_tableau_gras2 = new QCheckBox(tr("Gras"));
+    style_tableau_gras3 = new QCheckBox(tr("Gras"));
+    style_titre_gras = new QCheckBox(tr("Gras"));
 
-    style_soustitre_italique1 = new QCheckBox("Italique");
-    style_soustitre_italique2 = new QCheckBox("Italique");
-    style_tableau_italique1 = new QCheckBox("Italique");
-    style_tableau_italique2 = new QCheckBox("Italique");
-    style_tableau_italique3 = new QCheckBox("Italique");
-    style_titre_italique = new QCheckBox("Italique");
+    style_soustitre_italique1 = new QCheckBox(tr("Italique"));
+    style_soustitre_italique2 = new QCheckBox(tr("Italique"));
+    style_tableau_italique1 = new QCheckBox(tr("Italique"));
+    style_tableau_italique2 = new QCheckBox(tr("Italique"));
+    style_tableau_italique3 = new QCheckBox(tr("Italique"));
+    style_titre_italique = new QCheckBox(tr("Italique"));
 
-    style_soustitre_souligne1 = new QCheckBox("Souligné");
-    style_soustitre_souligne2 = new QCheckBox("Souligné");
-    style_tableau_souligne1 = new QCheckBox("Souligné");
-    style_tableau_souligne2 = new QCheckBox("Souligné");
-    style_tableau_souligne3 = new QCheckBox("Souligné");
-    style_titre_souligne = new QCheckBox("Souligné");
+    style_soustitre_souligne1 = new QCheckBox(tr("Souligné"));
+    style_soustitre_souligne2 = new QCheckBox(tr("Souligné"));
+    style_tableau_souligne1 = new QCheckBox(tr("Souligné"));
+    style_tableau_souligne2 = new QCheckBox(tr("Souligné"));
+    style_tableau_souligne3 = new QCheckBox(tr("Souligné"));
+    style_titre_souligne = new QCheckBox(tr("Souligné"));
 
     style_soustitre_taille1 = new QSpinBox;
     style_soustitre_taille2 = new QSpinBox;
@@ -65,13 +65,13 @@ Style::Style()
     style_tableau_taille3->setMinimum(1);
     style_titre_taille->setMinimum(1);
 
-    style_soustitre1 = new QGroupBox("Sous Titre");
-    style_soustitre2 = new QGroupBox("Langue");
-    style_tableau1 = new QGroupBox("En-tête");
-    style_tableau2 = new QGroupBox("Termes");
-    style_tableau3 = new QGroupBox("Traduction");
-    style_tableau = new QGroupBox("Tableau");
-    style_titre = new QGroupBox("Titre");
+    style_soustitre1 = new QGroupBox(tr("Sous Titre"));
+    style_soustitre2 = new QGroupBox(tr("Langue"));
+    style_tableau1 = new QGroupBox(tr("En-tête"));
+    style_tableau2 = new QGroupBox(tr("Termes"));
+    style_tableau3 = new QGroupBox(tr("Traduction"));
+    style_tableau = new QGroupBox(tr("Tableau"));
+    style_titre = new QGroupBox(tr("Titre"));
 
     QVBoxLayout *style_soustitre_layout1 = new QVBoxLayout;
     QVBoxLayout *style_soustitre_layout2 = new QVBoxLayout;
@@ -205,6 +205,8 @@ Style::Style()
 
     QObject::connect(mapper, SIGNAL(mapped(QWidget*)), this, SLOT(couleur(QWidget*)));
     QObject::connect(style_enregistrer, SIGNAL(clicked()), this, SLOT(sauvegarder()));
+
+    setWindowTitle("Style");
 }
 
 void Style::lister_parametre()
@@ -336,7 +338,7 @@ void Style::sauvegarder()
 
     if(!fichierstyle.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-       QMessageBox::critical(this, "Erreur Critique", "Erreur lors de l'ouverture du fichier\n Code de l'erreur : " + fichierstyle.errorString());
+       QMessageBox::critical(this, tr("Erreur Critique"), tr("Erreur lors de l'ouverture du fichier\n Code de l'erreur : ") + fichierstyle.errorString());
 
     }
 
@@ -391,14 +393,14 @@ void Style::sauvegarder()
     stream << "td, th\n{\nborder: solid 1px blue;\n}\n";
     stream << "table\n{\nmargin-left: auto;\nmargin-right: auto;\nborder-collapse: collapse;\n}";
     fichierstyle.close();
-    QMessageBox::information(this, "Information", "La modification prendra effet après le redémarrage de l'application");
+    QMessageBox::information(this, tr("Information"), tr("La modification prendra effet après le redémarrage de l'application"));
     close();
 }
 void Style::closeEvent(QCloseEvent *event)
 {
     if (vrai != 1)
     {
-    int reponse = QMessageBox::question(this, "Confirmation", "Sauvegarder ?" , QMessageBox::Yes | QMessageBox::No);
+    int reponse = QMessageBox::question(this, tr("Confirmation"), tr("Sauvegarder ?") , QMessageBox::Yes | QMessageBox::No);
        if (reponse == QMessageBox::Yes)
        {
            sauvegarder();

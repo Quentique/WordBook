@@ -5,7 +5,7 @@
 
 Modifier::Modifier() : Ajout()
 {
-  // QObject::connect(record, SIGNAL(clicked()), this, SLOT(enregistref()));
+  setWindowTitle("Modification d'une fiche");
 }
 
 bool Modifier::affdonne(QString nomfich)
@@ -13,14 +13,14 @@ bool Modifier::affdonne(QString nomfich)
     QFile fichierd(QCoreApplication::applicationDirPath() + "/data/" + nomfich.toLower() + ".html");
     if (!fichierd.open(QIODevice::ReadOnly))
     {
-        QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le fichier !");
+        QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'ouvrir le fichier !"));
         return false;
     }
     QDomDocument *dom = new QDomDocument("xml");
     if (!dom->setContent(&fichierd))
     {
         fichierd.close();
-        QMessageBox::critical(this, "Erreur", "Impossible d'attribuer le fichier");
+        QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'attribuer le fichier"));
     }
     QDomElement doc_elements = dom->documentElement();
     doc_elements = doc_elements.firstChildElement();

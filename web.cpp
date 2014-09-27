@@ -8,8 +8,11 @@ Web::Web(QString nomfichier)
   QUrl chemin;
   chemin.setUrl("file:///" + QCoreApplication::applicationDirPath() + "/data/" + nomfichier.toLower() + ".html");
   vue->setUrl(chemin);
-  vue->setMaximumSize(300, 500);
+  vue->setMaximumSize(600, 700);
+  vue->setMinimumSize(600, 700);
+  vue->setZoomFactor(2);
   principale->show();
-  principale->setMaximumSize(300, 600);
-  principale->setMinimumSize(300, 600);
+  principale->setMaximumSize(600, 700);
+  principale->setMinimumSize(600, 700);
+  principale->setWindowTitle("Affichage");
 }
