@@ -5,7 +5,9 @@ SOURCES += \
     fenetre.cpp \
     web.cpp \
     ajout.cpp \
-    modifier.cpp
+    modifier.cpp \
+    style.cpp
+
 
 HEADERS += \
     fenetre.h \
@@ -13,8 +15,8 @@ HEADERS += \
     ajout.h \
     modifier.h
 
-OTHER_FILES += \
-    style.css
+OTHER_FILES +=
+
 
 RESOURCES += \
     ressources.qrc

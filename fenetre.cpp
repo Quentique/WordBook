@@ -3,6 +3,7 @@
 #include "ajout.h"
 #include "modifier.h"
 #include <QtXml>
+#include "style.h"
 
 Fenetre::Fenetre()
 {
@@ -48,6 +49,33 @@ Fenetre::Fenetre()
    layouth->addWidget(arbre);
    layouth->addLayout(layoutv);
 
+   QMenu *menufichier = menuBar()->addMenu("&Fichier");
+   QMenu *menuoption = menuBar()->addMenu("&Options");
+   QMenu *menuaide = menuBar()->addMenu("&Aide");
+
+   imprimer = new QAction("Im&primer", this);
+   QAction *quitter = new QAction("&Quitter", this);
+   exporter = new QAction("Exporter", this);
+   QAction *parametre = new QAction("&Options", this);
+   QAction *stylegestion = new QAction("Gérer le style", this);
+   QAction *aide = new QAction("&Aide", this);
+   QAction *about = new QAction("A propos...", this);
+   QAction *qt = new QAction("A propos de...", this);
+
+   menufichier->addAction(imprimer);
+   menufichier->addAction(exporter);
+   menufichier->addAction(quitter);
+
+   menuoption->addAction(stylegestion);
+   menuoption->addAction(parametre);
+
+   menuaide->addAction(aide);
+   menuaide->addAction(about);
+   menuaide->addAction(qt);
+
+   imprimer->setDisabled(true);
+   exporter->setDisabled(true);
+
    zoneprincipale->setLayout(layouth);
    setCentralWidget(zoneprincipale);
 
@@ -59,7 +87,7 @@ Fenetre::Fenetre()
    QTreeWidgetItem *test = new QTreeWidgetItem;
    test->setText(0, "Hello");
    arbre->addTopLevelItem(test);
-
+   qDebug() << "Langue : " + QLocale::system().name();//.section('_', 0, 0);
    lister();
    QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
    QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
@@ -67,6 +95,9 @@ Fenetre::Fenetre()
    QObject::connect(ajout, SIGNAL(clicked()), this, SLOT(ajouter()));
    QObject::connect(modifier, SIGNAL(clicked()), this, SLOT(changer()));
    QObject::connect(arbre, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(degriser()));
+   QObject::connect(qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+   QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
+
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
@@ -87,6 +118,14 @@ void Fenetre::supprime()
            lister();
        }
 }
+void Fenetre::css()
+{
+    style = new Style;
+    style->show();
+    style->lister_parametre();
+}
+
+
 void Fenetre::ajouter()
 {
     fenajout = new Ajout;
@@ -121,11 +160,35 @@ void Fenetre::changer()
     modif->affdonne(arbre->selectedItems().at(0)->text(0));
     QObject::connect(modif, SIGNAL(fini()), this, SLOT(rafraichir2()));
 }
+void Fenetre::rafraichir2()
+{
+    arbre->clear();
+    lister();
+    delete modif;
+    modifier->setEnabled(false);
+    afficher->setEnabled(false);
+    supprimer->setEnabled(false);
+    imprimer->setDisabled(true);
+    exporter->setDisabled(true);
+}
+
+void Fenetre::changer()
+{
+
+    modif = new Modifier;
+    modif->show();
+    modif->affdonne(arbre->selectedItems().at(0)->text(0));
+    QObject::connect(modif, SIGNAL(fini()), this, SLOT(rafraichir2()));
+}
+
 void Fenetre::degriser()
 {
     modifier->setEnabled(true);
     afficher->setEnabled(true);
     supprimer->setEnabled(true);
+    imprimer->setDisabled(false);
+    exporter->setDisabled(false);
+
 }
 
 void Fenetre::lister()
