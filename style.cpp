@@ -206,6 +206,7 @@ Style::Style()
     QObject::connect(mapper, SIGNAL(mapped(QWidget*)), this, SLOT(couleur(QWidget*)));
     QObject::connect(style_enregistrer, SIGNAL(clicked()), this, SLOT(sauvegarder()));
 }
+
 void Style::lister_parametre()
 {
     settings = new QSettings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
@@ -282,6 +283,7 @@ QString Style::souligne(QCheckBox *boxline)
 
 void Style::sauvegarder()
 {
+    vrai = 1;
     QFile::remove(QCoreApplication::applicationDirPath() + "/style.css");
     settings->setValue("Title/font", style_titre_font->currentFont());
     settings->setValue("Title/size", style_titre_taille->value());
@@ -390,4 +392,25 @@ void Style::sauvegarder()
     stream << "table\n{\nmargin-left: auto;\nmargin-right: auto;\nborder-collapse: collapse;\n}";
     fichierstyle.close();
     QMessageBox::information(this, "Information", "La modification prendra effet après le redémarrage de l'application");
+    close();
+}
+void Style::closeEvent(QCloseEvent *event)
+{
+    if (vrai != 1)
+    {
+    int reponse = QMessageBox::question(this, "Confirmation", "Sauvegarder ?" , QMessageBox::Yes | QMessageBox::No);
+       if (reponse == QMessageBox::Yes)
+       {
+           sauvegarder();
+           event->accept();
+       }
+       else
+       {
+           event->accept();
+       }
+    }
+    else
+    {
+        event->accept();
+    }
 }
