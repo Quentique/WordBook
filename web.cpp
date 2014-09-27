@@ -12,5 +12,4 @@ Web::Web(QString nomfichier)
   principale->show();
   principale->setMaximumSize(300, 600);
   principale->setMinimumSize(300, 600);
-
 }

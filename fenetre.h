@@ -31,7 +31,6 @@ private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;
    QPushButton *ajout, *modifier, *afficher, *supprimer;
-   QAction *imprimer, *exporter;
    Ajout *fenajout;
    Modifier *modif;
    Style *style;

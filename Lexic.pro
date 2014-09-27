@@ -13,7 +13,8 @@ HEADERS += \
     fenetre.h \
     web.h \
     ajout.h \
-    modifier.h
+    modifier.h \
+    style.h
 
 OTHER_FILES +=
 
