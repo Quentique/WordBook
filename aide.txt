@@ -1,0 +1,10 @@
+﻿<h1 style="text-align: center;">Aide</h1>
+<h2 style="margin-bottom: 0px; margin-top: 0px; text-decoration: underline;">1) Présentation</h2><p style="white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;">
+Ce programme est conçu pour la numérisation de fiches de vocabulaires bilingues. Ce programme
+est très simple d'utilisation, en plus, l'interface est entièrement personnalisable ! Il per-
+met de stocker jusqu'à 100 mots par fiche de vocabulaires. Ce programme est disponible en 
+plusieurs langues.
+</p>
+<h2 style="margin-bottom: 0px; text-decoration: underline; margin-top: 0px;">2) Infos Diverses</h2><p style="white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;">
+Lorsque des dimensions/tailles sont demandées, il faut les donner en pixels.
+</p>

@@ -400,7 +400,14 @@ void Style::closeEvent(QCloseEvent *event)
 {
     if (vrai != 1)
     {
-    int reponse = QMessageBox::question(this, tr("Confirmation"), tr("Sauvegarder ?") , QMessageBox::Yes | QMessageBox::No);
+    QMessageBox message;
+    message.setWindowTitle(tr("Confirmation"));
+    message.setText(tr("Sauvegarder ?"));
+    message.addButton(QMessageBox::Yes);
+    message.addButton(QMessageBox::No);
+    message.setButtonText(QMessageBox::Yes, tr("Oui"));
+    message.setButtonText(QMessageBox::No, tr("Non"));
+    int reponse = message.exec();
        if (reponse == QMessageBox::Yes)
        {
            sauvegarder();

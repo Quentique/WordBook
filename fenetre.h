@@ -26,6 +26,7 @@ public slots:
     void degriser();
     void css();
     void options();
+    void aide_aff();
 
 private:
    QTreeWidget *arbre;

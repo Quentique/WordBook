@@ -42,6 +42,8 @@ Option::Option()
     final->addWidget(sauvegarder_opt);
 
     setLayout(final);
+    setWindowTitle("Options");
+    setMinimumSize(250, 275);
     QObject::connect(sauvegarder_opt, SIGNAL(clicked(bool)), this, SLOT(record_opt(bool)));
 }
 void Option::record_opt(bool test)
@@ -63,7 +65,14 @@ void Option::closeEvent(QCloseEvent *event)
 {
     if (faux != 1)
     {
-    int reponse = QMessageBox::question(this, "Confirmation", "Sauvegarder ?" , QMessageBox::Yes | QMessageBox::No);
+    QMessageBox message;
+    message.setWindowTitle("Confirmation");
+    message.setText("Sauvegarder ?");
+    message.addButton(QMessageBox::Yes);
+    message.addButton(QMessageBox::No);
+    message.setButtonText(QMessageBox::Yes, tr("Oui"));
+    message.setButtonText(QMessageBox::No, tr("Non"));
+    int reponse = message.exec();
        if (reponse == QMessageBox::Yes)
        {
            record_opt(false);

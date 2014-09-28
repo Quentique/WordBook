@@ -7,7 +7,8 @@ SOURCES += \
     ajout.cpp \
     modifier.cpp \
     style.cpp \
-    option.cpp
+    option.cpp \
+    aide.cpp
 
 
 HEADERS += \
@@ -16,7 +17,8 @@ HEADERS += \
     ajout.h \
     modifier.h \
     style.h \
-    option.h
+    option.h \
+    aide.h
 
 OTHER_FILES +=
 

@@ -5,6 +5,7 @@
 #include <QtXml>
 #include "style.h"
 #include "option.h"
+#include "aide.h"
 
 Fenetre::Fenetre()
 {
@@ -95,12 +96,18 @@ Fenetre::Fenetre()
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
-
+   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
   Web testg(slot->text(0));
 }
+void Fenetre::aide_aff()
+{
+    Aide *aideaff = new Aide;
+    aideaff->show();
+}
+
 void Fenetre::options()
 {
     Option *fen_options = new Option;
@@ -114,7 +121,15 @@ void Fenetre::affiche()
 }
 void Fenetre::supprime()
 {
-    int reponse = QMessageBox::question(this, tr("Confirmation"), tr("Êtes-vous sûr de vouloir supprimer cette fiche : ") + arbre->selectedItems().at(0)->text(0), QMessageBox ::Yes | QMessageBox::No);
+
+    QMessageBox message;
+    message.setWindowTitle(tr("Confirmation"));
+    message.setText(tr("Êtes-vous sûr de vouloir supprimer cette fiche : ") + arbre->selectedItems().at(0)->text(0));
+    message.addButton(QMessageBox::Yes);
+    message.addButton(QMessageBox::No);
+    message.setButtonText(QMessageBox::Yes, tr("Oui"));
+    message.setButtonText(QMessageBox::No, tr("Non"));
+    int reponse = message.exec();
        if (reponse == QMessageBox::Yes)
        {
            QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0).toLower() + ".html");

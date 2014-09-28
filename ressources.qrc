@@ -5,4 +5,7 @@
         <file>afficher.png</file>
         <file>supprimer.png</file>
     </qresource>
+    <qresource prefix="/texte">
+        <file>aide.txt</file>
+    </qresource>
 </RCC>

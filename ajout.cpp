@@ -55,8 +55,15 @@ void Ajout::enregistre()
 
     if (fichier.exists())
     {
-        int reponse = QMessageBox::question(this, tr("Confirmation"), tr("Cette fiche est déjà existante. Voulez-vous la remplacer ?") , QMessageBox::Yes | QMessageBox::No);
-           if (reponse == QMessageBox::Yes)
+        QMessageBox message;
+        message.setWindowTitle("Confirmation");
+        message.setText(tr("Cette fiche est déjà existante. Voulez-vous la remplacer ?"));
+        message.addButton(QMessageBox::Yes);
+        message.addButton(QMessageBox::No);
+        message.setButtonText(QMessageBox::Yes, tr("Oui"));
+        message.setButtonText(QMessageBox::No, tr("Non"));
+        int reponse = message.exec();
+        if (reponse == QMessageBox::Yes)
            {
                QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + titre->text().toLower() + ".html");
            }
