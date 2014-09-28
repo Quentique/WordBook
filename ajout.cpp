@@ -8,15 +8,15 @@ Ajout::Ajout()
     soustitre = new QLineEdit;
     langue = new QLineEdit;
     tableau = new QTableWidget;
-    record = new QPushButton("Enregistrer");
+    record = new QPushButton(tr("Enregistrer"));
 
     QFormLayout *form = new QFormLayout;
     QVBoxLayout *layout = new QVBoxLayout;
     QHBoxLayout *layout2 = new QHBoxLayout;
 
-    form->addRow("Titre", titre);
-    form->addRow("Sous-titre (optionnel)", soustitre);
-    form->addRow("Langue", langue);
+    form->addRow(tr("Titre"), titre);
+    form->addRow(tr("Sous-titre (optionnel)"), soustitre);
+    form->addRow(tr("Langue"), langue);
 
     layout->addLayout(form);
     layout->addWidget(tableau);
@@ -27,7 +27,7 @@ Ajout::Ajout()
     tableau->setColumnCount(2);
     tableau->setRowCount(100);
     QStringList labels;
-    labels << "Termes" << "Traduction";
+    labels << tr("Termes") << tr("Traduction");
     tableau->setHorizontalHeaderLabels(labels);
     tableau->setColumnWidth(0, 150);
     tableau->setColumnWidth(1, 150);
@@ -35,6 +35,7 @@ Ajout::Ajout()
     setLayout(layout2);
     //resize(485, 500);
     setFixedSize(485, 500);
+    setWindowTitle("Ajout d'une fiche");
     qDebug() << "test";
     QObject::connect(record, SIGNAL(clicked()), this, SLOT(enregistre()));
 
@@ -44,7 +45,7 @@ void Ajout::enregistre()
     qDebug() << "enregistrer";
     if (langue->text() == "" || titre->text() == "")
     {
-        QMessageBox::critical(this, "Erreur", "Il manque des informations !");
+        QMessageBox::critical(this, tr("Erreur"), tr("Il manque des informations !"));
 
     }
     else
@@ -54,7 +55,7 @@ void Ajout::enregistre()
 
     if (fichier.exists())
     {
-        int reponse = QMessageBox::question(this, "Confirmation", "Cette fiche est déjà existante. Voulez-vous la remplacer ?" , QMessageBox::Yes | QMessageBox::No);
+        int reponse = QMessageBox::question(this, tr("Confirmation"), tr("Cette fiche est déjà existante. Voulez-vous la remplacer ?") , QMessageBox::Yes | QMessageBox::No);
            if (reponse == QMessageBox::Yes)
            {
                QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + titre->text().toLower() + ".html");
@@ -67,7 +68,7 @@ void Ajout::enregistre()
     if (!tableau->item(0, 0))
     {
 
-        QMessageBox::critical(this, "Erreur", "Le tableau ne doit pas être vide !");
+        QMessageBox::critical(this, tr("Erreur"), tr("Le tableau ne doit pas être vide !"));
 
     }
     else
@@ -75,7 +76,7 @@ void Ajout::enregistre()
     if (!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
-    QMessageBox::critical(this, "Erreur", "Impossibilité de créer le fichier pour l'enregistrement !");
+    QMessageBox::critical(this, tr("Erreur"), tr("Impossibilité de créer le fichier pour l'enregistrement !"));
     }
     else
     {

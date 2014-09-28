@@ -50,18 +50,18 @@ Fenetre::Fenetre()
    layouth->addWidget(arbre);
    layouth->addLayout(layoutv);
 
-   QMenu *menufichier = menuBar()->addMenu("&Fichier");
-   QMenu *menuoption = menuBar()->addMenu("&Options");
-   QMenu *menuaide = menuBar()->addMenu("&Aide");
+   QMenu *menufichier = menuBar()->addMenu(tr("&Fichier"));
+   QMenu *menuoption = menuBar()->addMenu(tr("&Options"));
+   QMenu *menuaide = menuBar()->addMenu(tr("&Aide"));
 
 
-   QAction *quitter = new QAction("&Quitter", this);
+   QAction *quitter = new QAction(tr("&Quitter"), this);
 
-   QAction *parametre = new QAction("&Options", this);
-   QAction *stylegestion = new QAction("Gérer le style", this);
-   QAction *aide = new QAction("&Aide", this);
-   QAction *about = new QAction("A propos...", this);
-   QAction *qt = new QAction("A propos de...", this);
+   QAction *parametre = new QAction(tr("&Options"), this);
+   QAction *stylegestion = new QAction(tr("Gérer le style"), this);
+   QAction *aide = new QAction(tr("&Aide"), this);
+   QAction *about = new QAction(tr("A propos..."), this);
+   QAction *qt = new QAction(tr("A propos de..."), this);
 
 
    menufichier->addAction(quitter);
@@ -76,15 +76,13 @@ Fenetre::Fenetre()
 
    zoneprincipale->setLayout(layouth);
    setCentralWidget(zoneprincipale);
+   setWindowTitle("Lexic");
 
    QStringList liste;
-   liste << "Nom" << "Langue";
+   liste << tr("Nom") << tr("Langue");
    arbre->setHeaderLabels(liste);
    arbre->setColumnWidth(0, 200);
    arbre->setColumnWidth(1, 150);
-   QTreeWidgetItem *test = new QTreeWidgetItem;
-   test->setText(0, "Hello");
-   arbre->addTopLevelItem(test);
    qDebug() << "Langue : " + QLocale::system().name();//.section('_', 0, 0);
    lister();
    QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
@@ -116,7 +114,7 @@ void Fenetre::affiche()
 }
 void Fenetre::supprime()
 {
-    int reponse = QMessageBox::question(this, "Confirmation", "Êtes-vous sûr de vouloir supprimer cette fiche : " + arbre->selectedItems().at(0)->text(0), QMessageBox ::Yes | QMessageBox::No);
+    int reponse = QMessageBox::question(this, tr("Confirmation"), tr("Êtes-vous sûr de vouloir supprimer cette fiche : ") + arbre->selectedItems().at(0)->text(0), QMessageBox ::Yes | QMessageBox::No);
        if (reponse == QMessageBox::Yes)
        {
            QFile::remove(QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0).toLower() + ".html");
@@ -204,14 +202,14 @@ void Fenetre::lister()
           QFile fichierla(path + listes.at(a));
           if (!fichierla.open(QIODevice::ReadOnly))
           {
-              QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le fichier !");
+              QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'ouvrir le fichier !"));
               fichierla.close();
           }
           QDomDocument *dom = new QDomDocument("xml");
           if (!dom->setContent(&fichierla))
           {
               fichierla.close();
-              QMessageBox::critical(this, "Erreur", "Impossible d'attribuer le fichier");
+              QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'attribuer le fichier"));
           }
           QDomElement doc_elements = dom->documentElement();
           doc_elements = doc_elements.firstChildElement();
