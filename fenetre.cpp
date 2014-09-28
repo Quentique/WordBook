@@ -4,6 +4,7 @@
 #include "modifier.h"
 #include <QtXml>
 #include "style.h"
+#include "option.h"
 
 Fenetre::Fenetre()
 {
@@ -95,11 +96,17 @@ Fenetre::Fenetre()
    QObject::connect(qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
+   QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
 
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
   Web testg(slot->text(0));
+}
+void Fenetre::options()
+{
+    Option *fen_options = new Option;
+    fen_options->show();
 }
 
 void Fenetre::affiche()

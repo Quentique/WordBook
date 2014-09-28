@@ -8,8 +8,11 @@ Web::Web(QString nomfichier)
   QUrl chemin;
   chemin.setUrl("file:///" + QCoreApplication::applicationDirPath() + "/data/" + nomfichier.toLower() + ".html");
   vue->setUrl(chemin);
-  vue->setMaximumSize(300, 500);
+
   principale->show();
-  principale->setMaximumSize(300, 600);
-  principale->setMinimumSize(300, 600);
+  QSettings *settings = new QSettings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);;
+  principale->setMaximumSize(settings->value("Taille/x", 500).toInt(), settings->value("Taille/y", 600).toInt());
+  principale->setMinimumSize(settings->value("Taille/x", 500).toInt(), settings->value("Taille/y", 600).toInt());
+  vue->setMaximumSize(settings->value("Taille/x", 500).toInt(), settings->value("Taille/y", 600).toInt());
+  delete settings;
 }

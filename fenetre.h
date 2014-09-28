@@ -25,7 +25,7 @@ public slots:
     void rafraichir2();
     void degriser();
     void css();
-
+    void options();
 
 private:
    QTreeWidget *arbre;

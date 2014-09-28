@@ -6,7 +6,8 @@ SOURCES += \
     web.cpp \
     ajout.cpp \
     modifier.cpp \
-    style.cpp
+    style.cpp \
+    option.cpp
 
 
 HEADERS += \
@@ -14,7 +15,8 @@ HEADERS += \
     web.h \
     ajout.h \
     modifier.h \
-    style.h
+    style.h \
+    option.h
 
 OTHER_FILES +=
 
