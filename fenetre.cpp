@@ -6,6 +6,7 @@
 #include "style.h"
 #include "option.h"
 #include "aide.h"
+#include "propos.h"
 
 Fenetre::Fenetre()
 {
@@ -62,7 +63,6 @@ Fenetre::Fenetre()
    QAction *stylegestion = new QAction(tr("Gérer le style"), this);
    QAction *aide = new QAction(tr("&Aide"), this);
    QAction *about = new QAction(tr("A propos..."), this);
-   QAction *qt = new QAction(tr("A propos de..."), this);
 
 
    menufichier->addAction(quitter);
@@ -72,7 +72,6 @@ Fenetre::Fenetre()
 
    menuaide->addAction(aide);
    menuaide->addAction(about);
-   menuaide->addAction(qt);
 
 
    zoneprincipale->setLayout(layouth);
@@ -92,16 +91,22 @@ Fenetre::Fenetre()
    QObject::connect(ajout, SIGNAL(clicked()), this, SLOT(ajouter()));
    QObject::connect(modifier, SIGNAL(clicked()), this, SLOT(changer()));
    QObject::connect(arbre, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(degriser()));
-   QObject::connect(qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
    QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
+   QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
   Web testg(slot->text(0));
 }
+void Fenetre::apropos()
+{
+    Propos *apropos_aff = new Propos;
+    apropos_aff->show();
+}
+
 void Fenetre::aide_aff()
 {
     Aide *aideaff = new Aide;

@@ -27,7 +27,7 @@ public slots:
     void css();
     void options();
     void aide_aff();
-
+    void apropos();
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;

@@ -8,7 +8,8 @@ SOURCES += \
     modifier.cpp \
     style.cpp \
     option.cpp \
-    aide.cpp
+    aide.cpp \
+    propos.cpp
 
 
 HEADERS += \
@@ -18,7 +19,8 @@ HEADERS += \
     modifier.h \
     style.h \
     option.h \
-    aide.h
+    aide.h \
+    propos.h
 
 OTHER_FILES +=
 

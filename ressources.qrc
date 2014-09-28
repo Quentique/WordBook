@@ -4,6 +4,8 @@
         <file>modifier.png</file>
         <file>afficher.png</file>
         <file>supprimer.png</file>
+        <file>licence.png</file>
+        <file>icone.png</file>
     </qresource>
     <qresource prefix="/texte">
         <file>aide.txt</file>
