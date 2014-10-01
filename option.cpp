@@ -2,8 +2,8 @@
 
 Option::Option()
 {
-    langue = new QGroupBox("Langue");
-    option_taille = new QGroupBox("Taille d'affichage");
+    langue = new QGroupBox(tr("Langue"));
+    option_taille = new QGroupBox(tr("Taille d'affichage"));
 
     choix_langue = new QComboBox;
 
@@ -31,8 +31,8 @@ Option::Option()
     QFormLayout *taille_layout = new QFormLayout;
     QVBoxLayout *final = new QVBoxLayout;
     langue_layout->addWidget(choix_langue);
-    taille_layout->addRow("Largeur : ", taille_x);
-    taille_layout->addRow("Longueur :", taille_y);
+    taille_layout->addRow(tr("Largeur : "), taille_x);
+    taille_layout->addRow(tr("Longueur :"), taille_y);
 
     langue->setLayout(langue_layout);
     option_taille->setLayout(taille_layout);
@@ -52,12 +52,10 @@ void Option::record_opt(bool test)
     settings->setValue("Taille/x", taille_x->value());
     settings->setValue("Taille/y", taille_y->value());
     settings->setValue("Langue/default", choix_langue->currentIndex());
-    QTranslator *traducteur = new QTranslator;
-    traducteur->load("langue_"+choix_langue->currentText().left(2).toLower());
-    qApp->installTranslator(traducteur);
+
     if(test == true)
     {
-        QMessageBox::information(this, "Information", "Modification effectuée");
+        QMessageBox::information(this, tr("Information"), tr("Modification effectuée"));
     }
     close();
 }
@@ -66,8 +64,8 @@ void Option::closeEvent(QCloseEvent *event)
     if (faux != 1)
     {
     QMessageBox message;
-    message.setWindowTitle("Confirmation");
-    message.setText("Sauvegarder ?");
+    message.setWindowTitle(tr("Confirmation"));
+    message.setText(tr("Sauvegarder ?"));
     message.addButton(QMessageBox::Yes);
     message.addButton(QMessageBox::No);
     message.setButtonText(QMessageBox::Yes, tr("Oui"));

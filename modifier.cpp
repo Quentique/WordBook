@@ -5,7 +5,7 @@
 
 Modifier::Modifier() : Ajout()
 {
-  setWindowTitle("Modification d'une fiche");
+  setWindowTitle(tr("Modification d'une fiche"));
 }
 
 bool Modifier::affdonne(QString nomfich)

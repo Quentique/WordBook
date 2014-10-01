@@ -69,7 +69,7 @@ Style::Style()
     style_soustitre2 = new QGroupBox(tr("Langue"));
     style_tableau1 = new QGroupBox(tr("En-tête"));
     style_tableau2 = new QGroupBox(tr("Termes"));
-    style_tableau3 = new QGroupBox(tr("Traduction"));
+    style_tableau3 = new QGroupBox(tr("Traductions"));
     style_tableau = new QGroupBox(tr("Tableau"));
     style_titre = new QGroupBox(tr("Titre"));
 
@@ -271,7 +271,6 @@ QString Style::retour_couleur(QPushButton *bouton)
     string_couleur += ", ";
     string_couleur += QString::number(bouton->palette().background().color().alpha());
     string_couleur += ");\n";
-   qDebug() << string_couleur;
     return string_couleur;
 }
 QString Style::transfo_bool(QCheckBox *box)

@@ -64,6 +64,10 @@ Fenetre::Fenetre()
    QAction *aide = new QAction(tr("&Aide"), this);
    QAction *about = new QAction(tr("A propos..."), this);
 
+   quitter->setShortcut(QKeySequence(tr("Ctrl+Q")));
+   parametre->setShortcut(QKeySequence(tr("Ctrl+O")));
+   stylegestion->setShortcut(QKeySequence(tr("Ctrl+S")));
+   aide->setShortcut(QKeySequence(tr("F1")));
 
    menufichier->addAction(quitter);
 
@@ -76,14 +80,14 @@ Fenetre::Fenetre()
 
    zoneprincipale->setLayout(layouth);
    setCentralWidget(zoneprincipale);
-   setWindowTitle("Lexic");
+   setWindowTitle("WordBook");
+   setFixedSize(435, 280);
 
    QStringList liste;
    liste << tr("Nom") << tr("Langue");
    arbre->setHeaderLabels(liste);
    arbre->setColumnWidth(0, 200);
    arbre->setColumnWidth(1, 150);
-   qDebug() << "Langue : " + QLocale::system().name();//.section('_', 0, 0);
    lister();
    QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
    QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
@@ -122,7 +126,6 @@ void Fenetre::options()
 void Fenetre::affiche()
 {
     Web testf(arbre->selectedItems().at(0)->text(0));
-    qDebug() << arbre->selectedItems().at(0)->text(0);
 }
 void Fenetre::supprime()
 {
@@ -205,8 +208,11 @@ void Fenetre::lister()
     listes << flux->entryList();
     int i, a;
 
+    if (QDir(path).exists())
+    {
     listes.removeFirst();
     listes.removeFirst();
+    }
     i = listes.count();
     for (a = 0 ; a < i ; a++)
     {

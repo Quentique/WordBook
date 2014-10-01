@@ -5,6 +5,7 @@
 
 class Aide : public QWidget
 {
+    Q_OBJECT
 public:
     Aide();
 private:

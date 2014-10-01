@@ -27,22 +27,22 @@ Ajout::Ajout()
     tableau->setColumnCount(2);
     tableau->setRowCount(100);
     QStringList labels;
-    labels << tr("Termes") << tr("Traduction");
+    labels << tr("Termes") << tr("Traductions");
     tableau->setHorizontalHeaderLabels(labels);
     tableau->setColumnWidth(0, 150);
     tableau->setColumnWidth(1, 150);
 
     setLayout(layout2);
     //resize(485, 500);
-    setFixedSize(485, 500);
-    setWindowTitle("Ajout d'une fiche");
-    qDebug() << "test";
+    setFixedSize(487, 500);
+    setWindowTitle(tr("Ajout d'une fiche"));
+
     QObject::connect(record, SIGNAL(clicked()), this, SLOT(enregistre()));
 
 }
 void Ajout::enregistre()
 {
-    qDebug() << "enregistrer";
+
     if (langue->text() == "" || titre->text() == "")
     {
         QMessageBox::critical(this, tr("Erreur"), tr("Il manque des informations !"));
@@ -52,11 +52,14 @@ void Ajout::enregistre()
     {
 
     QFile fichier(QCoreApplication::applicationDirPath() + "/data/" + titre->text().toLower() + ".html");
-
+    if (!QDir(QCoreApplication::applicationDirPath() + "/data").exists())
+    {
+        QDir().mkdir(QCoreApplication::applicationDirPath() + "/data");
+    }
     if (fichier.exists())
     {
         QMessageBox message;
-        message.setWindowTitle("Confirmation");
+        message.setWindowTitle(tr("Confirmation"));
         message.setText(tr("Cette fiche est déjà existante. Voulez-vous la remplacer ?"));
         message.addButton(QMessageBox::Yes);
         message.addButton(QMessageBox::No);
@@ -102,34 +105,30 @@ void Ajout::enregistre()
     texte << "<div>Langue : " << langue->text() << "</div>\n";
     texte << "<table>\n<thead>\n<tr>\n<th>Termes</th>\n<th>Traductions</th>\n</tr>\n</thead>\n<tbody>\n";
     int i;
-    qDebug() << "Avant for";
+
     for (i = 0 ; i != 99 ; i++)
     {
-        qDebug() << "Dans For";
+
         QTableWidgetItem *item = tableau->item(i,0);
         QTableWidgetItem *item2 = tableau->item(i, 1);
         if (item && item2)
         {
             texte << "<tr>\n<td>" << tableau->item(i, 0)->text() << "</td>\n<td>" << tableau->item(i, 1)->text() << "</td>\n</tr>";
-            qDebug() << tableau->item(i, 0)->text();
-            qDebug() << tableau->item(i, 1)->text();
-            qDebug() << "Dans if";
+
         }
         else if (!item && item2)
         {
             texte << "<tr>\n<td></td>\n<td>" << tableau->item(i, 1)->text() << "</td>\n</tr>";
-            qDebug() << tableau->item(i, 1)->text();
-            qDebug() << "Dans if";
+
         }
         else if (item && !item2)
         {
             texte << "<tr>\n<td>" << tableau->item(i, 0)->text() << "</td>\n<td> </td>\n</tr>\n";
-            qDebug() << tableau->item(i, 0)->text();
-            qDebug() << "Dans if";
+
         }
         else
         {
-            qDebug() << "Rien";
+
         }
     }
     texte << "</tbody>\n</table>\n</body>\n</html>";
