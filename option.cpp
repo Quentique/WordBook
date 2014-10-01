@@ -13,13 +13,23 @@ Option::Option()
     sauvegarder_opt = new QPushButton(tr("Enregistrer"));
 
     settings = new QSettings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
-    int a = 0;
+    int a = 1;
+    if (!settings->childGroups().contains("Langue",Qt::CaseInsensitive))
+    {
+        settings->setValue("Langue/default", 1);
+        settings->setValue("Langue/1", "Français");
+        settings->setValue("Langue/2", "English");
+        settings->setValue("Langue/3", "Deutsch");
+        qDebug() << "construction";
+    }
     while(!settings->value("Langue/" + QString::number(a)).toString().isNull())
     {
-        choix_langue->addItem(settings->value("Langue/" + QString::number(a)).toString());
+        choix_langue->addItem(settings->value("Langue/" + QString::number(a)).toString().toUtf8());
+        qDebug() << settings->value("Langue/" + QString::number(a)).toString();
         a++;
     }
     choix_langue->setCurrentIndex(settings->value("Langue/default", 1).toInt());
+    qDebug() << settings->value("Langue/default", 1).toInt();
     taille_x->setMaximum(1000);
     taille_y->setMaximum(1000);
     taille_x->setMinimum(100);

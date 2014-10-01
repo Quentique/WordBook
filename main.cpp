@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
     QTranslator translator;
     QSettings settings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
-    qDebug() << translator.load("langue_" + settings.value("Langue/" + settings.value("Langue/default").toString()).toString().left(2).toLower() +".qm", app.applicationDirPath());
+    qDebug() << translator.load("langue_" + settings.value("Langue/" + QString::number(settings.value("Langue/default").toInt() + 1)).toString().left(2).toLower() +".qm", app.applicationDirPath());
     app.installTranslator(&translator);
     app.setApplicationName("WordBook");
     QIcon icone;
