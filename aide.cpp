@@ -1,4 +1,5 @@
 #include "aide.h"
+#include <QVBoxLayout>
 
 Aide::Aide()
 {

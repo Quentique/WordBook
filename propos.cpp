@@ -1,4 +1,10 @@
 #include "propos.h"
+#include <QLayout>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QFile>
+#include <QMessageBox>
+#include <QTextStream>
 
 Propos::Propos()
 {

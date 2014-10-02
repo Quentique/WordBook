@@ -1,7 +1,10 @@
 #ifndef PROPOS_H
 #define PROPOS_H
 
-#include <QtWidgets>
+#include <QLabel>
+#include <QWidget>
+#include <QPushButton>
+#include <QTextEdit>
 
 class Propos : public QWidget
 {

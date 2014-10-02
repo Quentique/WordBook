@@ -3,6 +3,11 @@
 #include "ajout.h"
 #include "modifier.h"
 #include <QtXml>
+#include <QLayout>
+#include <QMenu>
+#include <QAction>
+#include <QMenuBar>
+#include <QMessageBox>
 #include "style.h"
 #include "option.h"
 #include "aide.h"

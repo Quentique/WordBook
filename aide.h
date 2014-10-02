@@ -1,7 +1,10 @@
 #ifndef AIDE_H
 #define AIDE_H
 
-#include <QtWidgets>
+#include <QApplication>
+#include <QWidget>
+#include <QLabel>
+#include <QPushButton>
 
 class Aide : public QWidget
 {

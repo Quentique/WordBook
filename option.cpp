@@ -1,4 +1,9 @@
 #include "option.h"
+#include <QCoreApplication>
+#include <QMessageBox>
+#include <QLayout>
+#include <QFormLayout>
+#include <QCloseEvent>
 
 Option::Option()
 {
@@ -20,16 +25,16 @@ Option::Option()
         settings->setValue("Langue/1", "Français");
         settings->setValue("Langue/2", "English");
         settings->setValue("Langue/3", "Deutsch");
-        qDebug() << "construction";
+
     }
     while(!settings->value("Langue/" + QString::number(a)).toString().isNull())
     {
         choix_langue->addItem(settings->value("Langue/" + QString::number(a)).toString().toUtf8());
-        qDebug() << settings->value("Langue/" + QString::number(a)).toString();
+
         a++;
     }
     choix_langue->setCurrentIndex(settings->value("Langue/default", 1).toInt());
-    qDebug() << settings->value("Langue/default", 1).toInt();
+
     taille_x->setMaximum(1000);
     taille_y->setMaximum(1000);
     taille_x->setMinimum(100);

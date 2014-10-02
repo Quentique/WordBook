@@ -1,5 +1,6 @@
 #include "fenetre.h"
 #include "web.h"
+#include <QCoreApplication>
 
 Web::Web(QString nomfichier)
 {

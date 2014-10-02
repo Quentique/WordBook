@@ -2,6 +2,7 @@
 #include "ajout.h"
 #include "fenetre.h"
 #include <QtXml>
+#include <QMessageBox>
 
 Modifier::Modifier() : Ajout()
 {

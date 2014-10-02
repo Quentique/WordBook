@@ -2,7 +2,7 @@
 #define WEB_H
 
 #include <QWidget>
-#include <QtWebKitWidgets>
+#include <QWebView>
 
 class Web : public QWidget
 {

@@ -1,7 +1,11 @@
 #ifndef OPTION_H
 #define OPTION_H
 
-#include <QtWidgets>
+#include <QGroupBox>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QSettings>
+#include <QPushButton>
 
 class Option : public QWidget
 {

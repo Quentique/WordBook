@@ -1,5 +1,8 @@
 #include <QApplication>
 #include <QTextCodec>
+#include <QTranslator>
+#include <QIcon>
+#include <QPixmap>
 #include "fenetre.h"
 
 int main(int argc, char *argv[])
@@ -9,7 +12,6 @@ int main(int argc, char *argv[])
 
     QTranslator translator;
     QSettings settings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
-    qDebug() << translator.load("langue_" + settings.value("Langue/" + QString::number(settings.value("Langue/default").toInt() + 1)).toString().left(2).toLower() +".qm", app.applicationDirPath());
     app.installTranslator(&translator);
     app.setApplicationName("WordBook");
     QIcon icone;

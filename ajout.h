@@ -2,7 +2,9 @@
 #define AJOUT_H
 
 #include <QWidget>
-#include <QtWidgets>
+#include <QTableWidget>
+#include <QLineEdit>
+#include <QPushButton>
 
 class Ajout : public QWidget
 {

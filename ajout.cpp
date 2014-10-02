@@ -1,6 +1,9 @@
 #include "fenetre.h"
 #include "ajout.h"
-
+#include <QLayout>
+#include <QFormLayout>
+#include <QMessageBox>
+#include <QtCore>
 
 Ajout::Ajout()
 {

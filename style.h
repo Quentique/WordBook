@@ -1,7 +1,13 @@
 #ifndef STYLE_H
 #define STYLE_H
 
-#include <QtWidgets>
+#include <QGroupBox>
+#include <QFontComboBox>
+#include <QCheckBox>
+#include <QPushButton>
+#include <QSpinBox>
+#include <QSignalMapper>
+#include <QSettings>
 
 class Style : public QWidget
 {

@@ -2,7 +2,6 @@
 #define MODIFIER_H
 
 #include "ajout.h"
-#include <QtWidgets>
 
 class Modifier : public Ajout
 {
