@@ -10,8 +10,12 @@ public:
     Propos();
 public slots:
     void ouvrir_url(QString url);
+    void openlicencefile();
 private:
     QLabel *label, *licence, *icone;
+    QPushButton *openlicence;
+    QWidget *licence_principale;
+    QTextEdit *licence_texte;
 };
 
 #endif // PROPOS_H

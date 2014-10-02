@@ -10,5 +10,6 @@
     </qresource>
     <qresource prefix="/texte">
         <file>aide.txt</file>
+        <file>licence.txt</file>
     </qresource>
 </RCC>

@@ -10,8 +10,9 @@
     </message>
     <message>
         <location filename="aide.cpp" line="8"/>
-        <source>&lt;h1 style=&quot;text-align: center; margin-left: auto; margin-right: auto; white-space: pre-wrap;&quot;&gt;                               Aide&lt;/h1&gt;&lt;h2 style=&quot;margin-bottom: 0px; margin-top: 0px; text-decoration: underline;&quot;&gt;1) Présentation&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Ce programme est conçu pour la numérisation de fiches de vocabulaires bilingues. Ce programme est&lt;br/&gt;très simple d&apos;utilisation, en plus, l&apos;interface est entièrement personnalisable ! Il permet de stocker&lt;br/&gt;jusqu&apos;à 100 mots par fiche de vocabulaires. Ce programme est disponible en plusieurs langues.&lt;/p&gt;&lt;br/&gt;&lt;h2 style=&quot;margin-bottom: 0px; text-decoration: underline; margin-top: 0px;&quot;&gt;2) Infos Diverses&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Lorsque des dimensions/tailles sont demandées, il faut les donner en pixels.&lt;br/&gt;Lors d&apos;un changement de langue, il est nécessaire de redémarrer l&apos;application pour appliquer la nouvelle langue.&lt;/p&gt;</source>
-        <translation>&lt;h1 style=&quot;text-align: center; margin-left: auto; margin-right: auto; white-space: pre-wrap;&quot;&gt;                              Hilfe&lt;/h1&gt;&lt;h2 style=&quot;margin-bottom: 0px; margin-top: 0px; text-decoration: underline;&quot;&gt;1) Präsentation&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Dieses Programm für die Vokabulars Blätter zweisprachig. Dieses Programm ist&lt;br/&gt;sehr einfach einzusetzen, dazu, das Interface ist vollends flexibel ! Es kann speichern bis 100 Wörter&lt;br/&gt;per Vokabulars Blatt. Dieses Programm ist verfügbar in verschieden Sprache.&lt;/p&gt;&lt;br/&gt;&lt;h2 style=&quot;margin-bottom: 0px; text-decoration: underline; margin-top: 0px;&quot;&gt;2) Unterschiedlich Informationen&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Wann Dimensionen gebeten sind, du sollst geben sich in Pixels.&lt;br/&gt;Während eine Spraches Änderung, es ist notwendig von dem Anwendungsprogramm booten für&lt;br/&gt;die neue Sprache durchführt.&lt;/p&gt;</translation>
+        <source>&lt;h1 style=&quot;text-align: center; margin-left: auto; margin-right: auto; white-space: pre-wrap;&quot;&gt;                               Aide&lt;/h1&gt;&lt;h2 style=&quot;margin-bottom: 0px; margin-top: 0px; text-decoration: underline;&quot;&gt;1) Présentation&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Ce programme est conçu pour la numérisation de fiches de vocabulaires bilingues. Ce programme est&lt;br/&gt;très simple d&apos;utilisation, en plus, l&apos;interface est entièrement personnalisable ! Il permet de stocker&lt;br/&gt;jusqu&apos;à 100 mots par fiche de vocabulaires. Ce programme est disponible en plusieurs langues.&lt;/p&gt;&lt;br/&gt;&lt;h2 style=&quot;margin-bottom: 0px; text-decoration: underline; margin-top: 0px;&quot;&gt;2) Infos Diverses&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Lorsque des dimensions/tailles sont demandées, il faut les donner en pixels.&lt;br/&gt;Lors d&apos;un changement de langue, il est nécessaire de redémarrer l&apos;application pour appliquer la&lt;br/&gt;nouvelle langue.&lt;/p&gt;</source>
+        <oldsource>&lt;h1 style=&quot;text-align: center; margin-left: auto; margin-right: auto; white-space: pre-wrap;&quot;&gt;                               Aide&lt;/h1&gt;&lt;h2 style=&quot;margin-bottom: 0px; margin-top: 0px; text-decoration: underline;&quot;&gt;1) Présentation&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Ce programme est conçu pour la numérisation de fiches de vocabulaires bilingues. Ce programme est&lt;br/&gt;très simple d&apos;utilisation, en plus, l&apos;interface est entièrement personnalisable ! Il permet de stocker&lt;br/&gt;jusqu&apos;à 100 mots par fiche de vocabulaires. Ce programme est disponible en plusieurs langues.&lt;/p&gt;&lt;br/&gt;&lt;h2 style=&quot;margin-bottom: 0px; text-decoration: underline; margin-top: 0px;&quot;&gt;2) Infos Diverses&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Lorsque des dimensions/tailles sont demandées, il faut les donner en pixels.&lt;br/&gt;Lors d&apos;un changement de langue, il est nécessaire de redémarrer l&apos;application pour appliquer la nouvelle langue.&lt;/p&gt;</oldsource>
+        <translation>&lt;h1 style=&quot;text-align: center; margin-left: auto; margin-right: auto; white-space: pre-wrap;&quot;&gt;                              Hilfe&lt;/h1&gt;&lt;h2 style=&quot;margin-bottom: 0px; margin-top: 0px; text-decoration: underline;&quot;&gt;1) Präsentation&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Dieses Programm dient für die Vokabulars Blätter zweisprachig zu. Dieses Programm ist&lt;br/&gt;sehr einfach einzusetzen, dazu, das Interface ist vollends flexibel ! Es kann speichern bis 100 Wörter&lt;br/&gt;per Vokabulars Blatt. Dieses Programm ist verfügbar in verschieden Sprache.&lt;/p&gt;&lt;br/&gt;&lt;h2 style=&quot;margin-bottom: 0px; text-decoration: underline; margin-top: 0px;&quot;&gt;2) Unterschiedlich Informationen&lt;/h2&gt;&lt;p style=&quot;white-space: pre-wrap; margin-bottom: 0px; margin-top: 0px;&quot;&gt;Wann Dimensionen gebeten sind, du sollst geben sich in Pixels.      &lt;br/&gt;Während eine Spraches Änderung, es ist notwendig von dem Anwendungsprogramm booten für&lt;br/&gt;die neue Sprache durchführt.&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -53,8 +54,8 @@
     </message>
     <message>
         <location filename="ajout.cpp" line="48"/>
-        <location filename="ajout.cpp" line="78"/>
-        <location filename="ajout.cpp" line="86"/>
+        <location filename="ajout.cpp" line="81"/>
+        <location filename="ajout.cpp" line="89"/>
         <source>Erreur</source>
         <translation>Irrtum</translation>
     </message>
@@ -64,32 +65,32 @@
         <translation>Es fehlt Informationen !</translation>
     </message>
     <message>
-        <location filename="ajout.cpp" line="59"/>
+        <location filename="ajout.cpp" line="62"/>
         <source>Confirmation</source>
         <translation>Bestätigung</translation>
     </message>
     <message>
-        <location filename="ajout.cpp" line="60"/>
+        <location filename="ajout.cpp" line="63"/>
         <source>Cette fiche est déjà existante. Voulez-vous la remplacer ?</source>
         <translation>Dieses Blatt schon bestanden. Willst du sich auswechseln !</translation>
     </message>
     <message>
-        <location filename="ajout.cpp" line="63"/>
+        <location filename="ajout.cpp" line="66"/>
         <source>Oui</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="ajout.cpp" line="64"/>
+        <location filename="ajout.cpp" line="67"/>
         <source>Non</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="ajout.cpp" line="78"/>
+        <location filename="ajout.cpp" line="81"/>
         <source>Le tableau ne doit pas être vide !</source>
         <translation>Die Tafel muss nicht leer sein !</translation>
     </message>
     <message>
-        <location filename="ajout.cpp" line="86"/>
+        <location filename="ajout.cpp" line="89"/>
         <source>Impossibilité de créer le fichier pour l&apos;enregistrement !</source>
         <translation>Unmöglichkeit Dateu für Aufzichnung schöpfen !</translation>
     </message>
@@ -159,38 +160,38 @@
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="142"/>
+        <location filename="fenetre.cpp" line="134"/>
         <source>Confirmation</source>
         <translation>Bestätigung</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="143"/>
+        <location filename="fenetre.cpp" line="135"/>
         <source>Êtes-vous sûr de vouloir supprimer cette fiche : </source>
         <translation>Willst du diese Dateu vernichten : </translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="146"/>
+        <location filename="fenetre.cpp" line="138"/>
         <source>Oui</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="147"/>
+        <location filename="fenetre.cpp" line="139"/>
         <source>Non</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="236"/>
-        <location filename="fenetre.cpp" line="243"/>
+        <location filename="fenetre.cpp" line="231"/>
+        <location filename="fenetre.cpp" line="238"/>
         <source>Erreur</source>
         <translation>Irrtum</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="236"/>
+        <location filename="fenetre.cpp" line="231"/>
         <source>Impossible d&apos;ouvrir le fichier !</source>
         <translation>Kann nicht Datei öffnen !</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="243"/>
+        <location filename="fenetre.cpp" line="238"/>
         <source>Impossible d&apos;attribuer le fichier</source>
         <translation>Kann nicht Datei zuweisen</translation>
     </message>
@@ -237,42 +238,42 @@
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="34"/>
+        <location filename="option.cpp" line="44"/>
         <source>Largeur : </source>
         <translation>Breite :</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="35"/>
+        <location filename="option.cpp" line="45"/>
         <source>Longueur :</source>
         <translation>Höhe :</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="58"/>
+        <location filename="option.cpp" line="68"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="58"/>
+        <location filename="option.cpp" line="68"/>
         <source>Modification effectuée</source>
         <translation>Änderung durchgeführt</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="67"/>
+        <location filename="option.cpp" line="77"/>
         <source>Confirmation</source>
         <translation>Bestätigung</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="68"/>
+        <location filename="option.cpp" line="78"/>
         <source>Sauvegarder ?</source>
         <translation>Sichern ?</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="71"/>
+        <location filename="option.cpp" line="81"/>
         <source>Oui</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="option.cpp" line="72"/>
+        <location filename="option.cpp" line="82"/>
         <source>Non</source>
         <translation>Nein</translation>
     </message>
@@ -281,11 +282,17 @@
     <name>Propos</name>
     <message>
         <location filename="propos.cpp" line="10"/>
-        <source>&lt;h2&gt;Lexic&lt;/h2&gt;&lt;p&gt;Ce programme est diffusé selon les termes de la licence Creative Commons : &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-sa/3.0/fr/legalcode&quot;&gt;http://creativecommons.org/licenses/by-nc-sa/3.0/fr/legalcode&lt;/a&gt;.&lt;br/&gt;Ce programme a été créé et publié par Quentin DE MUYNCK.</source>
-        <translation>&lt;h2&gt;Lexic&lt;/h2&gt;&lt;p&gt;Dieses Programm ist verbreitet nach die Creative Commons Lizenz : &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-sa/3.0/de/legalcode&quot;&gt;http://creativecommons.org/licenses/by-nc-sa/3.0/de/legalcode&lt;/a&gt;.&lt;br/&gt;Dieses Programm war geschöpft und bekannt gegeben durch Quentin DE MUYNCK.</translation>
+        <source>&lt;h2&gt;WordBook&lt;/h2&gt;&lt;p&gt;Ce programme est diffusé selon les termes de la licence Creative Commons : &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-sa/3.0/fr/legalcode&quot;&gt;http://creativecommons.org/licenses/by-nc-sa/3.0/fr/legalcode&lt;/a&gt;.&lt;br/&gt;Ce programme a été créé et publié par Quentin DE MUYNCK.&lt;/p&gt;</source>
+        <oldsource>&lt;h2&gt;Lexic&lt;/h2&gt;&lt;p&gt;Ce programme est diffusé selon les termes de la licence Creative Commons : &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-sa/3.0/fr/legalcode&quot;&gt;http://creativecommons.org/licenses/by-nc-sa/3.0/fr/legalcode&lt;/a&gt;.&lt;br/&gt;Ce programme a été créé et publié par Quentin DE MUYNCK.</oldsource>
+        <translation>&lt;h2&gt;WordBook&lt;/h2&gt;&lt;p&gt;Dieses Programm ist verbreitet nach die Creative Commons Lizenz : &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-sa/3.0/de/legalcode&quot;&gt;http://creativecommons.org/licenses/by-nc-sa/3.0/de/legalcode&lt;/a&gt;.&lt;br/&gt;Dieses Programm war geschöpft und bekannt gegeben durch Quentin DE MUYNCK&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="propos.cpp" line="19"/>
+        <location filename="propos.cpp" line="11"/>
+        <source>Licence</source>
+        <translation>Lizenz</translation>
+    </message>
+    <message>
+        <location filename="propos.cpp" line="21"/>
         <source>A propos de l&apos;auteur</source>
         <translation>Im rechten Augenblick Urheber</translation>
     </message>
@@ -364,44 +371,44 @@
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="341"/>
+        <location filename="style.cpp" line="340"/>
         <source>Erreur Critique</source>
         <translation>Kritische Irrtum</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="341"/>
+        <location filename="style.cpp" line="340"/>
         <source>Erreur lors de l&apos;ouverture du fichier
  Code de l&apos;erreur : </source>
         <translation>Irrtum zur Zeit Dateis Öffnung
  Irrtums Code :</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="396"/>
+        <location filename="style.cpp" line="395"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="396"/>
+        <location filename="style.cpp" line="395"/>
         <source>La modification prendra effet après le redémarrage de l&apos;application</source>
         <translation>Die Änderung wird nach einem Neustarts Auwendurchprogramm wirksam</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="404"/>
+        <location filename="style.cpp" line="403"/>
         <source>Confirmation</source>
         <translation>Bestätigung</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="405"/>
+        <location filename="style.cpp" line="404"/>
         <source>Sauvegarder ?</source>
         <translation>Sichern ?</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="408"/>
+        <location filename="style.cpp" line="407"/>
         <source>Oui</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="style.cpp" line="409"/>
+        <location filename="style.cpp" line="408"/>
         <source>Non</source>
         <translation>Nein</translation>
     </message>
@@ -409,7 +416,7 @@
 <context>
     <name>Web</name>
     <message>
-        <location filename="web.cpp" line="18"/>
+        <location filename="web.cpp" line="19"/>
         <source>Affichage</source>
         <translation>Anschlagen</translation>
     </message>
