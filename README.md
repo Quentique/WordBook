@@ -8,7 +8,7 @@ Ce programme est très simple à utiliser, il existe une aide intégréeau progr
 
 Pour télécharger mon programme, allez dans le dossier bin/ et choisissez votre version !
 
-CE PROGRAMME EST SOUS LA LICENCE INTERNATIONNALE CREATIVE COMMON !
+CE PROGRAMME EST SOUS LA LICENCE INTERNATIONNALE CREATIVE COMMON BY-NC-SA !!!
 
 <hr/>
 
@@ -19,4 +19,4 @@ The software is very easy to use, there is an help and it's translated in 3 lang
 
 To download my software, go to the bin/ directory and choose your version !
 
-THE SOFTWARE IS UNDER THE INTERNATIONAL CREATIVE COMMONS'S LICENCE !!!
+THE SOFTWARE IS UNDER THE INTERNATIONAL CREATIVE COMMONS'S LICENCE  BY-NC-SA !!!
