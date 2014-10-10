@@ -1,0 +1,2 @@
+<version>1.0</version>
+<infos><ul><li>Première Version</li></ul></infos>
