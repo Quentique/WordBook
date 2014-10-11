@@ -2,4 +2,7 @@
 <version>
  <numero>1.0</numero>
  <infos><ul><li>Première Version</li></ul></infos>
+ <fichier>
+  <nom>https://raw.githubusercontent.com/Quentique/WordBook/master/bin/WordBook.zip</nom>
+ </fichier>
 </version> 
