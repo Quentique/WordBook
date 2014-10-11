@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QTreeWidget>
 #include <QPushButton>
+#include <QNetworkReply>
 #include "ajout.h"
 #include "modifier.h"
 #include "style.h"
@@ -30,6 +31,7 @@ public slots:
     void options();
     void aide_aff();
     void apropos();
+    void maj();
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;
@@ -37,6 +39,7 @@ private:
    Ajout *fenajout;
    Modifier *modif;
    Style *style;
+   QNetworkReply *reply;
 
 };
 
