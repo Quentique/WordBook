@@ -4,5 +4,7 @@
  <infos><ul><li>Première Version</li></ul></infos>
  <fichier>
   <nom>https://raw.githubusercontent.com/Quentique/WordBook/master/bin/WordBook.zip</nom>
+  <nom>machin</nom>
+  <nom>machin2</nom>
  </fichier>
 </version> 
