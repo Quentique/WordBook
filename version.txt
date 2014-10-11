@@ -4,5 +4,6 @@
  <infos><ul><li>Première Version</li></ul></infos>
  <fichier>
   <nom>https://raw.githubusercontent.com/Quentique/WordBook/master/bin/WordBook.zip</nom>
+  <nom>https://raw.githubusercontent.com/Quentique/WordBook/master/images/ajouter.png</nom>
  </fichier>
 </version> 
