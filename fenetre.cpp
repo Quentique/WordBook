@@ -248,8 +248,8 @@ void Fenetre::maj()
         QMessageBox::information(this, "Information", "Mise à jour disponible \n Nouvelle version : " + doc_elements.text() + "\n Version Actuelle : " + vs);
     }
     version.close();
+    QFile::remove("version.txt");
 }
-
 void Fenetre::lister()
 {
     QString path = QCoreApplication::applicationDirPath();
