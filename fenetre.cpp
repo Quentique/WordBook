@@ -2,6 +2,8 @@
 #include "web.h"
 #include "ajout.h"
 #include "modifier.h"
+#include <windows.h>
+#include <shellapi.h>
 #include <QtXml>
 #include <QLayout>
 #include <QMenu>
@@ -216,7 +218,7 @@ void Fenetre::maj()
     QEventLoop loop;
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
-   QFile fichier("version.txt");
+   QFile fichier(QCoreApplication::applicationDirPath() + "/version.txt");
        fichier.open(QIODevice::WriteOnly | QIODevice::Text);
    QTextStream flux(&fichier);
    flux.setCodec("UTF-8");
@@ -252,8 +254,28 @@ void Fenetre::maj()
         int retour = newversion.exec();
         if (retour == QMessageBox::Yes)
         {
-            QProcess *p = new QProcess;
-            p->start(QCoreApplication::applicationDirPath() + "/miseajour.exe");
+            QString executable = QCoreApplication::applicationDirPath() + "/miseajour.exe";
+#ifdef Q_OS_WIN
+
+
+    qDebug() << "Lancement Shell Execute";
+
+    /* On récupère le résultat de notre tentative de redémarrage (pour l'explication des paramètres --> cf the MSDN doc) */
+    int result = (int)::ShellExecuteA(0, "open", executable.toUtf8().constData(), 0, 0, SW_SHOWNORMAL);
+
+    /* Si le résultat est égal à ACCESSDENIED, c'est qu'on a pas les droits adéquats. On retente avec l'option "runas", qui se chargera de la pop-up "Exécuter avec les droits administrateur" */
+    if(SE_ERR_ACCESSDENIED == result)
+    {
+        qDebug() << "Lancement Shell Execute avec demande de privileges admin";
+        /* On demande alors l'élévation */
+        result = (int)::ShellExecuteA(0, "runas", executable.toUtf8().constData(), 0, 0, SW_SHOWNORMAL);
+    }
+    if(result <= 32)
+    {
+        /* Gestion des erreurs (bon c'est sommaire, mais concis :p ) */
+        qDebug() << "ERROR SHELLEXECUTE" << result;
+    }
+#endif
             QMetaObject::invokeMethod(this, "close", Qt::QueuedConnection);//important line
         }
     }
