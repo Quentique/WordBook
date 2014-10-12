@@ -18,10 +18,15 @@ int main(int argc, char *argv[])
     qDebug() << translator.load(QCoreApplication::applicationDirPath() + "/langue_"  + settings.value("Langue/" + QString::number(defaut)).toString().toLower().left(2));
     app.installTranslator(&translator);
     app.setApplicationName("WordBook");
+    Fenetre test;
+    if (settings.value("MAJ").toBool())
+    {
+        test.maj();
+    }
     QIcon icone;
     icone.addPixmap(QPixmap(":/images/icone.png").scaled(120,150));
     app.setWindowIcon(icone);
-    Fenetre test;
+
     test.show();
     //QString locale = QLocale::system().name().section('_', 0, 0);
 

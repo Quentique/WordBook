@@ -8,6 +8,9 @@
 #include <QAction>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 #include "style.h"
 #include "option.h"
 #include "aide.h"
@@ -68,6 +71,7 @@ Fenetre::Fenetre()
    QAction *stylegestion = new QAction(tr("Gérer le style"), this);
    QAction *aide = new QAction(tr("&Aide"), this);
    QAction *about = new QAction(tr("A propos..."), this);
+   QAction *majcheck = new QAction(tr("&Vérifier les mises à jour"), this);
 
    quitter->setShortcut(QKeySequence(tr("Ctrl+Q")));
    parametre->setShortcut(QKeySequence(tr("Ctrl+O")));
@@ -78,6 +82,7 @@ Fenetre::Fenetre()
 
    menuoption->addAction(stylegestion);
    menuoption->addAction(parametre);
+   menuoption->addAction(majcheck);
 
    menuaide->addAction(aide);
    menuaide->addAction(about);
@@ -105,6 +110,7 @@ Fenetre::Fenetre()
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
    QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
    QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
+   QObject::connect(majcheck, SIGNAL(triggered()), this, SLOT(maj()));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
@@ -202,7 +208,58 @@ void Fenetre::degriser()
 
 
 }
+void Fenetre::maj()
+{
+    QNetworkAccessManager manager;
 
+    reply = manager.get(QNetworkRequest(QUrl("https://raw.githubusercontent.com/Quentique/WordBook/master/version.txt")));
+    QEventLoop loop;
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+   QFile fichier("version.txt");
+       fichier.open(QIODevice::WriteOnly | QIODevice::Text);
+   QTextStream flux(&fichier);
+   flux.setCodec("UTF-8");
+   flux << reply->readAll();
+   fichier.close();
+    QDomDocument *dom = new QDomDocument("mon_xml");
+        if(!fichier.open(QIODevice::ReadOnly))
+        {
+            QMessageBox::warning(this,"Erreur à l'ouverture du document XML","Le document XML n'a pas pu être ouvert. Vérifiez que le nom est le bon et que le document est bien placé");
+            return;
+        }
+        if (!dom->setContent(&fichier)) // Si l'on n'arrive pas à associer le fichier XML à l'objet DOM.
+        {
+                fichier.close();
+                QMessageBox::warning(this,"Erreur à l'ouverture du document XML","Le document XML n'a pas pu être attribué à l'objet QDomDocument.");
+                return;
+        }
+    fichier.close();
+    QDomElement doc_elements = dom->documentElement();
+    doc_elements = doc_elements.firstChildElement();
+    QFile version(":/texte/version.txt");
+    version.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream stram(&version);
+    qDebug() << doc_elements.text();
+    stram.setCodec("UTF-8");
+    QString vs = stram.readAll();
+    if (version.readAll() != doc_elements.text())
+    {
+        QMessageBox newversion;
+        newversion.setText(tr("Nouvelle version disponible"));
+        newversion.setInformativeText(tr("Nouvelle version : ") +  doc_elements.text()  + QObject::tr("\nVersion Actuelle : ")+ vs + tr("\nSouhaitez-vous la télécharger ?"));
+        newversion.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        int retour = newversion.exec();
+        if (retour == QMessageBox::Yes)
+        {
+            QProcess *p = new QProcess;
+            p->start(QCoreApplication::applicationDirPath() + "/miseajour.exe");
+            QMetaObject::invokeMethod(this, "close", Qt::QueuedConnection);//important line
+        }
+    }
+    version.close();
+    QFile::remove("version.txt");
+}
 void Fenetre::lister()
 {
     QString path = QCoreApplication::applicationDirPath();

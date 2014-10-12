@@ -17,6 +17,6 @@ Web::Web(QString nomfichier)
   vue->setZoomFactor(2);
   vue->setMaximumSize(settings->value("Taille/x", 500).toInt(), settings->value("Taille/y", 600).toInt());
   vue->setMinimumSize(settings->value("Taille/x", 500).toInt(), settings->value("Taille/y", 600).toInt());
-  principale->setWindowTitle(tr("Affichage"));
+  principale->setWindowTitle(QObject::tr("Affichage"));
   delete settings;
 }

@@ -6,6 +6,7 @@
 #include <QSpinBox>
 #include <QSettings>
 #include <QPushButton>
+#include <QCheckBox>
 
 class Option : public QWidget
 {
@@ -16,9 +17,10 @@ public:
 public slots:
     void record_opt(bool test);
 private:
-    QGroupBox *langue, *option_taille;
+    QGroupBox *langue, *option_taille, *majgroup;
     QComboBox *choix_langue;
     QSpinBox *taille_x, *taille_y;
+    QCheckBox *majact;
     QSettings *settings;
     QPushButton *sauvegarder_opt;
     int faux;

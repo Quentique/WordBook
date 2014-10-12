@@ -9,6 +9,7 @@ Option::Option()
 {
     langue = new QGroupBox(tr("Langue"));
     option_taille = new QGroupBox(tr("Taille d'affichage"));
+    majgroup = new QGroupBox(tr("Mises à Jour"));
 
     choix_langue = new QComboBox;
 
@@ -16,6 +17,8 @@ Option::Option()
     taille_y = new QSpinBox;
 
     sauvegarder_opt = new QPushButton(tr("Enregistrer"));
+
+    majact = new QCheckBox(tr("Vérifier les mises à jour au démarrage"));
 
     settings = new QSettings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     int a = 1;
@@ -42,18 +45,24 @@ Option::Option()
     taille_x->setValue(settings->value("Taille/x").toInt());
     taille_y->setValue(settings->value("Taille/y").toInt());
 
+    majact->setChecked(settings->value("MAJ").toBool());
+
     QVBoxLayout *langue_layout = new QVBoxLayout;
+    QVBoxLayout *maj_layout = new QVBoxLayout;
     QFormLayout *taille_layout = new QFormLayout;
     QVBoxLayout *final = new QVBoxLayout;
     langue_layout->addWidget(choix_langue);
     taille_layout->addRow(tr("Largeur : "), taille_x);
     taille_layout->addRow(tr("Longueur :"), taille_y);
+    maj_layout->addWidget(majact);
 
     langue->setLayout(langue_layout);
     option_taille->setLayout(taille_layout);
+    majgroup->setLayout(maj_layout);
 
     final->addWidget(langue);
     final->addWidget(option_taille);
+    final->addWidget(majgroup);
     final->addWidget(sauvegarder_opt);
 
     setLayout(final);
@@ -67,6 +76,14 @@ void Option::record_opt(bool test)
     settings->setValue("Taille/x", taille_x->value());
     settings->setValue("Taille/y", taille_y->value());
     settings->setValue("Langue/default", choix_langue->currentIndex());
+    if (majact->isChecked())
+    {
+        settings->setValue("MAJ", true);
+    }
+    else
+    {
+        settings->setValue("MAJ", false);
+    }
 
     if(test == true)
     {
