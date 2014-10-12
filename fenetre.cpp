@@ -245,10 +245,9 @@ void Fenetre::maj()
     QString vs = stram.readAll();
     if (version.readAll() != doc_elements.text())
     {
-       // QMessageBox::information(this, "Information", "Mise à jour disponible \n Nouvelle version : " + doc_elements.text() + "\n Version Actuelle : " + vs);
         QMessageBox newversion;
-        newversion.setText("Nouvelle version disponible");
-        newversion.setInformativeText("Version Actuelle : " + vs + "\nNouvelle version : " + doc_elements.text() + "\nSouhaitez-vous la télécharger ?");
+        newversion.setText(tr("Nouvelle version disponible"));
+        newversion.setInformativeText(tr("Nouvelle version : ") +  doc_elements.text()  + QObject::tr("\nVersion Actuelle : ")+ vs + tr("\nSouhaitez-vous la télécharger ?"));
         newversion.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         int retour = newversion.exec();
         if (retour == QMessageBox::Yes)
