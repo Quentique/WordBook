@@ -224,6 +224,7 @@ void Fenetre::maj()
    flux.setCodec("UTF-8");
    flux << reply->readAll();
    fichier.close();
+
     QDomDocument *dom = new QDomDocument("mon_xml");
         if(!fichier.open(QIODevice::ReadOnly))
         {
@@ -233,10 +234,11 @@ void Fenetre::maj()
         if (!dom->setContent(&fichier)) // Si l'on n'arrive pas à associer le fichier XML à l'objet DOM.
         {
                 fichier.close();
-                QMessageBox::warning(this,"Erreur à l'ouverture du document XML","Le document XML n'a pas pu être attribué à l'objet QDomDocument.");
+
                 return;
         }
     fichier.close();
+    QFile::remove(fichier.fileName());
     QDomElement doc_elements = dom->documentElement();
     doc_elements = doc_elements.firstChildElement();
     QFile version(":/texte/version.txt");
@@ -245,7 +247,9 @@ void Fenetre::maj()
     qDebug() << doc_elements.text();
     stram.setCodec("UTF-8");
     QString vs = stram.readAll();
-    if (version.readAll() != doc_elements.text())
+    qDebug() << vs;
+    qDebug() << doc_elements.text();
+    if (vs < doc_elements.text())
     {
         QMessageBox newversion;
         newversion.setText(tr("Nouvelle version disponible"));
@@ -280,7 +284,7 @@ void Fenetre::maj()
         }
     }
     version.close();
-    QFile::remove("version.txt");
+    QFile::remove(version.fileName());
 }
 void Fenetre::lister()
 {

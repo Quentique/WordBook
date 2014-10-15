@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<version>
- <numero>1.0</numero>
- <infos><ul><li>Première Version</li></ul></infos>
-  <fichier>
-
-  </fichier>
- </version> 
+0.7
