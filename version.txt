@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <version>
  <numero>1.6</numero>
- <infos> - Cette version est un pre-release : \n - Ajout : Mise à jour automatique</infos>
+ <infos> - Cette version est un pre-release :
+  - Ajout : Mise à jour automatique</infos>
  </version> 
