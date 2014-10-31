@@ -13,6 +13,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QDesktopServices>
 #include "style.h"
 #include "option.h"
 #include "aide.h"
@@ -253,38 +254,20 @@ void Fenetre::maj()
     {
         QMessageBox newversion;
         newversion.setText(tr("Nouvelle version disponible"));
-        newversion.setInformativeText(tr("Nouvelle version : ") +  doc_elements.text()  + QObject::tr("\nVersion Actuelle : ")+ vs + tr("\nSouhaitez-vous la télécharger ?"));
+        QString versionst = doc_elements.text();
+        doc_elements = doc_elements.nextSiblingElement();
+        QString texte = tr("<strong>Nouvelle version : </strong>") +  versionst  + QObject::tr("<br/><strong>Version Actuelle : </strong>")+ vs + tr("<br/><u>Informations Complémentaires :</u><br/>") + doc_elements.text() + tr("<br/><strong>Souhaitez-vous la télécharger ?</strong>");
+        newversion.setInformativeText(texte);
         newversion.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         int retour = newversion.exec();
         if (retour == QMessageBox::Yes)
         {
-            QString executable = QCoreApplication::applicationDirPath() + "/miseajour.exe";
-#ifdef Q_OS_WIN
-
-
-    qDebug() << "Lancement Shell Execute";
-
-    /* On récupère le résultat de notre tentative de redémarrage (pour l'explication des paramètres --> cf the MSDN doc) */
-    int result = (int)::ShellExecuteA(0, "open", executable.toUtf8().constData(), 0, 0, SW_SHOWNORMAL);
-
-    /* Si le résultat est égal à ACCESSDENIED, c'est qu'on a pas les droits adéquats. On retente avec l'option "runas", qui se chargera de la pop-up "Exécuter avec les droits administrateur" */
-    if(SE_ERR_ACCESSDENIED == result)
-    {
-        qDebug() << "Lancement Shell Execute avec demande de privileges admin";
-        /* On demande alors l'élévation */
-        result = (int)::ShellExecuteA(0, "runas", executable.toUtf8().constData(), 0, 0, SW_SHOWNORMAL);
-    }
-    if(result <= 32)
-    {
-        /* Gestion des erreurs (bon c'est sommaire, mais concis :p ) */
-        qDebug() << "ERROR SHELLEXECUTE" << result;
-    }
-#endif
-            QMetaObject::invokeMethod(this, "close", Qt::QueuedConnection);//important line
+           QDesktopServices::openUrl(QUrl("https://github.com/Quentique/WordBook/releases"));
+           QMetaObject::invokeMethod(this, "close", Qt::QueuedConnection);
         }
-    }
     version.close();
     QFile::remove(version.fileName());
+    }
 }
 void Fenetre::lister()
 {
