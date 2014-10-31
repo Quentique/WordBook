@@ -2,5 +2,6 @@
 <version>
  <numero>1.6</numero>
  <infos> - Cette version est un pre-release :
+  
   - Ajout : Mise à jour automatique</infos>
  </version> 
