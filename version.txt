@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <version>
- <numero>1.6</numero>
+ <numero>1.5</numero>
  <infos>Cette version est une pre-release, les ajouts sont : mises à jour automatiques</infos>
  </version> 
