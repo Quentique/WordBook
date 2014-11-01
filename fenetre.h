@@ -31,7 +31,7 @@ public slots:
     void options();
     void aide_aff();
     void apropos();
-    void maj();
+    void maj(QString demarrage);
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;

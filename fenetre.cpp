@@ -6,6 +6,7 @@
 #include <shellapi.h>
 #include <QtXml>
 #include <QLayout>
+#include <QSignalMapper>
 #include <QMenu>
 #include <QAction>
 #include <QMenuBar>
@@ -113,7 +114,12 @@ Fenetre::Fenetre()
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
    QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
    QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
-   QObject::connect(majcheck, SIGNAL(triggered()), this, SLOT(maj()));
+
+   QSignalMapper *mapper = new QSignalMapper;
+   mapper->setMapping(majcheck, "false");
+   QObject::connect(majcheck, SIGNAL(triggered()), mapper, SLOT(map()));
+
+   QObject::connect(mapper, SIGNAL(mapped(QString)), this, SLOT(maj(QString)));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
@@ -211,7 +217,7 @@ void Fenetre::degriser()
 
 
 }
-void Fenetre::maj()
+void Fenetre::maj(QString demarrage)
 {
     QNetworkAccessManager manager;
 
@@ -267,6 +273,10 @@ void Fenetre::maj()
         }
     version.close();
     QFile::remove(version.fileName());
+    }
+    else if (demarrage == "false")
+    {
+        QMessageBox::information(this, tr("Pas de mise à jour"), tr("Aucune nouvelle mise à jour"));
     }
 }
 void Fenetre::lister()

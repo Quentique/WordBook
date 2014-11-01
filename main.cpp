@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     Fenetre test;
     if (settings.value("MAJ").toBool())
     {
-        test.maj();
+        test.maj("true");
     }
     QIcon icone;
     icone.addPixmap(QPixmap(":/images/icone.png").scaled(120,150));
