@@ -15,6 +15,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QDesktopServices>
+#include <QFileDialog>
 #include "style.h"
 #include "option.h"
 #include "aide.h"
@@ -112,7 +113,7 @@ Fenetre::Fenetre()
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
-   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
+   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(pdf()));
    QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
 
    QSignalMapper *mapper = new QSignalMapper;
@@ -171,8 +172,35 @@ void Fenetre::css()
     style->show();
     style->lister_parametre();
 }
+void Fenetre::pdf()
+{
+    QString fileName = arbre->selectedItems().at(0)->text(0);
+    QFileDialog dialog(this);
+    dialog.setWindowTitle(tr("Export File"));
+    dialog.setDirectory(QDir::homePath());
+    dialog.setNameFilter(tr("PDF Files (*.pdf);;Joint Photographic Experts Group (*.jpeg);;Portable Network Graphics (*.png);;Bitmap (*.bmp);;Scalable Vector Graphics (*.svg)"));
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.selectFile(fileName + ".pdf");
 
+    if(dialog.exec())
+    {
+    QFileInfo infofichier = dialog.selectedFiles().at(0);
+    qDebug() << infofichier.suffix();
+    if (infofichier.suffix() == "pdf")
+    {
+        qDebug() << infofichier.absoluteFilePath();
+        //system("wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + infofichier.absoluteFilePath());
+        qDebug() << "wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + infofichier.absoluteFilePath();
+    }
 
+    }
+
+}
+void Fenetre::changerExtension(QString extension)
+{
+
+}
 void Fenetre::ajouter()
 {
     fenajout = new Ajout;
