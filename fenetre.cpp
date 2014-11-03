@@ -190,15 +190,16 @@ void Fenetre::pdf()
     if (infofichier.suffix() == "pdf")
     {
         qDebug() << infofichier.absoluteFilePath();
-        //system("wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + infofichier.absoluteFilePath());
+        QString chemin = infofichier.absoluteFilePath();
+        //system("wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + chemin);
+        QProcess *processusexport = new QProcess(this);
+        QStringList arguments;
+        arguments << QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " << chemin;
+        processusexport->start("wkhtmltopdf.exe", arguments);
         qDebug() << "wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + infofichier.absoluteFilePath();
     }
 
     }
-
-}
-void Fenetre::changerExtension(QString extension)
-{
 
 }
 void Fenetre::ajouter()
