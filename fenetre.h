@@ -33,6 +33,7 @@ public slots:
     void apropos();
     void pdf();
     void maj(QString demarrage);
+    void possible_erreur();
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;

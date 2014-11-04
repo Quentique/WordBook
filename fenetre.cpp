@@ -191,16 +191,37 @@ void Fenetre::pdf()
     {
         qDebug() << infofichier.absoluteFilePath();
         QString chemin = infofichier.absoluteFilePath();
-        //system("wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + chemin);
+
         QProcess *processusexport = new QProcess(this);
         QStringList arguments;
         arguments << QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " << chemin;
         processusexport->start("wkhtmltopdf.exe", arguments);
+        processusexport->setReadChannel(QProcess::StandardOutput);
+        processusexport->waitForFinished();
+
+        QMessageBox *process_end = new QMessageBox;
+        process_end->setStandardButtons(QMessageBox::Ok | QMessageBox::Help);
+        process_end->setButtonText(QMessageBox::Ok, tr("Ok"));
+        process_end->setButtonText(QMessageBox::Help, tr("Aide ?"));
+        process_end->setText("La commande d'exportation s'est terminée");
+        int retour = process_end->exec();
+
+        switch(retour) {
+        case QMessageBox::Ok:
+        break;
+        case QMessageBox::Help:
+        QMessageBox::information(this, "Erreur", "<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>");
+        break;
+        }
+    }
         qDebug() << "wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + infofichier.absoluteFilePath();
     }
 
-    }
 
+
+}
+void Fenetre::possible_erreur()
+{
 }
 void Fenetre::ajouter()
 {
