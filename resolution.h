@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLayout>
+#include <QSignalMapper>
 
 class Resolution : public QDialog
 {
@@ -16,7 +17,8 @@ private:
     QSlider *slider;
     QPushButton *ok;
     QPushButton *cancel;
-    QLabel *progression;
+    QLabel *progression, *titre1, *titre2;
+    QSignalMapper *mapper;
 public slots:
     void slider_slot(int valuech);
 };

@@ -1,15 +1,15 @@
 #include "resolution.h"
-#include <QSignalMapper>
 
 Resolution::Resolution() : QDialog()
 {
-   // setModal(true);
-
     progression = new QLabel("94");
     slider = new QSlider(Qt::Horizontal, this);
 
     ok = new QPushButton(tr("Ok"));
     cancel = new QPushButton(tr("Annuler"));
+
+    titre1 = new QLabel("<h3>Qualité</h3>");
+    titre2 = new QLabel("Sélectionnez la qualité de votre image");
 
     slider->setMaximum(100);
     slider->setMinimum(1);
@@ -24,13 +24,16 @@ Resolution::Resolution() : QDialog()
     bouton->addWidget(cancel, 0, Qt::AlignRight);
 
     QVBoxLayout *final = new QVBoxLayout;
+    final->addWidget(titre1);
+    final->addWidget(titre2);
     final->addLayout(compteur);
     final->addLayout(bouton);
 
+    setWindowTitle("Qualité");
     setLayout(final);
-    show();
+    setFixedSize(300, 135);
 
-    QSignalMapper *mapper = new QSignalMapper;
+    mapper = new QSignalMapper;
     mapper->setMapping(ok, slider->value());
 
     QObject::connect(ok, SIGNAL(clicked()), mapper, SLOT(map()));
@@ -41,5 +44,6 @@ Resolution::Resolution() : QDialog()
 }
 void Resolution::slider_slot(int valuech)
 {
+    mapper->setMapping(ok, valuech);
     progression->setText(QString::number(valuech));
 }

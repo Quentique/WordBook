@@ -212,7 +212,7 @@ void Fenetre::pdf()
     else
     {
         Resolution *test = new Resolution;
-        test->exec();
+       qDebug() <<  test->exec();
     }
     }
 
