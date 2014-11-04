@@ -29,3 +29,16 @@ Resolution::Resolution() : QDialog()
     setLayout(final);
     show();
 }
+void Resolution::ok_bouton()
+{
+    accept();
+    return slider->value();
+}
+void Resolution::cancel_bouton()
+{
+    reject();
+}
+void Resolution::slider_slot(int valuech)
+{
+    progression->setText(QString::number(valuech));
+}
