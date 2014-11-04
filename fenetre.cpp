@@ -20,6 +20,7 @@
 #include "option.h"
 #include "aide.h"
 #include "propos.h"
+#include "resolution.h"
 
 Fenetre::Fenetre()
 {
@@ -210,7 +211,8 @@ void Fenetre::pdf()
     }
     else
     {
-
+        Resolution *test;
+        test->show();
     }
     }
 
@@ -221,7 +223,7 @@ void Fenetre::export_pdf(QString chemin)
 {
     QProcess *processusexport = new QProcess(this);
     QStringList arguments;
-    arguments << QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " << chemin;
+    arguments << QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0) + ".html " << chemin;
     processusexport->start("wkhtmltopdf.exe", arguments);
     processusexport->setReadChannel(QProcess::StandardOutput);
     processusexport->waitForFinished();

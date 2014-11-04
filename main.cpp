@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QDebug>
 #include "fenetre.h"
+#include "resolution.h"
 
 int main(int argc, char *argv[])
 {
@@ -28,6 +29,8 @@ int main(int argc, char *argv[])
     app.setWindowIcon(icone);
 
     test.show();
+    Resolution test2;
+    test2.show();
     //QString locale = QLocale::system().name().section('_', 0, 0);
 
     return app.exec();
