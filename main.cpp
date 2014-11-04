@@ -5,7 +5,6 @@
 #include <QPixmap>
 #include <QDebug>
 #include "fenetre.h"
-#include "resolution.h"
 
 int main(int argc, char *argv[])
 {

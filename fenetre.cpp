@@ -192,27 +192,30 @@ void Fenetre::pdf()
     {
         export_pdf(infofichier.absoluteFilePath());
 
-        QMessageBox *process_end = new QMessageBox;
-        process_end->setStandardButtons(QMessageBox::Ok | QMessageBox::Help);
-        process_end->setButtonText(QMessageBox::Ok, tr("Ok"));
-        process_end->setButtonText(QMessageBox::Help, tr("Aide ?"));
-        process_end->setText("La commande d'exportation s'est terminée");
-        int retour = process_end->exec();
-
-        switch(retour) {
-        case QMessageBox::Ok:
-        break;
-        case QMessageBox::Help:
-        QMessageBox::information(this, "Erreur", "<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>");
-        break;
-
-        delete process_end;
-        }
     }
+
     else
     {
         Resolution *test = new Resolution;
-       qDebug() <<  test->exec();
+        if (test->exec() != 0) export_image(infofichier.absoluteFilePath());
+        delete test;
+    }
+
+    QMessageBox *process_end = new QMessageBox;
+    process_end->setStandardButtons(QMessageBox::Ok | QMessageBox::Help);
+    process_end->setButtonText(QMessageBox::Ok, tr("Ok"));
+    process_end->setButtonText(QMessageBox::Help, tr("Aide ?"));
+    process_end->setText("La commande d'exportation s'est terminée");
+    int retour = process_end->exec();
+
+    switch(retour) {
+    case QMessageBox::Ok:
+    break;
+    case QMessageBox::Help:
+    QMessageBox::information(this, "Erreur", "<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>");
+    break;
+
+    delete process_end;
     }
     }
 
@@ -225,12 +228,18 @@ void Fenetre::export_pdf(QString chemin)
     QStringList arguments;
     arguments << QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0) + ".html " << chemin;
     processusexport->start("wkhtmltopdf.exe", arguments);
-    processusexport->setReadChannel(QProcess::StandardOutput);
     processusexport->waitForFinished();
 }
 void Fenetre::export_image(QString chemini)
 {
-
+    QProcess *processusexport = new QProcess(this);
+    QStringList arguments;
+    qDebug() << "image";
+    arguments << QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0) + ".html " << chemini;
+    qDebug() << arguments;
+    processusexport->start("wkhtmltoimage.exe", arguments);
+    qDebug() << "wkhtmltoimage.exe " << arguments.at(0) << arguments.at(1);
+    processusexport->waitForFinished();
 }
 
 void Fenetre::ajouter()
