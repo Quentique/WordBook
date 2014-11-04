@@ -208,7 +208,6 @@ void Fenetre::pdf()
         delete process_end;
         }
     }
-        qDebug() << "wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + infofichier.absoluteFilePath();
     }
 
 
