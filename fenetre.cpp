@@ -189,7 +189,7 @@ void Fenetre::pdf()
     qDebug() << infofichier.suffix();
     if (infofichier.suffix() == "pdf")
     {
-        export_pdf(infofichier.absoluteFilePath(););
+        export_pdf(infofichier.absoluteFilePath());
 
         QMessageBox *process_end = new QMessageBox;
         process_end->setStandardButtons(QMessageBox::Ok | QMessageBox::Help);
