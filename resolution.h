@@ -17,6 +17,9 @@ private:
     QPushButton *ok;
     QPushButton *cancel;
     QLabel *progression;
+public slots:
+    void ok();
+    void cancel();
 };
 
 #endif // RESOLUTION_H
