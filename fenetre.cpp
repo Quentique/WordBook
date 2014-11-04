@@ -211,8 +211,8 @@ void Fenetre::pdf()
     }
     else
     {
-        Resolution *test;
-        test->show();
+        Resolution *test = new Resolution;
+        test->exec();
     }
     }
 

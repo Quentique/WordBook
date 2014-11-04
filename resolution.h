@@ -18,8 +18,7 @@ private:
     QPushButton *cancel;
     QLabel *progression;
 public slots:
-    void ok();
-    void cancel();
+    void slider_slot(int valuech);
 };
 
 #endif // RESOLUTION_H

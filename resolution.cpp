@@ -1,4 +1,5 @@
 #include "resolution.h"
+#include <QSignalMapper>
 
 Resolution::Resolution() : QDialog()
 {
@@ -28,15 +29,15 @@ Resolution::Resolution() : QDialog()
 
     setLayout(final);
     show();
-}
-void Resolution::ok_bouton()
-{
-    accept();
-    return slider->value();
-}
-void Resolution::cancel_bouton()
-{
-    reject();
+
+    QSignalMapper *mapper = new QSignalMapper;
+    mapper->setMapping(ok, slider->value());
+
+    QObject::connect(ok, SIGNAL(clicked()), mapper, SLOT(map()));
+    QObject::connect(mapper, SIGNAL(mapped(int)), this, SLOT(done(int)));
+    QObject::connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
+    QObject::connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slider_slot(int)));
+
 }
 void Resolution::slider_slot(int valuech)
 {
