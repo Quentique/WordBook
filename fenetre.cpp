@@ -208,7 +208,10 @@ void Fenetre::pdf()
         delete process_end;
         }
     }
-        qDebug() << "wkhtmltopdf.exe " + QCoreApplication::applicationDirPath() + "/data/" + fileName + ".html " + infofichier.absoluteFilePath();
+    else
+    {
+
+    }
     }
 
 
@@ -223,6 +226,11 @@ void Fenetre::export_pdf(QString chemin)
     processusexport->setReadChannel(QProcess::StandardOutput);
     processusexport->waitForFinished();
 }
+void Fenetre::export_image(QString chemini)
+{
+
+}
+
 void Fenetre::ajouter()
 {
     fenajout = new Ajout;
@@ -239,7 +247,6 @@ void Fenetre::rafraichir()
    afficher->setEnabled(false);
    supprimer->setEnabled(false);
 }
-
 void Fenetre::changer()
 {
 
@@ -258,7 +265,6 @@ void Fenetre::rafraichir2()
     supprimer->setEnabled(false);
 
 }
-
 void Fenetre::degriser()
 {
     modifier->setEnabled(true);
