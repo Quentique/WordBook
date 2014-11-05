@@ -182,9 +182,9 @@ void Fenetre::pdf()
 {
     QString fileName = arbre->selectedItems().at(0)->text(0);
     QFileDialog dialog(this);
-    dialog.setWindowTitle(tr("Export File"));
+    dialog.setWindowTitle(tr("Exportation"));
     dialog.setDirectory(QDir::homePath());
-    dialog.setNameFilter(tr("PDF Files (*.pdf);;Joint Photographic Experts Group (*.jpeg);;Portable Network Graphics (*.png);;Bitmap (*.bmp);;Scalable Vector Graphics (*.svg)"));
+    dialog.setNameFilter(tr("Fichiers PDF (*.pdf);;Joint Photographic Experts Group (*.jpeg);;Portable Network Graphics (*.png);;Bitmap (*.bmp);;Scalable Vector Graphics (*.svg)"));
     dialog.setFileMode(QFileDialog::AnyFile);
     dialog.setAcceptMode(QFileDialog::AcceptSave);
     dialog.selectFile(fileName + ".pdf");
@@ -206,7 +206,7 @@ void Fenetre::pdf()
     process_end->setStandardButtons(QMessageBox::Ok | QMessageBox::Help);
     process_end->setButtonText(QMessageBox::Ok, tr("Ok"));
     process_end->setButtonText(QMessageBox::Help, tr("Aide ?"));
-    process_end->setText("La commande d'exportation s'est terminée");
+    process_end->setText(tr("La commande d'exportation s'est terminée"));
     int retour = process_end->exec();
 
      switch(retour)
@@ -214,7 +214,7 @@ void Fenetre::pdf()
       case QMessageBox::Ok:
       break;
       case QMessageBox::Help:
-        QMessageBox::information(this, "Erreur", "<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>");
+        QMessageBox::information(this, tr("Erreur"), tr("<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>"));
       break;
 
       delete process_end;

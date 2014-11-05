@@ -98,111 +98,163 @@
 <context>
     <name>Fenetre</name>
     <message>
-        <location filename="fenetre.cpp" line="66"/>
+        <location filename="fenetre.cpp" line="69"/>
         <source>&amp;Fichier</source>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="67"/>
-        <location filename="fenetre.cpp" line="73"/>
+        <location filename="fenetre.cpp" line="70"/>
+        <location filename="fenetre.cpp" line="76"/>
         <source>&amp;Options</source>
         <translation>&amp;Settings</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="68"/>
-        <location filename="fenetre.cpp" line="75"/>
+        <location filename="fenetre.cpp" line="71"/>
+        <location filename="fenetre.cpp" line="78"/>
         <source>&amp;Aide</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="71"/>
+        <location filename="fenetre.cpp" line="74"/>
         <source>&amp;Quitter</source>
         <translation>&amp;Quit</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="74"/>
+        <location filename="fenetre.cpp" line="75"/>
+        <source>Exporter</source>
+        <translation>Export</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="77"/>
         <source>Gérer le style</source>
         <translation>Manage Style</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="76"/>
+        <location filename="fenetre.cpp" line="79"/>
         <source>A propos...</source>
         <translation>About...</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="77"/>
+        <location filename="fenetre.cpp" line="80"/>
         <source>&amp;Vérifier les mises à jour</source>
         <translation>&amp;Check Update</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="79"/>
+        <location filename="fenetre.cpp" line="82"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="80"/>
+        <location filename="fenetre.cpp" line="83"/>
+        <source>Ctrl+E</source>
+        <translation>Ctrl+E</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="84"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="81"/>
+        <location filename="fenetre.cpp" line="85"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="82"/>
+        <location filename="fenetre.cpp" line="86"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="100"/>
+        <location filename="fenetre.cpp" line="107"/>
         <source>Nom</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="100"/>
+        <location filename="fenetre.cpp" line="107"/>
         <source>Langue</source>
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="148"/>
+        <location filename="fenetre.cpp" line="161"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="149"/>
+        <location filename="fenetre.cpp" line="162"/>
         <source>Êtes-vous sûr de vouloir supprimer cette fiche : </source>
         <translation>Are you sure to delete thie sheet : </translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="152"/>
+        <location filename="fenetre.cpp" line="165"/>
         <source>Oui</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="153"/>
+        <location filename="fenetre.cpp" line="166"/>
         <source>Non</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="256"/>
+        <location filename="fenetre.cpp" line="185"/>
+        <source>Exportation</source>
+        <oldsource>Export File</oldsource>
+        <translation>Export</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="187"/>
+        <source>Fichiers PDF (*.pdf);;Joint Photographic Experts Group (*.jpeg);;Portable Network Graphics (*.png);;Bitmap (*.bmp);;Scalable Vector Graphics (*.svg)</source>
+        <oldsource>PDF Files (*.pdf);;Joint Photographic Experts Group (*.jpeg);;Portable Network Graphics (*.png);;Bitmap (*.bmp);;Scalable Vector Graphics (*.svg)</oldsource>
+        <translation>PDF Files (*.pdf);;Joint Photographic Experts Group (*.jpeg);;Portable Network Graphics (*.png);;Bitmap (*.bmp);;Scalable Vector Graphics (*.svg)</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="207"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="208"/>
+        <source>Aide ?</source>
+        <translation>Help ?</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="209"/>
+        <source>La commande d&apos;exportation s&apos;est terminée</source>
+        <translation>The export command has been finished</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="217"/>
+        <source>&lt;h2&gt;Votre fichier ne s&apos;est pas créée ?&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Vérifier que le fichier est enregistré dans un endroit où les permissions d&apos;écriture sont accordés&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation>&lt;h2&gt;Your file hasn&apos;t been created ?&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Check that your file is saved in a directory where the write permissions are allowed&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="329"/>
         <source>Nouvelle version disponible</source>
         <translation>New Available Version</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="259"/>
+        <location filename="fenetre.cpp" line="332"/>
         <source>&lt;strong&gt;Nouvelle version : &lt;/strong&gt;</source>
         <translation>&lt;strong&gt;New Version : &lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="259"/>
+        <location filename="fenetre.cpp" line="332"/>
         <source>&lt;br/&gt;&lt;u&gt;Informations Complémentaires :&lt;/u&gt;&lt;br/&gt;</source>
         <translation>&lt;br/&gt;&lt;u&gt;Additional Information : &lt;/u&gt;&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="259"/>
+        <location filename="fenetre.cpp" line="332"/>
         <source>&lt;br/&gt;&lt;strong&gt;Souhaitez-vous la télécharger ?&lt;/strong&gt;</source>
         <translation>&lt;br/&gt;&lt;strong&gt;Do you want to download it ?&lt;/strong&gt;</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="346"/>
+        <source>Pas de mise à jour</source>
+        <translation>No Update</translation>
+    </message>
+    <message>
+        <location filename="fenetre.cpp" line="346"/>
+        <source>Aucune nouvelle mise à jour</source>
+        <translation>No new update</translation>
     </message>
     <message>
         <source>Nouvelle version : </source>
@@ -216,18 +268,19 @@ Souhaitez-vous la télécharger ?</source>
 Do you want download it ? </translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="302"/>
-        <location filename="fenetre.cpp" line="309"/>
+        <location filename="fenetre.cpp" line="217"/>
+        <location filename="fenetre.cpp" line="379"/>
+        <location filename="fenetre.cpp" line="386"/>
         <source>Erreur</source>
         <translation>Error </translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="302"/>
+        <location filename="fenetre.cpp" line="379"/>
         <source>Impossible d&apos;ouvrir le fichier !</source>
         <translation>Can&apos;t open the file !</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="309"/>
+        <location filename="fenetre.cpp" line="386"/>
         <source>Impossible d&apos;attribuer le fichier</source>
         <translation>Can&apos;t attribute the file</translation>
     </message>
@@ -357,7 +410,7 @@ Actual Version : </translation>
         <translation>Display</translation>
     </message>
     <message>
-        <location filename="fenetre.cpp" line="259"/>
+        <location filename="fenetre.cpp" line="332"/>
         <source>&lt;br/&gt;&lt;strong&gt;Version Actuelle : &lt;/strong&gt;</source>
         <translation></translation>
     </message>
