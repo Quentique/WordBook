@@ -72,7 +72,7 @@ Fenetre::Fenetre()
 
 
    QAction *quitter = new QAction(tr("&Quitter"), this);
-
+   exportation = new QAction(tr("Exporter"), this);
    QAction *parametre = new QAction(tr("&Options"), this);
    QAction *stylegestion = new QAction(tr("Gérer le style"), this);
    QAction *aide = new QAction(tr("&Aide"), this);
@@ -80,11 +80,15 @@ Fenetre::Fenetre()
    QAction *majcheck = new QAction(tr("&Vérifier les mises à jour"), this);
 
    quitter->setShortcut(QKeySequence(tr("Ctrl+Q")));
+   exportation->setShortcut(QKeySequence(tr("Ctrl+E")));
    parametre->setShortcut(QKeySequence(tr("Ctrl+O")));
    stylegestion->setShortcut(QKeySequence(tr("Ctrl+S")));
    aide->setShortcut(QKeySequence(tr("F1")));
 
+   exportation->setEnabled(false);
+
    menufichier->addAction(quitter);
+   menufichier->addAction(exportation);
 
    menuoption->addAction(stylegestion);
    menuoption->addAction(parametre);
@@ -105,6 +109,7 @@ Fenetre::Fenetre()
    arbre->setColumnWidth(0, 200);
    arbre->setColumnWidth(1, 150);
    lister();
+
    QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
    QObject::connect(afficher, SIGNAL(clicked()), this, SLOT(affiche()));
    QObject::connect(supprimer, SIGNAL(clicked()), this, SLOT(supprime()));
@@ -114,13 +119,13 @@ Fenetre::Fenetre()
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
-   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(pdf()));
+   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
    QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
+   QObject::connect(exportation, SIGNAL(triggered()), this, SLOT(pdf()));
 
    QSignalMapper *mapper = new QSignalMapper;
    mapper->setMapping(majcheck, "false");
    QObject::connect(majcheck, SIGNAL(triggered()), mapper, SLOT(map()));
-
    QObject::connect(mapper, SIGNAL(mapped(QString)), this, SLOT(maj(QString)));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
@@ -191,11 +196,7 @@ void Fenetre::pdf()
     if (infofichier.suffix() == "pdf")
     {
         export_pdf(infofichier.absoluteFilePath());
-
     }
-<<<<<<< HEAD
-=======
-
     else
     {
         export_image(infofichier.absoluteFilePath());
@@ -208,20 +209,17 @@ void Fenetre::pdf()
     process_end->setText("La commande d'exportation s'est terminée");
     int retour = process_end->exec();
 
-    switch(retour) {
-    case QMessageBox::Ok:
-    break;
-    case QMessageBox::Help:
-    QMessageBox::information(this, "Erreur", "<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>");
-    break;
+     switch(retour)
+     {
+      case QMessageBox::Ok:
+      break;
+      case QMessageBox::Help:
+        QMessageBox::information(this, "Erreur", "<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>");
+      break;
 
-    delete process_end;
+      delete process_end;
+     }
     }
->>>>>>> exportimage
-    }
-
-
-
 }
 void Fenetre::export_pdf(QString chemin)
 {
@@ -258,6 +256,7 @@ void Fenetre::rafraichir()
    modifier->setEnabled(false);
    afficher->setEnabled(false);
    supprimer->setEnabled(false);
+   exportation->setEnabled(false);
 }
 void Fenetre::changer()
 {
@@ -275,6 +274,7 @@ void Fenetre::rafraichir2()
     modifier->setEnabled(false);
     afficher->setEnabled(false);
     supprimer->setEnabled(false);
+    exportation->setEnabled(false);
 
 }
 void Fenetre::degriser()
@@ -282,8 +282,7 @@ void Fenetre::degriser()
     modifier->setEnabled(true);
     afficher->setEnabled(true);
     supprimer->setEnabled(true);
-
-
+    exportation->setEnabled(true);
 }
 void Fenetre::maj(QString demarrage)
 {
