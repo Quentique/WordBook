@@ -7,8 +7,7 @@ TARGET = WordBook
 INCLUDEPATH += .
 QT += gui widgets core xml webkitwidgets
 # Input
-HEADERS += aide.h ajout.h fenetre.h modifier.h option.h propos.h style.h web.h \
-    resolution.h
+HEADERS += aide.h ajout.h fenetre.h modifier.h option.h propos.h style.h web.h
 SOURCES += aide.cpp \
            ajout.cpp \
            fenetre.cpp \
@@ -17,8 +16,7 @@ SOURCES += aide.cpp \
            option.cpp \
            propos.cpp \
            style.cpp \
-           web.cpp \
-    resolution.cpp
+           web.cpp
 RESOURCES += ressources.qrc
 TRANSLATIONS += langue_en.ts langue_de.ts
 

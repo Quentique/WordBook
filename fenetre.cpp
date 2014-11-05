@@ -20,7 +20,7 @@
 #include "option.h"
 #include "aide.h"
 #include "propos.h"
-#include "resolution.h"
+
 
 Fenetre::Fenetre()
 {
@@ -196,9 +196,7 @@ void Fenetre::pdf()
 
     else
     {
-        Resolution *test = new Resolution;
-        if (test->exec() != 0) export_image(infofichier.absoluteFilePath());
-        delete test;
+        export_image(infofichier.absoluteFilePath());
     }
 
     QMessageBox *process_end = new QMessageBox;
