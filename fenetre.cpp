@@ -20,6 +20,7 @@
 #include "option.h"
 #include "aide.h"
 #include "propos.h"
+#include "poppler-qt5.h"
 
 
 Fenetre::Fenetre()
