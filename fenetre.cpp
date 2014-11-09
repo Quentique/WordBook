@@ -147,7 +147,7 @@ void Fenetre::print()
 
    QProcess *process = new QProcess;
    QStringList arguments;
-   arguments << QCoreApplication::applicationDirPath() + "/data/" + "max" + ".html " << QCoreApplication::applicationDirPath() + "/data/export.pdf";
+   arguments << QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0) + ".html " << QCoreApplication::applicationDirPath() + "/data/export.pdf";
    process->start("wkhtmltopdf.exe", arguments);
    process->waitForFinished();
 
