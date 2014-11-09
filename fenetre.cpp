@@ -145,7 +145,13 @@ void Fenetre::apropos()
 void Fenetre::print()
 {
 
-    // Get PDF.
+   QProcess *process = new QProcess;
+   QStringList arguments;
+   arguments << QCoreApplication::applicationDirPath() + "/data/" + "max" + ".html " << QCoreApplication::applicationDirPath() + "/data/export.pdf";
+   process->start("wkhtmltopdf.exe", arguments);
+   process->waitForFinished();
+
+   /* // Get PDF.
     Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/max.pdf");
 
     // Paranoid safety check.
@@ -202,7 +208,7 @@ void Fenetre::print()
         painter.drawPixmap(0, 0, pageWidth, pageHeight, QPixmap::fromImage(printImage));
     }
 
-    painter.end();
+    painter.end();*/
 
 }
 
