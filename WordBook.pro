@@ -4,10 +4,9 @@
 
 TEMPLATE = app
 TARGET = WordBook
-INCLUDEPATH += C:\Qt\5.3\mingw482_32\poppler\include\
-LIBS += C:\Qt\5.3\mingw482_32\poppler\lib\
-INCLUDEPATH += 
-QT += gui widgets core xml webkitwidgets
+INCLUDEPATH += C:\Qt\5.3\mingw482_32\include\poppler-qt5
+LIBS += -LC:\Qt\5.3\mingw482_32\poppler\lib\ -lpopplerqt5
+QT += gui widgets core xml webkitwidgets printsupport
 # Input
 HEADERS += aide.h ajout.h fenetre.h modifier.h option.h propos.h style.h web.h
 SOURCES += aide.cpp \

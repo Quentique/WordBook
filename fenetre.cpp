@@ -20,7 +20,11 @@
 #include "option.h"
 #include "aide.h"
 #include "propos.h"
-#include "poppler-qt5.h"
+#include <poppler-qt5.h>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
+#include <QGraphicsScene>
+#include <QPrinterInfo>
 
 
 Fenetre::Fenetre()
@@ -120,7 +124,7 @@ Fenetre::Fenetre()
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
-   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
+   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(print()));
    QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
    QObject::connect(exportation, SIGNAL(triggered()), this, SLOT(pdf()));
 
@@ -137,6 +141,74 @@ void Fenetre::apropos()
 {
     Propos *apropos_aff = new Propos;
     apropos_aff->show();
+}
+void Fenetre::print()
+{
+
+
+   QString aDocumentPath = "max.pdf";
+   QString printerName = "PDF Creator";
+
+   // Get PDF.
+   Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/max.pdf");
+
+   // Paranoid safety check.
+   if (document == 0) {
+
+   }
+
+   // Set Parameters for Poppler rendering.
+   document->setRenderBackend(Poppler::Document::SplashBackend);
+   document->setRenderHint(Poppler::Document::Antialiasing, true);
+   document->setRenderHint(Poppler::Document::TextAntialiasing, true);
+
+
+   // Check for document lock
+   if (document->isLocked()) {
+       delete document;
+
+   }
+
+
+   QPrinter printer(QPrinter::HighResolution);
+   QPrintDialog dialog(&printer);
+   dialog.exec();
+   // Get values needed to correctly render a PDF page.
+   int printerResolution = printer.resolution();
+
+   int paperWitdh = printer.paperRect(QPrinter::DevicePixel).width();
+   int paperHeight = printer.paperRect(QPrinter::DevicePixel).height();
+
+   int pageWidth = printer.pageRect(QPrinter::DevicePixel).width();
+   int pageHeight = printer.pageRect(QPrinter::DevicePixel).height();
+
+   int numberOfPages = document->numPages();
+
+   // Do actual printing.
+   QPainter painter;
+   painter.begin(&printer);
+
+   for (int currentPageNumber = 0; currentPageNumber < numberOfPages; currentPageNumber++) {
+       if (currentPageNumber != 0)
+       {
+       printer.newPage();
+       }
+
+       // Access page with currentPageNumber of the PDF file.
+       Poppler::Page* pdfPage = document->page(currentPageNumber);
+
+       // Security check.
+       if (pdfPage == 0) {
+
+       }
+
+       // Render page with Poppler.
+       QImage printImage = pdfPage->renderToImage(printerResolution, printerResolution, 0, 0, paperWitdh, paperHeight);
+       painter.drawPixmap(0, 0, pageWidth, pageHeight, QPixmap::fromImage(printImage));
+   }
+
+   painter.end();
+
 }
 
 void Fenetre::aide_aff()
