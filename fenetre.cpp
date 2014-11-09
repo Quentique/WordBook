@@ -78,6 +78,7 @@ Fenetre::Fenetre()
 
    QAction *quitter = new QAction(tr("&Quitter"), this);
    exportation = new QAction(tr("Exporter"), this);
+   impression = new QAction(tr("Imprimer"), this);
    QAction *parametre = new QAction(tr("&Options"), this);
    QAction *stylegestion = new QAction(tr("Gérer le style"), this);
    QAction *aide = new QAction(tr("&Aide"), this);
@@ -86,14 +87,17 @@ Fenetre::Fenetre()
 
    quitter->setShortcut(QKeySequence(tr("Ctrl+Q")));
    exportation->setShortcut(QKeySequence(tr("Ctrl+E")));
+   impression->setShortcut(QKeySequence(tr("Ctrl+P")));
    parametre->setShortcut(QKeySequence(tr("Ctrl+O")));
    stylegestion->setShortcut(QKeySequence(tr("Ctrl+S")));
    aide->setShortcut(QKeySequence(tr("F1")));
 
    exportation->setEnabled(false);
+   impression->setEnabled(false);
 
    menufichier->addAction(quitter);
    menufichier->addAction(exportation);
+   menufichier->addAction(impression);
 
    menuoption->addAction(stylegestion);
    menuoption->addAction(parametre);
@@ -124,9 +128,10 @@ Fenetre::Fenetre()
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
-   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(print()));
+   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
    QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
    QObject::connect(exportation, SIGNAL(triggered()), this, SLOT(pdf()));
+   QObject::connect(impression, SIGNAL(triggered()), this, SLOT(print()));
 
    QSignalMapper *mapper = new QSignalMapper;
    mapper->setMapping(majcheck, "false");
@@ -332,6 +337,7 @@ void Fenetre::rafraichir()
    afficher->setEnabled(false);
    supprimer->setEnabled(false);
    exportation->setEnabled(false);
+   impression->setEnabled(false);
 }
 void Fenetre::changer()
 {
@@ -350,6 +356,7 @@ void Fenetre::rafraichir2()
     afficher->setEnabled(false);
     supprimer->setEnabled(false);
     exportation->setEnabled(false);
+    impression->setEnabled(false);
 
 }
 void Fenetre::degriser()
@@ -358,6 +365,7 @@ void Fenetre::degriser()
     afficher->setEnabled(true);
     supprimer->setEnabled(true);
     exportation->setEnabled(true);
+    impression->setEnabled(true);
 }
 void Fenetre::maj(QString demarrage)
 {
