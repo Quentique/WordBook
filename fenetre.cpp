@@ -151,8 +151,8 @@ void Fenetre::print()
    process->start("wkhtmltopdf.exe", arguments);
    process->waitForFinished();
 
-   /* // Get PDF.
-    Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/max.pdf");
+
+    Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/export.pdf");
 
     // Paranoid safety check.
     if (document == 0) {
@@ -208,7 +208,8 @@ void Fenetre::print()
         painter.drawPixmap(0, 0, pageWidth, pageHeight, QPixmap::fromImage(printImage));
     }
 
-    painter.end();*/
+    painter.end();
+    QFile::remove(QCoreApplication::applicationDirPath() + "/data/export.pdf");
 
 }
 
