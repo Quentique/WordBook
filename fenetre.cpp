@@ -150,9 +150,8 @@ void Fenetre::print()
 
     // Paranoid safety check.
     if (document == 0) {
-
+        QMessageBox::critical(this, "Erreur", "Le programme n'a pas pu effectuer l'action demandé\nMerci de reporter le bug : Error during document opening");
     }
-
     // Set Parameters for Poppler rendering.
     document->setRenderBackend(Poppler::Document::SplashBackend);
     document->setRenderHint(Poppler::Document::Antialiasing, true);
@@ -195,7 +194,7 @@ void Fenetre::print()
 
         // Security check.
         if (pdfPage == 0) {
-
+        QMessageBox::critical(this, "Erreur", "Le programme n'a pas pu effectuer l'action demandée\nMerci de reporter le bug : Error during page opening");
         }
 
         // Render page with Poppler.
