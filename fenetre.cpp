@@ -154,17 +154,17 @@ void Fenetre::print()
 
     Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/export.pdf");
 
-    // Paranoid safety check.
+
     if (document == 0) {
         QMessageBox::critical(this, "Erreur", "Le programme n'a pas pu effectuer l'action demandé\nMerci de reporter le bug : Error during document opening");
     }
-    // Set Parameters for Poppler rendering.
+
     document->setRenderBackend(Poppler::Document::SplashBackend);
     document->setRenderHint(Poppler::Document::Antialiasing, true);
     document->setRenderHint(Poppler::Document::TextAntialiasing, true);
 
 
-    // Check for document lock
+
     if (document->isLocked()) {
         delete document;
 
@@ -174,7 +174,7 @@ void Fenetre::print()
     QPrinter printer(QPrinter::HighResolution);
     QPrintDialog dialog(&printer);
     dialog.exec();
-    // Get values needed to correctly render a PDF page.
+
     int printerResolution = printer.resolution();
 
     int paperWitdh = printer.paperRect(QPrinter::DevicePixel).width();
@@ -185,7 +185,7 @@ void Fenetre::print()
 
     int numberOfPages = document->numPages();
 
-    // Do actual printing.
+
     QPainter painter;
     painter.begin(&printer);
 
@@ -195,15 +195,15 @@ void Fenetre::print()
         printer.newPage();
         }
 
-        // Access page with currentPageNumber of the PDF file.
+
         Poppler::Page* pdfPage = document->page(currentPageNumber);
 
-        // Security check.
+
         if (pdfPage == 0) {
         QMessageBox::critical(this, "Erreur", "Le programme n'a pas pu effectuer l'action demandée\nMerci de reporter le bug : Error during page opening");
         }
 
-        // Render page with Poppler.
+
         QImage printImage = pdfPage->renderToImage(printerResolution, printerResolution, 0, 0, paperWitdh, paperHeight);
         painter.drawPixmap(0, 0, pageWidth, pageHeight, QPixmap::fromImage(printImage));
     }
