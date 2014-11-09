@@ -145,69 +145,65 @@ void Fenetre::apropos()
 void Fenetre::print()
 {
 
+    // Get PDF.
+    Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/max.pdf");
 
-   QString aDocumentPath = "max.pdf";
-   QString printerName = "PDF Creator";
+    // Paranoid safety check.
+    if (document == 0) {
 
-   // Get PDF.
-   Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/max.pdf");
+    }
 
-   // Paranoid safety check.
-   if (document == 0) {
-
-   }
-
-   // Set Parameters for Poppler rendering.
-   document->setRenderBackend(Poppler::Document::SplashBackend);
-   document->setRenderHint(Poppler::Document::Antialiasing, true);
-   document->setRenderHint(Poppler::Document::TextAntialiasing, true);
+    // Set Parameters for Poppler rendering.
+    document->setRenderBackend(Poppler::Document::SplashBackend);
+    document->setRenderHint(Poppler::Document::Antialiasing, true);
+    document->setRenderHint(Poppler::Document::TextAntialiasing, true);
 
 
-   // Check for document lock
-   if (document->isLocked()) {
-       delete document;
+    // Check for document lock
+    if (document->isLocked()) {
+        delete document;
 
-   }
+    }
 
 
-   QPrinter printer(QPrinter::HighResolution);
-   QPrintDialog dialog(&printer);
-   dialog.exec();
-   // Get values needed to correctly render a PDF page.
-   int printerResolution = printer.resolution();
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintDialog dialog(&printer);
+    dialog.exec();
+    // Get values needed to correctly render a PDF page.
+    int printerResolution = printer.resolution();
 
-   int paperWitdh = printer.paperRect(QPrinter::DevicePixel).width();
-   int paperHeight = printer.paperRect(QPrinter::DevicePixel).height();
+    int paperWitdh = printer.paperRect(QPrinter::DevicePixel).width();
+    int paperHeight = printer.paperRect(QPrinter::DevicePixel).height();
 
-   int pageWidth = printer.pageRect(QPrinter::DevicePixel).width();
-   int pageHeight = printer.pageRect(QPrinter::DevicePixel).height();
+    int pageWidth = printer.pageRect(QPrinter::DevicePixel).width();
+    int pageHeight = printer.pageRect(QPrinter::DevicePixel).height();
 
-   int numberOfPages = document->numPages();
+    int numberOfPages = document->numPages();
 
-   // Do actual printing.
-   QPainter painter;
-   painter.begin(&printer);
+    // Do actual printing.
+    QPainter painter;
+    painter.begin(&printer);
 
-   for (int currentPageNumber = 0; currentPageNumber < numberOfPages; currentPageNumber++) {
-       if (currentPageNumber != 0)
-       {
-       printer.newPage();
-       }
+    for (int currentPageNumber = 0; currentPageNumber < numberOfPages; currentPageNumber++) {
+        if (currentPageNumber != 0)
+        {
+        printer.newPage();
+        }
 
-       // Access page with currentPageNumber of the PDF file.
-       Poppler::Page* pdfPage = document->page(currentPageNumber);
+        // Access page with currentPageNumber of the PDF file.
+        Poppler::Page* pdfPage = document->page(currentPageNumber);
 
-       // Security check.
-       if (pdfPage == 0) {
+        // Security check.
+        if (pdfPage == 0) {
 
-       }
+        }
 
-       // Render page with Poppler.
-       QImage printImage = pdfPage->renderToImage(printerResolution, printerResolution, 0, 0, paperWitdh, paperHeight);
-       painter.drawPixmap(0, 0, pageWidth, pageHeight, QPixmap::fromImage(printImage));
-   }
+        // Render page with Poppler.
+        QImage printImage = pdfPage->renderToImage(printerResolution, printerResolution, 0, 0, paperWitdh, paperHeight);
+        painter.drawPixmap(0, 0, pageWidth, pageHeight, QPixmap::fromImage(printImage));
+    }
 
-   painter.end();
+    painter.end();
 
 }
 
