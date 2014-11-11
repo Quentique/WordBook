@@ -47,7 +47,7 @@ private:
    Modifier *modif;
    Style *style;
    QNetworkReply *reply;
-   QAction *exportation, *impression;
+   QAction *exportation, *impression, *apercuavant;
 
 };
 
