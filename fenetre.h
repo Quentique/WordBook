@@ -6,6 +6,7 @@
 #include <QTreeWidget>
 #include <QPushButton>
 #include <QNetworkReply>
+#include <QPrinter>
 #include "ajout.h"
 #include "modifier.h"
 #include "style.h"
@@ -19,6 +20,7 @@ public:
     void lister();
     void export_pdf(QString chemin);
     void export_image(QString chemini);
+
 public slots:
     void affiche_page(QTreeWidgetItem* slot, int te);
     void affiche();
@@ -34,7 +36,9 @@ public slots:
     void apropos();
     void pdf();
     void maj(QString demarrage);
-    void print();
+    void clicPrint();
+    void apercu();
+    void print(QPrinter *imprimante);
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;

@@ -25,6 +25,7 @@
 #include <QtPrintSupport/QPrinter>
 #include <QGraphicsScene>
 #include <QPrinterInfo>
+#include <QPrintPreviewDialog>
 
 
 Fenetre::Fenetre()
@@ -128,10 +129,10 @@ Fenetre::Fenetre()
    QObject::connect(quitter, SIGNAL(triggered()), qApp, SLOT(quit()));
    QObject::connect(stylegestion, SIGNAL(triggered()), this, SLOT(css()));
    QObject::connect(parametre, SIGNAL(triggered()), this, SLOT(options()));
-   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(aide_aff()));
+   QObject::connect(aide, SIGNAL(triggered()), this, SLOT(apercu()));
    QObject::connect(about, SIGNAL(triggered()), this, SLOT(apropos()));
    QObject::connect(exportation, SIGNAL(triggered()), this, SLOT(pdf()));
-   QObject::connect(impression, SIGNAL(triggered()), this, SLOT(print()));
+   QObject::connect(impression, SIGNAL(triggered()), this, SLOT(clicPrint()));
 
    QSignalMapper *mapper = new QSignalMapper;
    mapper->setMapping(majcheck, "false");
@@ -147,7 +148,7 @@ void Fenetre::apropos()
     Propos *apropos_aff = new Propos;
     apropos_aff->show();
 }
-void Fenetre::print()
+void Fenetre::print(QPrinter *imprimante)
 {
 
    QProcess *process = new QProcess;
@@ -176,28 +177,26 @@ void Fenetre::print()
     }
 
 
-    QPrinter printer(QPrinter::HighResolution);
-    QPrintDialog dialog(&printer);
-    dialog.exec();
 
-    int printerResolution = printer.resolution();
 
-    int paperWitdh = printer.paperRect(QPrinter::DevicePixel).width();
-    int paperHeight = printer.paperRect(QPrinter::DevicePixel).height();
+    int printerResolution = imprimante->resolution();
 
-    int pageWidth = printer.pageRect(QPrinter::DevicePixel).width();
-    int pageHeight = printer.pageRect(QPrinter::DevicePixel).height();
+    int paperWitdh = imprimante->paperRect(QPrinter::DevicePixel).width();
+    int paperHeight = imprimante->paperRect(QPrinter::DevicePixel).height();
+
+    int pageWidth = imprimante->pageRect(QPrinter::DevicePixel).width();
+    int pageHeight = imprimante->pageRect(QPrinter::DevicePixel).height();
 
     int numberOfPages = document->numPages();
 
 
     QPainter painter;
-    painter.begin(&printer);
+    painter.begin(imprimante);
 
     for (int currentPageNumber = 0; currentPageNumber < numberOfPages; currentPageNumber++) {
         if (currentPageNumber != 0)
         {
-        printer.newPage();
+        imprimante->newPage();
         }
 
 
@@ -216,6 +215,22 @@ void Fenetre::print()
     painter.end();
     QFile::remove(QCoreApplication::applicationDirPath() + "/data/export.pdf");
 
+}
+void Fenetre::clicPrint()
+{
+    QPrinter printer;
+    QPrintDialog dialog(&printer);
+    dialog.exec();
+    print(&printer);
+}
+void Fenetre::apercu()
+{
+    QPrinter printer2;
+    QPrintPreviewDialog dialog2(&printer2, this);
+    QObject::connect(&dialog2, SIGNAL(paintRequested(QPrinter*)), this, SLOT(print(QPrinter*)));
+    dialog2.resize(900, 900);
+    dialog2.setSizeGripEnabled(true);
+    dialog2.exec();
 }
 
 void Fenetre::aide_aff()
