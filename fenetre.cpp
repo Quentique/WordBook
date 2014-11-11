@@ -23,6 +23,7 @@
 #include <poppler-qt5.h>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrinter>
+
 #include <QGraphicsScene>
 #include <QPrinterInfo>
 #include <QPrintPreviewDialog>
@@ -155,6 +156,7 @@ void Fenetre::apropos()
 }
 void Fenetre::print(QPrinter *imprimante)
 {
+
 
    QProcess *process = new QProcess;
    QStringList arguments;
