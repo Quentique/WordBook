@@ -4,8 +4,8 @@ Le zip "WordBook.zip" permet une installation portable du programme (ex sur une 
 Ce programme est disponible uniquement sous Windows, pour une compilation sous un autre OS (Linux...), merci de créer une issue ou de poster un commentaire
 
 <p style="border: 1px solid black; text-decoration: underline;">Etant donné que la licence Creative Common n'est pas une licence libre, je ne peux donc pas distribuer une version statique du programme. Merci de votre compréhension</p>
-
-English Version :
+<br/>
+<strong>English Version :</strong>
 
 The file "Setup.exe" correspond to an installation on the PC.<br/>
 The zip "WordBook.zip" allows an portable installtion (on a USB key).<br/>
