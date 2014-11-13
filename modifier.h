@@ -6,12 +6,15 @@
 class Modifier : public Ajout
 {
     Q_OBJECT
+
 public:
     Modifier();
-    bool affdonne(QString nomfich);
     QString mag(QString machin);
+    bool affdonne(QString nomfich);
+
 public slots:
     virtual void enregistre();
+
 private:
     QString *nomfic;
 };

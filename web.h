@@ -6,8 +6,10 @@
 
 class Web : public QWidget
 {
+
 public:
     Web(QString nomfichier);
+
 private:
     QWidget *principale;
     QWebView *vue;

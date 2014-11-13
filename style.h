@@ -12,17 +12,21 @@
 class Style : public QWidget
 {
     Q_OBJECT
+
 public:
     Style();
     void lister_parametre();
     QString retour_couleur(QPushButton *bouton);
     QString transfo_bool(QCheckBox *box);
     QString souligne(QCheckBox *boxline);
+
 public slots:
     void couleur(QWidget *bouton);
     void sauvegarder();
+
 protected:
     void closeEvent(QCloseEvent *event);
+
 private:
     QGroupBox *style_titre, *style_soustitre1, *style_soustitre2, *style_tableau, *style_tableau1, *style_tableau2, *style_tableau3;
     QFontComboBox *style_titre_font, *style_soustitre_font1, *style_soustitre_font2, *style_tableau_font1, *style_tableau_font2, *style_tableau_font3;

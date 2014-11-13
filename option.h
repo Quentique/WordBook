@@ -11,11 +11,14 @@
 class Option : public QWidget
 {
     Q_OBJECT
+
 public:
     Option();
     void closeEvent(QCloseEvent *event);
+
 public slots:
     void record_opt(bool test);
+
 private:
     QGroupBox *langue, *option_taille, *majgroup;
     QComboBox *choix_langue;

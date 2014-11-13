@@ -9,11 +9,14 @@
 class Propos : public QWidget
 {
     Q_OBJECT
+
 public:
     Propos();
+
 public slots:
     void ouvrir_url(QString url);
     void openlicencefile();
+
 private:
     QLabel *label, *licence, *icone;
     QPushButton *openlicence;
