@@ -9,8 +9,10 @@
 class Aide : public QWidget
 {
     Q_OBJECT
+
 public:
     Aide();
+
 private:
     QLabel *texte_aide;
     QPushButton *qt_about;

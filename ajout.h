@@ -9,12 +9,16 @@
 class Ajout : public QWidget
 {
     Q_OBJECT
+
 public:
     Ajout();
+
 public slots:
     virtual void enregistre();
+
 signals:
     void fini();
+
 protected:
     QTableWidget *tableau;
     QLineEdit *titre, *soustitre, *langue;

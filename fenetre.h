@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QNetworkReply>
 #include <QPrinter>
+
 #include "ajout.h"
 #include "modifier.h"
 #include "style.h"
@@ -15,6 +16,7 @@
 class Fenetre : public QMainWindow
 {
     Q_OBJECT
+
 public:
     Fenetre();
     void lister();
@@ -39,6 +41,7 @@ public slots:
     void clicPrint();
     void apercu();
     void print(QPrinter *imprimante);
+
 private:
    QTreeWidget *arbre;
    QWidget *zoneprincipale;
