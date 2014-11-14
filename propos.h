@@ -2,9 +2,9 @@
 #define PROPOS_H
 
 #include <QLabel>
-#include <QWidget>
 #include <QPushButton>
 #include <QTextEdit>
+#include <QWidget>
 
 class Propos : public QWidget
 {

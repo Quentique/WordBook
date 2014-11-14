@@ -1,5 +1,6 @@
-#include "aide.h"
 #include <QVBoxLayout>
+
+#include "aide.h"
 
 Aide::Aide()
 {

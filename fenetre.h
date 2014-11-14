@@ -2,11 +2,11 @@
 #define FENETRE_H
 
 #include <QMainWindow>
-#include <QWidget>
-#include <QTreeWidget>
-#include <QPushButton>
 #include <QNetworkReply>
 #include <QPrinter>
+#include <QPushButton>
+#include <QTreeWidget>
+#include <QWidget>
 
 #include "ajout.h"
 #include "modifier.h"

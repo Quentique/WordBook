@@ -1,11 +1,12 @@
-#include "style.h"
-#include <QLayout>
-#include <QCoreApplication>
+#include <QCloseEvent>
 #include <QColorDialog>
+#include <QCoreApplication>
 #include <QFile>
+#include <QLayout>
 #include <QMessageBox>
 #include <QTextStream>
-#include <QCloseEvent>
+
+#include "style.h"
 
 Style::Style()
 {

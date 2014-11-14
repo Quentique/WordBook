@@ -1,9 +1,9 @@
 #include <QApplication>
-#include <QTextCodec>
-#include <QTranslator>
+#include <QDebug>
 #include <QIcon>
 #include <QPixmap>
-#include <QDebug>
+#include <QTextCodec>
+#include <QTranslator>
 
 #include "fenetre.h"
 

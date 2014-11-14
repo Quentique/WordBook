@@ -1,8 +1,9 @@
+#include <QMessageBox>
+#include <QtXml>
+
 #include "modifier.h"
 #include "ajout.h"
 #include "fenetre.h"
-#include <QtXml>
-#include <QMessageBox>
 
 Modifier::Modifier() : Ajout()
 {

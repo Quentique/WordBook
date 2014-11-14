@@ -1,33 +1,32 @@
-#include "fenetre.h"
-#include "web.h"
-#include "ajout.h"
-#include "modifier.h"
-#include <windows.h>
-#include <shellapi.h>
-#include <QtXml>
-#include <QLayout>
-#include <QSignalMapper>
-#include <QMenu>
+#include <poppler-qt5.h>
 #include <QAction>
+#include <QDesktopServices>
+#include <QFileDialog>
+#include <QGraphicsScene>
+#include <QLayout>
+#include <QMenu>
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QDesktopServices>
-#include <QFileDialog>
+#include <QPrinterInfo>
+#include <QPrintPreviewDialog>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
+#include <QSignalMapper>
+#include <QtXml>
+#include <shellapi.h>
+#include <windows.h>
+
 #include "style.h"
 #include "option.h"
 #include "aide.h"
 #include "propos.h"
-#include <poppler-qt5.h>
-#include <QtPrintSupport/QPrintDialog>
-#include <QtPrintSupport/QPrinter>
-
-#include <QGraphicsScene>
-#include <QPrinterInfo>
-#include <QPrintPreviewDialog>
-
+#include "fenetre.h"
+#include "web.h"
+#include "ajout.h"
+#include "modifier.h"
 
 Fenetre::Fenetre()
 {

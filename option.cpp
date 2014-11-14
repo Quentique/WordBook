@@ -1,9 +1,10 @@
-#include "option.h"
-#include <QCoreApplication>
-#include <QMessageBox>
-#include <QLayout>
-#include <QFormLayout>
 #include <QCloseEvent>
+#include <QCoreApplication>
+#include <QFormLayout>
+#include <QLayout>
+#include <QMessageBox>
+
+#include "option.h"
 
 Option::Option()
 {

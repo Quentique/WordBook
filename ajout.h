@@ -1,10 +1,10 @@
 #ifndef AJOUT_H
 #define AJOUT_H
 
-#include <QWidget>
-#include <QTableWidget>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QTableWidget>
+#include <QWidget>
 
 class Ajout : public QWidget
 {

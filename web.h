@@ -1,8 +1,8 @@
 #ifndef WEB_H
 #define WEB_H
 
-#include <QWidget>
 #include <QWebView>
+#include <QWidget>
 
 class Web : public QWidget
 {
