@@ -21,6 +21,7 @@ Option::Option()
     majact = new QCheckBox(tr("Vérifier les mises à jour au démarrage"));
 
     settings = new QSettings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
+
     int a = 1;
     if (!settings->childGroups().contains("Langue",Qt::CaseInsensitive))
     {
@@ -28,14 +29,14 @@ Option::Option()
         settings->setValue("Langue/1", "Français");
         settings->setValue("Langue/2", "English");
         settings->setValue("Langue/3", "Deutsch");
-
     }
+
     while(!settings->value("Langue/" + QString::number(a)).toString().isNull())
     {
         choix_langue->addItem(settings->value("Langue/" + QString::number(a)).toString().toUtf8());
-
         a++;
     }
+
     choix_langue->setCurrentIndex(settings->value("Langue/default", 1).toInt());
 
     taille_x->setMaximum(1000);
@@ -51,6 +52,7 @@ Option::Option()
     QVBoxLayout *maj_layout = new QVBoxLayout;
     QFormLayout *taille_layout = new QFormLayout;
     QVBoxLayout *final = new QVBoxLayout;
+
     langue_layout->addWidget(choix_langue);
     taille_layout->addRow(tr("Largeur : "), taille_x);
     taille_layout->addRow(tr("Longueur :"), taille_y);
@@ -68,6 +70,7 @@ Option::Option()
     setLayout(final);
     setWindowTitle("Options");
     setMinimumSize(250, 275);
+
     QObject::connect(sauvegarder_opt, SIGNAL(clicked(bool)), this, SLOT(record_opt(bool)));
 }
 void Option::record_opt(bool test)
@@ -76,6 +79,7 @@ void Option::record_opt(bool test)
     settings->setValue("Taille/x", taille_x->value());
     settings->setValue("Taille/y", taille_y->value());
     settings->setValue("Langue/default", choix_langue->currentIndex());
+
     if (majact->isChecked())
     {
         settings->setValue("MAJ", true);
@@ -89,32 +93,33 @@ void Option::record_opt(bool test)
     {
         QMessageBox::information(this, tr("Information"), tr("Modification effectuée"));
     }
+
     close();
 }
 void Option::closeEvent(QCloseEvent *event)
 {
     if (faux != 1)
     {
-    QMessageBox message;
-    message.setWindowTitle(tr("Confirmation"));
-    message.setText(tr("Sauvegarder ?"));
-    message.addButton(QMessageBox::Yes);
-    message.addButton(QMessageBox::No);
-    message.setButtonText(QMessageBox::Yes, tr("Oui"));
-    message.setButtonText(QMessageBox::No, tr("Non"));
-    int reponse = message.exec();
-       if (reponse == QMessageBox::Yes)
-       {
-           record_opt(false);
-           event->accept();
-       }
-       else
-       {
-           event->accept();
-       }
-    }
-    else
-    {
-        event->accept();
-    }
+        QMessageBox message;
+        message.setWindowTitle(tr("Confirmation"));
+        message.setText(tr("Sauvegarder ?"));
+        message.addButton(QMessageBox::Yes);
+        message.addButton(QMessageBox::No);
+        message.setButtonText(QMessageBox::Yes, tr("Oui"));
+        message.setButtonText(QMessageBox::No, tr("Non"));
+        int reponse = message.exec();
+        if (reponse == QMessageBox::Yes)
+        {
+            record_opt(false);
+            event->accept();
+        }
+        else
+        {
+            event->accept();
+        }
+     }
+     else
+     {
+         event->accept();
+     }
 }
