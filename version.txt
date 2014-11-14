@@ -1,6 +1,5 @@
-﻿﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <version>
- <numero>1.6</numero>
- <infos>Correction d'un bug de mise à jour</infos>
- </version> 
-
+ <numero>2.0</numero>
+ <infos>Ajout de l'impression, l'exportation</infos>
+ </version>
