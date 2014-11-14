@@ -37,9 +37,10 @@ Fenetre::Fenetre()
    modifier = new QPushButton;
    afficher = new QPushButton;
    supprimer = new QPushButton;
+   arbre = new QTreeWidget;
+
    QVBoxLayout *layoutv = new QVBoxLayout;
    QHBoxLayout *layouth = new QHBoxLayout;
-   arbre = new QTreeWidget;
 
    ajout->setIcon(QIcon(":/images/ajouter.png"));
    ajout->setIconSize(QPixmap(":/images/modifier.png").size());
@@ -77,16 +78,15 @@ Fenetre::Fenetre()
    QMenu *menuoption = menuBar()->addMenu(tr("&Options"));
    QMenu *menuaide = menuBar()->addMenu(tr("&Aide"));
 
-
    QAction *quitter = new QAction(tr("&Quitter"), this);
-   exportation = new QAction(tr("Exporter"), this);
-   impression = new QAction(tr("Imprimer"), this);
-   apercuavant = new QAction(tr("Aperçu avant impression"), this);
    QAction *parametre = new QAction(tr("&Options"), this);
    QAction *stylegestion = new QAction(tr("Gérer le style"), this);
    QAction *aide = new QAction(tr("&Aide"), this);
    QAction *about = new QAction(tr("A propos..."), this);
    QAction *majcheck = new QAction(tr("&Vérifier les mises à jour"), this);
+   exportation = new QAction(tr("Exporter"), this);
+   impression = new QAction(tr("Imprimer"), this);
+   apercuavant = new QAction(tr("Aperçu avant impression"), this);
 
    quitter->setShortcut(QKeySequence(tr("Ctrl+Q")));
    exportation->setShortcut(QKeySequence(tr("Ctrl+E")));
@@ -112,17 +112,19 @@ Fenetre::Fenetre()
    menuaide->addAction(aide);
    menuaide->addAction(about);
 
-
    zoneprincipale->setLayout(layouth);
+
    setCentralWidget(zoneprincipale);
    setWindowTitle("WordBook");
    setFixedSize(435, 280);
 
    QStringList liste;
    liste << tr("Nom") << tr("Langue");
+
    arbre->setHeaderLabels(liste);
    arbre->setColumnWidth(0, 200);
    arbre->setColumnWidth(1, 150);
+
    lister();
 
    QObject::connect(arbre, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(affiche_page(QTreeWidgetItem*,int)));
@@ -142,34 +144,31 @@ Fenetre::Fenetre()
 
    QSignalMapper *mapper = new QSignalMapper;
    mapper->setMapping(majcheck, "false");
+
    QObject::connect(majcheck, SIGNAL(triggered()), mapper, SLOT(map()));
    QObject::connect(mapper, SIGNAL(mapped(QString)), this, SLOT(maj(QString)));
 }
 void Fenetre::affiche_page(QTreeWidgetItem* slot, int te)
 {
-  Web testg(slot->text(0));
+   Web testg(slot->text(0));
 }
 void Fenetre::apropos()
 {
-    Propos *apropos_aff = new Propos;
-    apropos_aff->show();
+   Propos *apropos_aff = new Propos;
+   apropos_aff->show();
 }
 void Fenetre::print(QPrinter *imprimante)
 {
-
-
-
    QProcess *process = new QProcess;
    QStringList arguments;
    arguments << QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0) + ".html " << QCoreApplication::applicationDirPath() + "/data/export.pdf";
    process->start("wkhtmltopdf.exe", arguments);
    process->waitForFinished();
 
-
     Poppler::Document* document = Poppler::Document::load(QCoreApplication::applicationDirPath() + "/data/export.pdf");
 
-
-    if (document == 0) {
+    if (document == 0)
+    {
         QMessageBox::critical(this, "Erreur", "Le programme n'a pas pu effectuer l'action demandé\nMerci de reporter le bug : Error during document opening");
     }
 
@@ -177,15 +176,10 @@ void Fenetre::print(QPrinter *imprimante)
     document->setRenderHint(Poppler::Document::Antialiasing, true);
     document->setRenderHint(Poppler::Document::TextAntialiasing, true);
 
-
-
-    if (document->isLocked()) {
+    if (document->isLocked())
+    {
         delete document;
-
     }
-
-
-
 
     int printerResolution = imprimante->resolution();
 
@@ -197,24 +191,22 @@ void Fenetre::print(QPrinter *imprimante)
 
     int numberOfPages = document->numPages();
 
-
     QPainter painter;
     painter.begin(imprimante);
 
-    for (int currentPageNumber = 0; currentPageNumber < numberOfPages; currentPageNumber++) {
+    for (int currentPageNumber = 0; currentPageNumber < numberOfPages; currentPageNumber++)
+    {
         if (currentPageNumber != 0)
         {
-        imprimante->newPage();
+            imprimante->newPage();
         }
-
 
         Poppler::Page* pdfPage = document->page(currentPageNumber);
 
-
-        if (pdfPage == 0) {
-        QMessageBox::critical(this, "Erreur", "Le programme n'a pas pu effectuer l'action demandée\nMerci de reporter le bug : Error during page opening");
+        if (pdfPage == 0)
+        {
+            QMessageBox::critical(this, "Erreur", "Le programme n'a pas pu effectuer l'action demandée\nMerci de reporter le bug : Error during page opening");
         }
-
 
         QImage printImage = pdfPage->renderToImage(printerResolution, printerResolution, 0, 0, paperWitdh, paperHeight);
         painter.drawPixmap(0, 0, pageWidth, pageHeight, QPixmap::fromImage(printImage));
@@ -222,12 +214,12 @@ void Fenetre::print(QPrinter *imprimante)
 
     painter.end();
     QFile::remove(QCoreApplication::applicationDirPath() + "/data/export.pdf");
-
 }
 void Fenetre::clicPrint()
 {
     QPrinter printer;
     QPrintDialog dialog(&printer);
+
     dialog.exec();
     print(&printer);
 }
@@ -235,7 +227,9 @@ void Fenetre::apercu()
 {
     QPrinter printer2;
     QPrintPreviewDialog dialog2(&printer2, this);
+
     QObject::connect(&dialog2, SIGNAL(paintRequested(QPrinter*)), this, SLOT(print(QPrinter*)));
+
     dialog2.resize(900, 900);
     dialog2.setSizeGripEnabled(true);
     dialog2.exec();
@@ -285,6 +279,7 @@ void Fenetre::pdf()
 {
     QString fileName = arbre->selectedItems().at(0)->text(0);
     QFileDialog dialog(this);
+
     dialog.setWindowTitle(tr("Exportation"));
     dialog.setDirectory(QDir::homePath());
     dialog.setNameFilter(tr("Fichiers PDF (*.pdf);;Joint Photographic Experts Group (*.jpeg);;Portable Network Graphics (*.png);;Bitmap (*.bmp);;Scalable Vector Graphics (*.svg)"));
@@ -294,41 +289,45 @@ void Fenetre::pdf()
 
     if(dialog.exec())
     {
-    QFileInfo infofichier = dialog.selectedFiles().at(0);
-    qDebug() << infofichier.suffix();
-    if (infofichier.suffix() == "pdf")
-    {
-        export_pdf(infofichier.absoluteFilePath());
-    }
-    else
-    {
-        export_image(infofichier.absoluteFilePath());
-    }
+       QFileInfo infofichier = dialog.selectedFiles().at(0);
+       infofichier.suffix();
+       if (infofichier.suffix() == "pdf")
+       {
+           export_pdf(infofichier.absoluteFilePath());
+       }
+       else
+       {
+           export_image(infofichier.absoluteFilePath());
+       }
 
-    QMessageBox *process_end = new QMessageBox;
-    process_end->setStandardButtons(QMessageBox::Ok | QMessageBox::Help);
-    process_end->setButtonText(QMessageBox::Ok, tr("Ok"));
-    process_end->setButtonText(QMessageBox::Help, tr("Aide ?"));
-    process_end->setText(tr("La commande d'exportation s'est terminée"));
-    int retour = process_end->exec();
+       QMessageBox *process_end = new QMessageBox;
+       process_end->setStandardButtons(QMessageBox::Ok | QMessageBox::Help);
+       process_end->setButtonText(QMessageBox::Ok, tr("Ok"));
+       process_end->setButtonText(QMessageBox::Help, tr("Aide ?"));
+       process_end->setText(tr("La commande d'exportation s'est terminée"));
+       int retour = process_end->exec();
 
-     switch(retour)
-     {
-      case QMessageBox::Ok:
-      break;
-      case QMessageBox::Help:
-        QMessageBox::information(this, tr("Erreur"), tr("<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>"));
-      break;
+       switch(retour)
+       {
+          case QMessageBox::Ok:
 
-      delete process_end;
-     }
+          break;
+
+          case QMessageBox::Help:
+               QMessageBox::information(this, tr("Erreur"), tr("<h2>Votre fichier ne s'est pas créée ?</h2><ul><li>Vérifier que le fichier est enregistré dans un endroit où les permissions d'écriture sont accordés</li></ul>"));
+          break;
+
+          delete process_end;
+       }
     }
 }
 void Fenetre::export_pdf(QString chemin)
 {
     QProcess *processusexport = new QProcess(this);
+
     QStringList arguments;
     arguments << QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0) + ".html " << chemin;
+
     processusexport->start("wkhtmltopdf.exe", arguments);
     processusexport->waitForFinished();
 }
@@ -336,11 +335,10 @@ void Fenetre::export_image(QString chemini)
 {
     QProcess *processusexport = new QProcess(this);
     QStringList arguments;
-    qDebug() << "image";
+
     arguments << QCoreApplication::applicationDirPath() + "/data/" + arbre->selectedItems().at(0)->text(0) + ".html " << chemini;
-    qDebug() << arguments;
+
     processusexport->start("wkhtmltoimage.exe", arguments);
-    qDebug() << "wkhtmltoimage.exe " << arguments.at(0) << arguments.at(1);
     processusexport->waitForFinished();
 }
 
@@ -348,6 +346,7 @@ void Fenetre::ajouter()
 {
     fenajout = new Ajout;
     fenajout->show();
+
     QObject::connect(fenajout, SIGNAL(fini()), this, SLOT(rafraichir()));
 
 }
@@ -355,13 +354,15 @@ void Fenetre::rafraichir()
 {
    arbre->clear();
    lister();
-   delete fenajout;
+
    modifier->setEnabled(false);
    afficher->setEnabled(false);
    supprimer->setEnabled(false);
    exportation->setEnabled(false);
    impression->setEnabled(false);
    apercuavant->setEnabled(false);
+
+   delete fenajout;
 }
 void Fenetre::changer()
 {
@@ -369,20 +370,21 @@ void Fenetre::changer()
     modif = new Modifier;
     modif->show();
     modif->affdonne(arbre->selectedItems().at(0)->text(0));
+
     QObject::connect(modif, SIGNAL(fini()), this, SLOT(rafraichir2()));
 }
 void Fenetre::rafraichir2()
 {
     arbre->clear();
     lister();
-    delete modif;
+
     modifier->setEnabled(false);
     afficher->setEnabled(false);
     supprimer->setEnabled(false);
     exportation->setEnabled(false);
     impression->setEnabled(false);
     apercuavant->setEnabled(false);
-
+    delete modif;
 }
 void Fenetre::degriser()
 {
@@ -396,59 +398,66 @@ void Fenetre::degriser()
 void Fenetre::maj(QString demarrage)
 {
     QNetworkAccessManager manager;
-
     reply = manager.get(QNetworkRequest(QUrl("https://raw.githubusercontent.com/Quentique/WordBook/master/version.txt")));
+
     QEventLoop loop;
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
-   QFile fichier(QCoreApplication::applicationDirPath() + "/version.txt");
-       fichier.open(QIODevice::WriteOnly | QIODevice::Text);
-   QTextStream flux(&fichier);
-   flux.setCodec("UTF-8");
-   flux << reply->readAll();
-   fichier.close();
+
+    QFile fichier(QCoreApplication::applicationDirPath() + "/version.txt");
+    fichier.open(QIODevice::WriteOnly | QIODevice::Text);
+
+    QTextStream flux(&fichier);
+    flux.setCodec("UTF-8");
+    flux << reply->readAll();
+
+    fichier.close();
 
     QDomDocument *dom = new QDomDocument("mon_xml");
-        if(!fichier.open(QIODevice::ReadOnly))
-        {
-            QMessageBox::warning(this,"Erreur à l'ouverture du document XML","Le document XML n'a pas pu être ouvert. Vérifiez que le nom est le bon et que le document est bien placé");
-            return;
-        }
-        if (!dom->setContent(&fichier)) // Si l'on n'arrive pas à associer le fichier XML à l'objet DOM.
-        {
-                fichier.close();
-
-                return;
-        }
+    if(!fichier.open(QIODevice::ReadOnly))
+    {
+       QMessageBox::warning(this,"Erreur à l'ouverture du document XML","Le document XML n'a pas pu être ouvert. Vérifiez que le nom est le bon et que le document est bien placé");
+       return;
+    }
+    if (!dom->setContent(&fichier)) // Si l'on n'arrive pas à associer le fichier XML à l'objet DOM.
+    {
+        fichier.close();
+        return;
+    }
     fichier.close();
     QFile::remove(fichier.fileName());
+
     QDomElement doc_elements = dom->documentElement();
     doc_elements = doc_elements.firstChildElement();
+
     QFile version(":/texte/version.txt");
     version.open(QIODevice::ReadOnly | QIODevice::Text);
+
     QTextStream stram(&version);
-    qDebug() << doc_elements.text();
     stram.setCodec("UTF-8");
     QString vs = stram.readAll();
-    qDebug() << vs;
-    qDebug() << doc_elements.text();
+
     if (vs < doc_elements.text())
     {
         QMessageBox newversion;
         newversion.setText(tr("Nouvelle version disponible"));
+
         QString versionst = doc_elements.text();
         doc_elements = doc_elements.nextSiblingElement();
+
         QString texte = tr("<strong>Nouvelle version : </strong>") +  versionst  + QObject::tr("<br/><strong>Version Actuelle : </strong>")+ vs + tr("<br/><u>Informations Complémentaires :</u><br/>") + doc_elements.text() + tr("<br/><strong>Souhaitez-vous la télécharger ?</strong>");
         newversion.setInformativeText(texte);
         newversion.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         int retour = newversion.exec();
+
         if (retour == QMessageBox::Yes)
         {
-           QDesktopServices::openUrl(QUrl("https://github.com/Quentique/WordBook/releases"));
-           QMetaObject::invokeMethod(this, "close", Qt::QueuedConnection);
+            QDesktopServices::openUrl(QUrl("https://github.com/Quentique/WordBook/releases"));
+            QMetaObject::invokeMethod(this, "close", Qt::QueuedConnection);
         }
-    version.close();
-    QFile::remove(version.fileName());
+
+        version.close();
+        QFile::remove(version.fileName());
     }
     else if (demarrage == "false")
     {
@@ -467,44 +476,51 @@ void Fenetre::lister()
 
     if (QDir(path).exists())
     {
-    listes.removeFirst();
-    listes.removeFirst();
+        listes.removeFirst();
+        listes.removeFirst();
     }
+
     i = listes.count();
+
     for (a = 0 ; a < i ; a++)
     {
-        QTreeWidgetItem *item = new QTreeWidgetItem;
-        QString affichage = listes.at(a);
-        QChar lettre = affichage.at(0).toUpper();
-        affichage.replace(0, 1,  lettre);
+         QTreeWidgetItem *item = new QTreeWidgetItem;
+         QString affichage = listes.at(a);
+         QChar lettre = affichage.at(0).toUpper();
+         affichage.replace(0, 1,  lettre);
          if (affichage.endsWith(".html"))
          {
-          affichage.truncate(affichage.size() - 5);
-          item->setText(0, affichage);
+             affichage.truncate(affichage.size() - 5);
+             item->setText(0, affichage);
 
-          QFile fichierla(path + listes.at(a));
-          if (!fichierla.open(QIODevice::ReadOnly))
-          {
-              QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'ouvrir le fichier !"));
-              fichierla.close();
-          }
-          QDomDocument *dom = new QDomDocument("xml");
-          if (!dom->setContent(&fichierla))
-          {
-              fichierla.close();
-              QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'attribuer le fichier"));
-          }
-          QDomElement doc_elements = dom->documentElement();
-          doc_elements = doc_elements.firstChildElement();
-          doc_elements = doc_elements.nextSiblingElement();
+             QFile fichierla(path + listes.at(a));
+             if (!fichierla.open(QIODevice::ReadOnly))
+             {
+                 QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'ouvrir le fichier !"));
+                 fichierla.close();
+             }
 
-          QDomElement tableau_donnes = doc_elements.firstChildElement();
-          tableau_donnes = tableau_donnes.nextSiblingElement();
-          tableau_donnes = tableau_donnes.nextSiblingElement();
-          item->setText(1, tableau_donnes.text().right(tableau_donnes.text().size() - 9));
-          fichierla.close();
-          item->setTextAlignment(1, Qt::AlignRight);
-          arbre->addTopLevelItem(item);
+             QDomDocument *dom = new QDomDocument("xml");
+             if (!dom->setContent(&fichierla))
+             {
+                 fichierla.close();
+                 QMessageBox::critical(this, tr("Erreur"), tr("Impossible d'attribuer le fichier"));
+             }
+
+             QDomElement doc_elements = dom->documentElement();
+             doc_elements = doc_elements.firstChildElement();
+             doc_elements = doc_elements.nextSiblingElement();
+
+             QDomElement tableau_donnes = doc_elements.firstChildElement();
+             tableau_donnes = tableau_donnes.nextSiblingElement();
+             tableau_donnes = tableau_donnes.nextSiblingElement();
+
+             item->setText(1, tableau_donnes.text().right(tableau_donnes.text().size() - 9));
+
+             fichierla.close();
+
+             item->setTextAlignment(1, Qt::AlignRight);
+             arbre->addTopLevelItem(item);
 
          }
     }
