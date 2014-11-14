@@ -3,3 +3,4 @@
  <numero>2.0</numero>
  <infos>Ajout de l'impression, l'exportation</infos>
  </version>
+
