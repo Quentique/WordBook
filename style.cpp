@@ -282,7 +282,7 @@ QString Style::retour_couleur(QPushButton *bouton)
 }
 QString Style::transfo_bool(QCheckBox *box)
 {
-    if(box->isChecked()) { return "true"; } else { return "false";}
+    if (box->isChecked()) { return "true";} else { return "false";}
 }
 QString Style::souligne(QCheckBox *boxline)
 {
@@ -293,6 +293,7 @@ void Style::sauvegarder()
 {
     vrai = 1;
     QFile::remove(QCoreApplication::applicationDirPath() + "/style.css");
+
     settings->setValue("Title/font", style_titre_font->currentFont());
     settings->setValue("Title/size", style_titre_taille->value());
     settings->setValue("Title/bold", style_titre_gras->isChecked());
@@ -399,6 +400,7 @@ void Style::sauvegarder()
     stream << "td, th\n{\nborder: solid 1px blue;\n}\n";
     stream << "table\n{\nmargin-left: auto;\nmargin-right: auto;\nborder-collapse: collapse;\n}";
     fichierstyle.close();
+
     QMessageBox::information(this, tr("Information"), tr("La modification prendra effet après le redémarrage de l'application"));
     close();
 }
@@ -406,23 +408,23 @@ void Style::closeEvent(QCloseEvent *event)
 {
     if (vrai != 1)
     {
-    QMessageBox message;
-    message.setWindowTitle(tr("Confirmation"));
-    message.setText(tr("Sauvegarder ?"));
-    message.addButton(QMessageBox::Yes);
-    message.addButton(QMessageBox::No);
-    message.setButtonText(QMessageBox::Yes, tr("Oui"));
-    message.setButtonText(QMessageBox::No, tr("Non"));
-    int reponse = message.exec();
-       if (reponse == QMessageBox::Yes)
-       {
-           sauvegarder();
-           event->accept();
-       }
-       else
-       {
-           event->accept();
-       }
+        QMessageBox message;
+        message.setWindowTitle(tr("Confirmation"));
+        message.setText(tr("Sauvegarder ?"));
+        message.addButton(QMessageBox::Yes);
+        message.addButton(QMessageBox::No);
+        message.setButtonText(QMessageBox::Yes, tr("Oui"));
+        message.setButtonText(QMessageBox::No, tr("Non"));
+        int reponse = message.exec();
+        if (reponse == QMessageBox::Yes)
+        {
+            sauvegarder();
+            event->accept();
+        }
+        else
+        {
+            event->accept();
+        }
     }
     else
     {
