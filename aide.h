@@ -2,9 +2,9 @@
 #define AIDE_H
 
 #include <QApplication>
-#include <QWidget>
 #include <QLabel>
 #include <QPushButton>
+#include <QWidget>
 
 class Aide : public QWidget
 {
