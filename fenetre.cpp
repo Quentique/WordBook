@@ -16,8 +16,6 @@
 #include <QtPrintSupport/QPrinter>
 #include <QSignalMapper>
 #include <QtXml>
-#include <shellapi.h>
-#include <windows.h>
 
 #include "style.h"
 #include "option.h"

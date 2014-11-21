@@ -4,13 +4,18 @@
 #include <QPixmap>
 #include <QTextCodec>
 #include <QTranslator>
-
+#include <QSplashScreen>
 #include "fenetre.h"
 
 int main(int argc, char *argv[])
 {
 
     QApplication app(argc, argv);
+
+    QPixmap pixmap(QCoreApplication::applicationDirPath() + "/splash.png");
+    QSplashScreen splash(pixmap);
+    splash.show();
+
 
     QSettings settings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     int defaut = settings.value("Langue/default").toInt();
@@ -32,6 +37,7 @@ int main(int argc, char *argv[])
     }
 
     test.show();
+    splash.finish(&test);
 
     return app.exec();
 }
